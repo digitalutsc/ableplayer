@@ -3,25 +3,24 @@
 /*
  * Implements hook_libraries_info().
  */
-function ableplayer_youtube_libraries_info() {
+function ableplayer_libraries_info() {
   $libraries = array();
 
   $libraries['ableplayer'] = array(
     'name' => 'Able Player',
     'vendor url' => 'https://github.com/ableplayer/ableplayer',
     'download url' => 'https://github.com/ableplayer/ableplayer/releases',
-    'path' => 'build',
     'version arguments' => array(
       'file' => 'build/ableplayer.min.js',
       'pattern' => '@(\d+\.\d+\.\d+)@',
     ),
     'files' => array(
       'js' => array(
-        'ableplayer.min.js' => array('group' => JS_LIBRARY, 'preprocess' => FALSE),
+        'build/ableplayer.min.js' => array('group' => JS_LIBRARY, 'preprocess' => FALSE),
       ),
       'css' => array(
-        '../styles/ableplayer.css' => array('group' => CSS_SYSTEM),
-        '../styles/ableplayer-transcript.css' => array('group' => CSS_SYSTEM),
+        'styles/ableplayer.css' => array('group' => CSS_SYSTEM),
+        'styles/ableplayer-transcript.css' => array('group' => CSS_SYSTEM),
       ),
     ),
   );

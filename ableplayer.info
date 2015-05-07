@@ -1,0 +1,5 @@
+name = Able Player
+description = Able Player library
+core = 7.x
+version = 7.x-1.x-dev
+dependencies[] = libraries

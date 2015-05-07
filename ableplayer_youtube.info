@@ -1,6 +1,0 @@
-name = Able Player YouTube
-description = Able Player wrapper for YouTube videos
-core = 7.x
-version = 7.x-1.x-dev
-dependencies[] = libraries
-dependencies[] = media_youtube
