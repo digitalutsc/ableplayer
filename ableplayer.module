@@ -12,7 +12,7 @@ function ableplayer_libraries_info() {
     'download url' => 'https://github.com/ableplayer/ableplayer/releases',
     'version arguments' => array(
       'file' => 'build/ableplayer.min.js',
-      'pattern' => '@(\d+\.\d+\.\d+)@',
+      'pattern' => '@ableplayer V?(\d+\.\d+\.\d+)@',
     ),
     'files' => array(
       'js' => array(
