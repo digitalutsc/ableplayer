@@ -20,8 +20,8 @@ function ableplayer_libraries_info() {
         'build/ableplayer.min.js' => array('group' => JS_LIBRARY, 'preprocess' => FALSE),
       ),
       'css' => array(
-        'styles/ableplayer.css' => array('group' => CSS_SYSTEM),
-        'styles/ableplayer-transcript.css' => array('group' => CSS_SYSTEM),
+        'styles/ableplayer.css' => array('group' => CSS_DEFAULT),
+        'styles/ableplayer-transcript.css' => array('group' => CSS_DEFAULT),
       ),
     ),
   );
