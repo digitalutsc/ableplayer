@@ -15,7 +15,7 @@ function ableplayer_requirements($phase) {
       'value' => $t('Not installed'),
       'severity' => REQUIREMENT_ERROR,
     );
-  } elseif ($phase == 'runtime') {
+  } elseif ($phase === 'runtime') {
     $ableplayer = libraries_detect('ableplayer');
 
     if ($ableplayer['error'] != NULL) {
