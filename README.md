@@ -6,5 +6,7 @@ This module provides integration with the Libraries API for inclusion in Drupal 
 
 ## Dependencies
 
+- Libraries API
 - jQuery
 - Modernizr
+- Able Player
