@@ -5,31 +5,29 @@
  */
 function ableplayer_requirements($phase) {
   $requirements = array();
+  $requirements['ableplayer']['title'] = $t('Able Player');
   $t = get_t();
   $installed = libraries_get_path('ableplayer');
 
   if (!$installed) {
-    $requirements['ableplayer'] = array(
-      'title' => $t('Able Player'),
-      'description' => $t('The Able Player library is not installed. Files should be located under') . '<em>' . $t('sites/all/libraries/ableplayer.') . '</em>',
-      'value' => $t('Not installed'),
-      'severity' => REQUIREMENT_ERROR,
-    );
+    $requirements['ableplayer']['value'] = $t('Not installed');
+    $requirements['ableplayer']['description'] = $t('The Able Player library is not installed. Files should be located under') . '<em>' . $t('sites/all/libraries/ableplayer.') . '</em>';
+    $requirements['ableplayer']['severity'] = REQUIREMENT_ERROR;
   } elseif ($phase === 'runtime') {
     $ableplayer = libraries_detect('ableplayer');
+    $modernizr = libraries_detect('modernizr');
 
     if ($ableplayer['error'] != NULL) {
-      $requirements['ableplayer'] = array(
-        'title' => $t('Able Player'),
-        'value' => $t($ableplayer['error message']),
-        'severity' => REQUIREMENT_ERROR,
-      );
+      $requirements['ableplayer']['value'] = $t($ableplayer['error message']);
+      $requirements['ableplayer']['description'] = $t('Able Player must be installed under libraries/ableplayer.');
+      $requirements['ableplayer']['severity'] = REQUIREMENT_ERROR;
+    } else if ($modernizr['error'] != NULL) {
+      $requirements['ableplayer']['value'] = $t($modernizr['error message']);
+      $requirements['ableplayer']['description'] = $t('Modernizr must be installed and ableplayer/thirdparty/modernizr.custom.js must be copied to libraries/modernizr.');
+      $requirements['ableplayer']['severity'] = REQUIREMENT_ERROR;
     } else {
-      $requirements['ableplayer'] = array(
-        'title' => $t('Able Player'),
-        'value' => $ableplayer['version'],
-        'severity' => REQUIREMENT_OK,
-      );
+      $requirements['ableplayer']['value'] = $ableplayer['version'];
+      $requirements['ableplayer']['severity'] = REQUIREMENT_OK;
     }
   }
 
