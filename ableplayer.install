@@ -4,32 +4,37 @@
  * Implements hook_requirements().
  */
 function ableplayer_requirements($phase) {
-  $t = get_t();
   $requirements = array();
-  $requirements['ableplayer']['title'] = $t('Able Player');
-  $installed = libraries_get_path('ableplayer');
+  $t = get_t();
+  $status = ableplayer_installation_status();
 
-  if (!$installed) {
-    $requirements['ableplayer']['value'] = $t('Not installed');
-    $requirements['ableplayer']['description'] = $t('The Able Player library is not installed. Files should be located under') . '<em>' . $t('sites/all/libraries/ableplayer.') . '</em>';
-    $requirements['ableplayer']['severity'] = REQUIREMENT_ERROR;
-  } elseif ($phase === 'runtime') {
-    $ableplayer = libraries_detect('ableplayer');
-    $modernizr = libraries_detect('modernizr');
+  if (!$status['installed']) {
+    $value = $t('Not installed');
+    $description = $status['error'];
+    $severity = REQUIREMENT_ERROR;
+  } else {
+    switch ($phase) {
+      case 'runtime':
+        $ableplayer = libraries_detect('ableplayer');
 
-    if ($ableplayer['error'] != NULL) {
-      $requirements['ableplayer']['value'] = $t($ableplayer['error message']);
-      $requirements['ableplayer']['description'] = $t('Able Player must be installed under libraries/ableplayer.');
-      $requirements['ableplayer']['severity'] = REQUIREMENT_ERROR;
-    } else if ($modernizr['error'] != NULL) {
-      $requirements['ableplayer']['value'] = $t($modernizr['error message']);
-      $requirements['ableplayer']['description'] = $t('Modernizr must be installed and ableplayer/thirdparty/modernizr.custom.js must be copied to libraries/modernizr.');
-      $requirements['ableplayer']['severity'] = REQUIREMENT_ERROR;
-    } else {
-      $requirements['ableplayer']['value'] = $ableplayer['version'];
-      $requirements['ableplayer']['severity'] = REQUIREMENT_OK;
+        if (array_key_exists('error', $ableplayer)) {
+          $value = $t($ableplayer['error message']);
+          $description = FALSE;
+          $severity = REQUIREMENT_ERROR;
+        } else {
+          $value = $ableplayer['version'];
+          $description = FALSE;
+          $severity = REQUIREMENT_OK;
+        }
+
+        break;
     }
   }
+
+  $requirements['ableplayer']['title'] = $t('Able Player');
+  $requirements['ableplayer']['value'] = $value;
+  $requirements['ableplayer']['description'] = $description;
+  $requirements['ableplayer']['severity'] = $severity;
 
   return $requirements;
 }

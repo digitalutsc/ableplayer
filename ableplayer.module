@@ -24,7 +24,37 @@ function ableplayer_libraries_info() {
         'styles/ableplayer-transcript.css' => array('group' => CSS_DEFAULT),
       ),
     ),
+    'dependencies' => array(
+      'modernizr',
+    ),
   );
 
   return $libraries;
+}
+
+function ableplayer_installation_status() {
+  $status = array();
+  $installed = TRUE;
+  $error = FALSE;
+
+  $ableplayer = libraries_detect('ableplayer');
+  $files = array_keys(array_merge(
+    $ableplayer['files']['js'],
+    $ableplayer['files']['css']
+  ));
+
+  foreach ($files as $file) {
+    $path = $ableplayer['library path'] . '/' . $file;
+
+    if (!is_file($path) || !is_readable($path)) {
+      $installed = FALSE;
+      $error = '<em>' . t('@file', array('@file' => $path,)) . '</em>' .
+        t(' was not be found. Please verify that Able Player was installed correctly.');
+    }
+  }
+
+  $status['installed'] = $installed;
+  $status['error'] = $error;
+
+  return $status;
 }
