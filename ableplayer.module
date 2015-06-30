@@ -34,27 +34,38 @@ function ableplayer_libraries_info() {
 
 function ableplayer_installation_status() {
   $status = array();
-  $installed = TRUE;
-  $error = FALSE;
+  $version = NULL;
+  $message = NULL;
 
   $ableplayer = libraries_detect('ableplayer');
+
   $files = array_keys(array_merge(
     $ableplayer['files']['js'],
     $ableplayer['files']['css']
   ));
 
+  $missing_files = array();
+
   foreach ($files as $file) {
     $path = $ableplayer['library path'] . '/' . $file;
 
     if (!is_file($path) || !is_readable($path)) {
-      $installed = FALSE;
-      $error = '<em>' . t('@file', array('@file' => $path,)) . '</em>' .
-        t(' was not be found. Please verify that Able Player was installed correctly.');
+      $missing_files[$path] = t('The file ') . '<em>' . t('@file', array('@file' => $path,)) . '</em>' .
+        t(' was not found.');
     }
   }
 
-  $status['installed'] = $installed;
-  $status['error'] = $error;
+  if (!empty($missing_files)) {
+    $message = trim(implode(' ', $missing_files));
+  } else if (!$ableplayer['installed']) {
+    $message = t($ableplayer['error message']);
+  } else {
+    $version = $ableplayer['version'];
+  }
+
+  $status['error'] = !empty($message);
+  $status['version'] = $version;
+  $status['message'] = $message;
 
   return $status;
 }

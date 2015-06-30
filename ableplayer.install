@@ -6,29 +6,22 @@
 function ableplayer_requirements($phase) {
   $requirements = array();
   $t = get_t();
-  $status = ableplayer_installation_status();
 
-  if (!$status['installed']) {
-    $value = $t('Not installed');
-    $description = $status['error'];
-    $severity = REQUIREMENT_ERROR;
-  } else {
-    switch ($phase) {
-      case 'runtime':
-        $ableplayer = libraries_detect('ableplayer');
+  switch ($phase) {
+    case 'runtime':
+      $status = ableplayer_installation_status();
 
-        if (array_key_exists('error', $ableplayer)) {
-          $value = $t($ableplayer['error message']);
-          $description = FALSE;
-          $severity = REQUIREMENT_ERROR;
-        } else {
-          $value = $ableplayer['version'];
-          $description = FALSE;
-          $severity = REQUIREMENT_OK;
-        }
+      if ($status['error']) {
+        $value = $t('Not installed');
+        $description = $status['message'];
+        $severity = REQUIREMENT_ERROR;
+      } else {
+        $value = $status['version'];
+        $description = FALSE;
+        $severity = REQUIREMENT_OK;
+      }
 
-        break;
-    }
+      break;
   }
 
   $requirements['ableplayer']['title'] = $t('Able Player');
