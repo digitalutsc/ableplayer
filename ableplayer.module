@@ -32,6 +32,54 @@ function ableplayer_libraries_info() {
   return $libraries;
 }
 
+/*
+ * Implements hook_modernizr_info()
+ */
+function ableplayer_modernizr_info() {
+  $tests = array(
+    /* CSS */
+    'fontface',
+    'backgroundsize',
+    'borderimage',
+    'borderradius',
+    'boxshadow',
+    'flexbox',
+    'flexboxlegacy',
+    'hsla',
+    'multiplebgs',
+    'opacity',
+    'rgba',
+    'textshadow',
+    'cssanimations',
+    'csscolumns',
+    'generatedcontent',
+    'cssgradients',
+    'cssreflections',
+    'csstransforms',
+    'csstransforms3d',
+    'csstransitions',
+    /* HTML5 */
+    'audio',
+    'video',
+    'input',
+    'inputtypes',
+    /* Extensibility */
+    'teststyles',
+    'testprop',
+    'testallprops',
+    'prefixes',
+    'domprefixes',
+    /* Extra */
+    'shiv',
+    'load',
+    'mq',
+    'cssclasses',
+  );
+
+  return $tests;
+}
+
+
 function ableplayer_installation_status() {
   $status = array();
   $version = NULL;
