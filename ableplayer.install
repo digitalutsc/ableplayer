@@ -21,13 +21,13 @@ function ableplayer_requirements($phase) {
         $severity = REQUIREMENT_OK;
       }
 
+      $requirements['ableplayer']['title'] = $t('Able Player');
+      $requirements['ableplayer']['value'] = $value;
+      $requirements['ableplayer']['description'] = $description;
+      $requirements['ableplayer']['severity'] = $severity;
+
       break;
   }
-
-  $requirements['ableplayer']['title'] = $t('Able Player');
-  $requirements['ableplayer']['value'] = $value;
-  $requirements['ableplayer']['description'] = $description;
-  $requirements['ableplayer']['severity'] = $severity;
 
   return $requirements;
 }
