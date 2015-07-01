@@ -24,7 +24,96 @@ function ableplayer_libraries_info() {
         'styles/ableplayer-transcript.css' => array('group' => CSS_DEFAULT),
       ),
     ),
+    'dependencies' => array(
+      'modernizr',
+    ),
   );
 
   return $libraries;
+}
+
+/*
+ * Implements hook_modernizr_info()
+ */
+function ableplayer_modernizr_info() {
+  $tests = array(
+    /* CSS */
+    'fontface',
+    'backgroundsize',
+    'borderimage',
+    'borderradius',
+    'boxshadow',
+    'flexbox',
+    'flexboxlegacy',
+    'hsla',
+    'multiplebgs',
+    'opacity',
+    'rgba',
+    'textshadow',
+    'cssanimations',
+    'csscolumns',
+    'generatedcontent',
+    'cssgradients',
+    'cssreflections',
+    'csstransforms',
+    'csstransforms3d',
+    'csstransitions',
+    /* HTML5 */
+    'audio',
+    'video',
+    'input',
+    'inputtypes',
+    /* Extensibility */
+    'teststyles',
+    'testprop',
+    'testallprops',
+    'prefixes',
+    'domprefixes',
+    /* Extra */
+    'shiv',
+    'load',
+    'mq',
+    'cssclasses',
+  );
+
+  return $tests;
+}
+
+
+function ableplayer_installation_status() {
+  $status = array();
+  $version = NULL;
+  $message = NULL;
+
+  $ableplayer = libraries_detect('ableplayer');
+
+  $files = array_keys(array_merge(
+    $ableplayer['files']['js'],
+    $ableplayer['files']['css']
+  ));
+
+  $missing_files = array();
+
+  foreach ($files as $file) {
+    $path = $ableplayer['library path'] . '/' . $file;
+
+    if (!is_file($path) || !is_readable($path)) {
+      $missing_files[$path] = t('The file ') . '<em>' . t('@file', array('@file' => $path,)) . '</em>' .
+        t(' was not found.');
+    }
+  }
+
+  if (!empty($missing_files)) {
+    $message = trim(implode(' ', $missing_files));
+  } else if (!$ableplayer['installed']) {
+    $message = t($ableplayer['error message']);
+  } else {
+    $version = $ableplayer['version'];
+  }
+
+  $status['error'] = !empty($message);
+  $status['version'] = $version;
+  $status['message'] = $message;
+
+  return $status;
 }
