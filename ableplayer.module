@@ -20,7 +20,7 @@ function ableplayer_libraries_info() {
         'thirdparty/jquery.cookie.js' => array('group' => JS_LIBRARY, 'preprocess' => FALSE),
       ),
       'css' => array(
-        'build/ableplayer.min/css' => array('group' => CSS_DEFAULT),
+        'build/ableplayer.min.css' => array('group' => CSS_DEFAULT),
       ),
     ),
     'variants' => array(
