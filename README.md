@@ -29,7 +29,7 @@
 
 ## Usage
 
-Use the following code to invoke Able Player in a module or theme, such as in `hook_page_build()`. This will load **ableplayer.min.js**, **jquery.cookie.js**, and Able Player stylesheets.
+Use the following code to invoke Able Player in a module or theme, such as in `hook_page_build()`. This will load **ableplayer.min.js**, **jquery.cookie.js**, and **ableplayer.min.css**.
 
     <?php
     libraries_load('ableplayer');
