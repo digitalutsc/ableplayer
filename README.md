@@ -29,10 +29,11 @@
 
 ## Usage
 
-Use the following code to invoke Able Player in a module or theme. This will load **ableplayer.min.js**, **jquery.cookie.js**, and Able Player stylesheets.`  
+Use the following code to invoke Able Player in a module or theme. This will load **ableplayer.min.js**, **jquery.cookie.js**, and Able Player stylesheets.
+
+    <?php
+    libraries_load('ableplayer');
 
 ## Known Issues
 
 *   The **jquery.cookie.js** included with Able Player conflicts with the **jquery.cookie.js** loaded by the core Toolbar module, preventing Able Player from working. **Current solution:** Disable the core Toolbar module and use a contrib module such as Admin Toolbar or Navbar.
-
-`
