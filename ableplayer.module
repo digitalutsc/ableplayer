@@ -16,12 +16,28 @@ function ableplayer_libraries_info() {
     ),
     'files' => array(
       'js' => array(
-        'thirdparty/jquery.cookie.js' => array('group' => JS_LIBRARY, 'preprocess' => FALSE),
         'build/ableplayer.min.js' => array('group' => JS_LIBRARY, 'preprocess' => FALSE),
+        'thirdparty/jquery.cookie.js' => array('group' => JS_LIBRARY, 'preprocess' => FALSE),
       ),
       'css' => array(
-        'styles/ableplayer.css' => array('group' => CSS_DEFAULT),
-        'styles/ableplayer-transcript.css' => array('group' => CSS_DEFAULT),
+        'build/ableplayer.min/css' => array('group' => CSS_DEFAULT),
+      ),
+    ),
+    'variants' => array(
+      'source' => array(
+        'files' => array(
+          'js' => array(
+            'build/ableplayer.js' => array('group' => JS_LIBRARY, 'preprocess' => FALSE),
+            'thirdparty/jquery.cookie.js' => array('group' => JS_LIBRARY, 'preprocess' => FALSE),
+          ),
+          'css' => array(
+            'styles/ableplayer-playlist.css' => array('group' => CSS_DEFAULT),
+            'styles/ableplayer-search.css' => array('group' => CSS_DEFAULT),
+            'styles/ableplayer-sign.css' => array('group' => CSS_DEFAULT),
+            'styles/ableplayer-transcript.css' => array('group' => CSS_DEFAULT),
+            'styles/ableplayer.css' => array('group' => CSS_DEFAULT),
+          ),
+        ),
       ),
     ),
     'dependencies' => array(
