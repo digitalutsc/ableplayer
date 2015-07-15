@@ -5,6 +5,8 @@
  *
  */
 
+require_once drupal_get_path('module', 'ableplayer') . '/includes/ableplayer.formatters.inc';
+
 /**
  * Implements hook_help().
  */
@@ -116,6 +118,35 @@ function ableplayer_modernizr_info() {
 }
 
 /**
+ * Implements hook_theme().
+ */
+function ableplayer_theme($existing, $type, $theme, $path) {
+  $themes = array();
+
+  $themes['ableplayer'] = array(
+    'variables' => array(
+      'id' => NULL,
+      'uri' => NULL,
+      'mimetype' => NULL,
+      'options' => array(),
+    ),
+    'file' => 'ableplayer.theme.inc',
+    'path' => $path . '/themes',
+  );
+
+  return $themes;
+}
+
+/**
+ * Implements hook_page_build().
+ *
+ * This avoids loading Able Player assets on AJAX requests.
+ */
+function ableplayer_page_build(&$page) {
+  libraries_load('ableplayer', 'source');
+}
+
+/**
  * Helper function to return information about the Able Player installation.
  *
  * Files that are not found installed in the expected location are colletected
@@ -139,8 +170,8 @@ function ableplayer_installation_status() {
     $path = $ableplayer['library path'] . '/' . $file;
 
     if (!is_file($path) || !is_readable($path)) {
-      $missing_files[$path] = t('The file ') . '<em>' . t('@file', array('@file' => $path, )) . '</em>' .
-        t(' was not found.');
+      $missing_files[$path] = t('The file ') . '<em>' . t('@file',
+        array('@file' => $path, )) . '</em>' . t(' was not found.');
     }
   }
 
