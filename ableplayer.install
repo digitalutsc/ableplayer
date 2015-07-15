@@ -1,6 +1,12 @@
 <?php
 
-/*
+/**
+ * @file
+ *
+ * Install file for Able Player.
+ */
+
+/**
  * Implements hook_requirements().
  */
 function ableplayer_requirements($phase) {
@@ -15,7 +21,8 @@ function ableplayer_requirements($phase) {
         $value = $t('Not installed');
         $description = $status['message'];
         $severity = REQUIREMENT_ERROR;
-      } else {
+      }
+      else {
         $value = $status['version'];
         $description = FALSE;
         $severity = REQUIREMENT_OK;

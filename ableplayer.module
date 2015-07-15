@@ -1,6 +1,11 @@
 <?php
 
-/*
+/**
+ * @file
+ *
+ */
+
+/**
  * Implements hook_libraries_info().
  */
 function ableplayer_libraries_info() {
@@ -20,7 +25,7 @@ function ableplayer_libraries_info() {
         'thirdparty/jquery.cookie.js' => array('group' => JS_LIBRARY, 'preprocess' => FALSE),
       ),
       'css' => array(
-        'build/ableplayer.min/css' => array('group' => CSS_DEFAULT),
+        'build/ableplayer.min.css' => array('group' => CSS_DEFAULT),
       ),
     ),
     'variants' => array(
@@ -48,8 +53,8 @@ function ableplayer_libraries_info() {
   return $libraries;
 }
 
-/*
- * Implements hook_modernizr_info()
+/**
+ * Implements hook_modernizr_info().
  */
 function ableplayer_modernizr_info() {
   $tests = array(
@@ -95,7 +100,12 @@ function ableplayer_modernizr_info() {
   return $tests;
 }
 
-
+/**
+ * Helper function to return information about the Able Player installation.
+ *
+ * Files that are not found installed in the expected location are colletected
+ * and returned.
+ */
 function ableplayer_installation_status() {
   $status = array();
   $version = NULL;
@@ -114,16 +124,18 @@ function ableplayer_installation_status() {
     $path = $ableplayer['library path'] . '/' . $file;
 
     if (!is_file($path) || !is_readable($path)) {
-      $missing_files[$path] = t('The file ') . '<em>' . t('@file', array('@file' => $path,)) . '</em>' .
+      $missing_files[$path] = t('The file ') . '<em>' . t('@file', array('@file' => $path, )) . '</em>' .
         t(' was not found.');
     }
   }
 
   if (!empty($missing_files)) {
     $message = trim(implode(' ', $missing_files));
-  } else if (!$ableplayer['installed']) {
+  }
+  elseif (!$ableplayer['installed']) {
     $message = t($ableplayer['error message']);
-  } else {
+  }
+  else {
     $version = $ableplayer['version'];
   }
 
