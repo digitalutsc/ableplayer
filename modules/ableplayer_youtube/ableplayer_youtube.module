@@ -6,8 +6,6 @@
  * Module file for Able Player Youtube.
  */
 
-require_once drupal_get_path('module', 'ableplayer') . '/includes/ableplayer.inc';
-
 /**
  * Implements hook_file_formatter_info_alter().
  */
