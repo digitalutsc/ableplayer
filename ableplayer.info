@@ -5,6 +5,5 @@ version = 7.x-1.x-dev
 dependencies[] = libraries
 dependencies[] = modernizr
 dependencies[] = jquery_update
-dependencies[] = media
 files[] = test/ableplayer_youtube_validation.test
 files[] = test/ableplayer_youtube_output.test
