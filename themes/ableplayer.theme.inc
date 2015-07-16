@@ -83,7 +83,5 @@ function theme_ableplayer($variables) {
 
   $output .= $close_tag;
 
-  kpr('DEBUG OUTPUT: ' . $output);
-
   return $output;
 }
