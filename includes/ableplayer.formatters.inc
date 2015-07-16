@@ -17,7 +17,7 @@ function ableplayer_file_formatter_info() {
   $formatters['ableplayer'] = array(
     'label' => t('Able Player'),
     'description' => t('Display an audio or video file in Able Player'),
-    'file types' => array('audio', 'video', ),
+    'file types' => array(ABLEPLAYER_BUNDLE_AUDIO, ABLEPLAYER_BUNDLE_VIDEO, ),
     'default settings' => ableplayer_default_settings(),
     'view callback' => 'ableplayer_file_formatter_ableplayer_view',
     'settings callback' => 'ableplayer_file_formatter_ableplayer_settings',
@@ -40,8 +40,8 @@ function ableplayer_file_formatter_ableplayer_view($file, $display, $langcode) {
 
   switch ($mimetype) {
 
-    case 'audio/mpeg':
-    case 'audio/ogg':
+    case ABLEPLAYER_BUNDLE_AUDIO . '/mpeg':
+    case ABLEPLAYER_BUNDLE_AUDIO . '/ogg':
       $element = array(
         '#theme' => $theme,
         '#id' => $id,
@@ -52,7 +52,7 @@ function ableplayer_file_formatter_ableplayer_view($file, $display, $langcode) {
 
       return $element;
 
-    case 'video/youtube':
+    case ABLEPLAYER_BUNDLE_VIDEO . '/youtube':
       $element = array(
         '#theme' => $theme,
         '#id' => $id,
@@ -63,8 +63,8 @@ function ableplayer_file_formatter_ableplayer_view($file, $display, $langcode) {
 
       return $element;
 
-    case 'video/mp4':
-    case 'video/webm':
+    case ABLEPLAYER_BUNDLE_VIDEO . '/mp4':
+    case ABLEPLAYER_BUNDLE_VIDEO . '/webm':
       $element = array(
         '#theme' => $theme,
         '#id' => $id,

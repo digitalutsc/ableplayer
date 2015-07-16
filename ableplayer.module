@@ -5,6 +5,9 @@
  *
  */
 
+define('ABLEPLAYER_BUNDLE_AUDIO', 'audio');
+define('ABLEPLAYER_BUNDLE_VIDEO', 'video');
+
 require_once drupal_get_path('module', 'ableplayer') . '/includes/ableplayer.formatters.inc';
 
 /**
@@ -71,6 +74,25 @@ function ableplayer_libraries_info() {
 }
 
 /**
+ * Implements hook_menu().
+ */
+function ableplayer_menu() {
+  $items = array();
+
+  $items['admin/config/media/ableplayer'] = array(
+    'title' => 'Able Player',
+    'description' => 'Configuration for Able Player library',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('ableplayer_form'),
+    'access arguments' => array('administer site'),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'admin/ableplayer.admin.inc',
+  );
+
+  return $items;
+}
+
+/**
  * Implements hook_modernizr_info().
  */
 function ableplayer_modernizr_info() {
@@ -118,6 +140,22 @@ function ableplayer_modernizr_info() {
 }
 
 /**
+ * Implements hook_page_build().
+ *
+ * This avoids loading Able Player assets on AJAX requests.
+ */
+function ableplayer_page_build(&$page) {
+  $compression_level = variable_get('ableplayer_compression_level', 0);
+
+  if ($compression_level === 0) {
+    libraries_load('ableplayer', 'source');
+  }
+  else {
+    libraries_load('ableplayer');
+  }
+}
+
+/**
  * Implements hook_theme().
  */
 function ableplayer_theme($existing, $type, $theme, $path) {
@@ -135,15 +173,6 @@ function ableplayer_theme($existing, $type, $theme, $path) {
   );
 
   return $themes;
-}
-
-/**
- * Implements hook_page_build().
- *
- * This avoids loading Able Player assets on AJAX requests.
- */
-function ableplayer_page_build(&$page) {
-  libraries_load('ableplayer', 'source');
 }
 
 /**

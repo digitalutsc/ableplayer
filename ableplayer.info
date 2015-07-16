@@ -8,3 +8,4 @@ dependencies[] = jquery_update
 dependencies[] = file_entity
 files[] = test/ableplayer_youtube_validation.test
 files[] = test/ableplayer_youtube_output.test
+configure = admin/config/media/ableplayer

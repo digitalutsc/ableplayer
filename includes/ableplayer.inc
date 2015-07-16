@@ -12,10 +12,10 @@
  */
 function ableplayer_mimetypes() {
   return array(
-    'audio/mpeg',
-    'audio/ogg',
-    'video/mp4',
-    'video/webm',
+    ABLEPLAYER_BUNDLE_AUDIO . '/mpeg',
+    ABLEPLAYER_BUNDLE_AUDIO . '/ogg',
+    ABLEPLAYER_BUNDLE_VIDEO . '/mp4',
+    ABLEPLAYER_BUNDLE_VIDEO . '/webm',
   );
 }
 
