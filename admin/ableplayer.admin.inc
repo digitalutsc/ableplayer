@@ -24,10 +24,11 @@ function ableplayer_form() {
     '#title' => t('Compression level'),
     '#description' => t('Development provides a human-readable version of JavaScript and CSS. Production combines and minifies both to conserve bandwidth.'),
     '#default_value' => variable_get('ableplayer_compression_level', 0),
-    '#options' => array(0 => t('Development'), 1 => t('Production')),
+    '#options' => array(
+      0 => t('Development'),
+      1 => t('Production'),
+    ),
   );
-
-  $form['#submit'][] = 'ableplayer_form_submit';
 
   return system_settings_form($form);
 }
