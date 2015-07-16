@@ -147,7 +147,7 @@ function ableplayer_modernizr_info() {
 function ableplayer_page_build(&$page) {
   $compression_level = variable_get('ableplayer_compression_level', 0);
 
-  if ($compression_level === 0) {
+  if ($compression_level === '0') {
     libraries_load('ableplayer', 'source');
   }
   else {
