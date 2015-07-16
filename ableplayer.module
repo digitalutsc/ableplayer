@@ -14,15 +14,38 @@ require_once drupal_get_path('module', 'ableplayer') . '/includes/ableplayer.for
  * Implements hook_help().
  */
 function ableplayer_help($path, $arg) {
-  $output = NULL;
-
   switch ($path) {
-    case 'admin/help#ableplayer':
-      $output = '<p>' . t('See the readme or project page for detailed setup information.') . '</p>';
-      break;
-  }
 
-  return $output;
+    case 'admin/help#ableplayer':
+
+      $filepath = drupal_get_path('module', 'ableplayer') . '/README.md';
+
+      if (is_file($filepath) && is_readable($filepath)) {
+        $readme = file_get_contents($filepath);
+      }
+
+      if (!isset($readme)) {
+        return NULL;
+      }
+
+      if (module_exists('markdown')) {
+        $filters = module_invoke('markdown', 'filter_info');
+        $info = $filters['filter_markdown'];
+
+        if (function_exists($info['process callback'])) {
+          $output = $info['process callback']($readme, NULL);
+        }
+        else {
+          $output = '<pre>' . $readme . '</pre>';
+        }
+      }
+      else {
+        $output = '<pre>' . $readme . '</pre>';
+      }
+
+      return $output;
+
+  }
 }
 
 /**
@@ -145,7 +168,11 @@ function ableplayer_modernizr_info() {
  * This avoids loading Able Player assets on AJAX requests.
  */
 function ableplayer_page_build(&$page) {
-  $compression_level = variable_get('ableplayer_compression_level', 0);
+  $compression_level = &drupal_static(__FUNCTION__);
+
+  if (!isset($compression_level)) {
+    $compression_level = variable_get('ableplayer_compression_level', 0);
+  }
 
   if ($compression_level === '0') {
     libraries_load('ableplayer', 'source');
@@ -173,50 +200,4 @@ function ableplayer_theme($existing, $type, $theme, $path) {
   );
 
   return $themes;
-}
-
-/**
- * Helper function to return information about the Able Player installation.
- *
- * Files that are not found installed in the expected location are colletected
- * and returned.
- */
-function ableplayer_installation_status() {
-  $status = array();
-  $version = NULL;
-  $message = NULL;
-
-  $ableplayer = libraries_detect('ableplayer');
-
-  $files = array_keys(array_merge(
-    $ableplayer['files']['js'],
-    $ableplayer['files']['css']
-  ));
-
-  $missing_files = array();
-
-  foreach ($files as $file) {
-    $path = $ableplayer['library path'] . '/' . $file;
-
-    if (!is_file($path) || !is_readable($path)) {
-      $missing_files[$path] = t('The file') . ' <em>' . t('@file',
-        array('@file' => $path, )) . '</em> ' . t('was not found.');
-    }
-  }
-
-  if (!empty($missing_files)) {
-    $message = trim(implode(' ', $missing_files));
-  }
-  elseif (!$ableplayer['installed']) {
-    $message = t($ableplayer['error message']);
-  }
-  else {
-    $version = $ableplayer['version'];
-  }
-
-  $status['error'] = !empty($message);
-  $status['version'] = $version;
-  $status['message'] = $message;
-
-  return $status;
 }

@@ -2,7 +2,6 @@
 
 /**
  * @file
- * ableplayer.admin.inc
  *
  * Administration callbacks for Able Player.
  */

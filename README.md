@@ -1,6 +1,6 @@
 ## Able Player
 
-**Able Player** is a fully accessible cross-browser media player created by accessibility specialist Terrill Thompson. It uses the HTML5 <audio> or <video> element for browsers that support them. The Able Player module integrates the jQuery Able Player plugin as a Drupal JavaScript library for use in other projects.
+**Able Player** is a fully accessible cross-browser media player created by accessibility specialist Terrill Thompson. It uses the HTML5 &lt;audio&gt; or &lt;video&gt; at support them. The Able Player module integrates the jQuery Able Player plugin as a Drupal JavaScript library for use in other projects.
 
 ## Dependencies
 

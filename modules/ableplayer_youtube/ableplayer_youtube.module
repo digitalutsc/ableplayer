@@ -29,6 +29,10 @@ function ableplayer_youtube_preprocess_ableplayer(&$variables) {
 
 /**
  * Helper function to extract YouTube video id from filestream uri.
+ *
+ * @param string $uri The uri of the file to parse for YouTube id
+ *
+ * @return string The extracted id string
  */
 function ableplayer_youtube_get_video_id($uri) {
   $wrapper = file_stream_wrapper_get_instance_by_uri($uri);
