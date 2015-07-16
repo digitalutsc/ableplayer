@@ -190,7 +190,6 @@ function ableplayer_validate_dimensions($element, &$form_state, $form) {
 function ableplayer_validate_volume($element, &$form_state, $form) {
   if (!empty($element['#value'])) {
     if (!is_numeric($element['#value']) || $element['#value'] < 0 || $element['#value'] > 1) {
-      print_r($element['#value']);
       form_error($element, t('The value entered for @volume is invalid. Please insert a number between 0 and 1.', array('@volume' => $element['#title'], )));
     }
   }
