@@ -14,6 +14,9 @@ function ableplayer_preprocess_ableplayer(&$variables) {
   $variables['id'] = drupal_html_id($variables['id']);
 }
 
+/**
+ * Theme function for Able Player.
+ */
 function theme_ableplayer($variables) {
   extract($variables);
 
@@ -21,7 +24,7 @@ function theme_ableplayer($variables) {
     $open_tag = '<video ';
     $close_tag = '</video>';
   }
-  else if (strpos($mimetype, 'audio') > -1) {
+  elseif (strpos($mimetype, 'audio') > -1) {
     $open_tag = '<audio ';
     $close_tag = '</audio>';
   }
@@ -32,7 +35,7 @@ function theme_ableplayer($variables) {
   $output = $open_tag;
   $output .= 'id="ableplayer-' . $id . '" ';
   $output .= 'width="' . $options['width'] . '" ';
-  $output .= 'height="' .  $options['height'] . '" ';
+  $output .= 'height="' . $options['height'] . '" ';
 
   if ($options['autoplay']) {
     $output .= 'autoplay ';
