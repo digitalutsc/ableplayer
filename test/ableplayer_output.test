@@ -7,6 +7,9 @@
  */
 class AblePlayerOutputTestCase extends DrupalWebTestCase {
 
+  /**
+   * @var object $user The Drupal user that will perform the test operations.
+   */
   protected $user;
 
   /**
@@ -15,7 +18,7 @@ class AblePlayerOutputTestCase extends DrupalWebTestCase {
   public static function getInfo() {
     $info = array();
 
-    $info['name'] = 'Able Player Youtube output test';
+    $info['name'] = 'Able Player output test';
     $info['description'] = 'Verify that the HTML output of the Able Player is correct with given settings';
     $info['group'] = 'Able Player';
 
@@ -37,6 +40,7 @@ class AblePlayerOutputTestCase extends DrupalWebTestCase {
       'administer nodes',
       'bypass file access',
       'bypass node access',
+      'create files',
       'view the administration theme',
     );
 
@@ -44,30 +48,56 @@ class AblePlayerOutputTestCase extends DrupalWebTestCase {
 
     $this->user = $this->drupalCreateUser($user);
     $this->drupalLogin($this->user);
-  }
 
-  /**
-   * Tests that the Able Player module successfully displays for videos.
-   */
-  public function testAblePlayerVideoLoad() {
     $data = array();
-    $data['displays[ableplayer_video][status]'] = TRUE;
-    $data['displays[ableplayer_video][weight]'] = -50;
-    $data['displays[media_youtube_video][status]'] = FALSE;
-    $data['displays[media_youtube_image][status]'] = FALSE;
+    $data['displays[ableplayer][status]'] = 1;
+    $data['displays[ableplayer][weight]'] = -50;
 
     $this->drupalPost('admin/structure/file-types/manage/video/file-display', $data, t('Save configuration'));
     $this->assertText(t('Your settings have been saved.'));
 
     $data = array();
-    $data['embed_code'] = 'https://www.youtube.com/watch?v=6xSO9LDn7qU';
+    $data['displays[ableplayer][status]'] = 1;
+    $data['displays[ableplayer][weight]'] = -50;
 
-    $this->drupalPost('file/add/web', $data, t('Next'));
-    $this->assertText(t('Video Getting to know Catherine Clark was uploaded.'));
+    $this->drupalPost('admin/structure/file-types/manage/audio/file-display', $data, t('Save configuration'));
+    $this->assertText(t('Your settings have been saved.'));
+  }
+
+  /**
+   * Tests that the Able Player module successfully displays for audio uploads.
+   */
+  public function testAblePlayerAudioLoad() {
+    $data = array();
+    $data['files[upload]'] = realpath(drupal_get_path('module', 'ableplayer'). '/test/files/sample.ogg');
+
+    $this->drupalPost('file/add', $data, t('Next'));
+
+    $this->drupalGet('file/1');
+    $this->assertPattern('/<audio[^<>]+data-able-player>/',
+      'Attribute "data-able-player" found in raw HTML.');
+    $this->assertRaw('ableplayer.min.js',
+      'ableplayer.min.js loaded successfully');
+    $this->assertRaw('ableplayer.min.css',
+      'ableplayer.min.css loaded successfully');
+  }
+
+  /**
+   * Tests that the Able Player module successfully displays for video uploads.
+   */
+  public function testAblePlayerVideoLoad() {
+    $data = array();
+    $data['files[upload]'] = realpath(drupal_get_path('module', 'ableplayer') . '/test/files/sample.webm');
+
+    $this->drupalPost('file/add', $data, t('Next'));
 
     $this->drupalGet('file/1');
     $this->assertPattern('/<video[^<>]+data-able-player>/',
       'Attribute "data-able-player" found in raw HTML.');
+    $this->assertRaw('ableplayer.min.js',
+      'ableplayer.min.js loaded successfully');
+    $this->assertRaw('ableplayer.min.css',
+      'ableplayer.min.css loaded successfully');
   }
 
 }

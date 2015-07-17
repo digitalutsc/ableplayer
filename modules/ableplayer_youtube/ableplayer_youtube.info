@@ -5,3 +5,4 @@ version = 7.x-1.x-dev
 dependencies[] = ableplayer
 dependencies[] = media
 dependencies[] = media_youtube
+files[] = test/ableplayer_youtube.test
