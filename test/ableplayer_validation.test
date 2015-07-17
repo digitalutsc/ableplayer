@@ -7,10 +7,19 @@
  */
 class AblePlayerValidationTestCase extends DrupalWebTestCase {
 
+  /**
+   * Message for invalid dimensions.
+   */
   const DIMENSION_ERROR_MESSAGE = 'The value entered for @dimension is invalid. Please insert a unitless integer for pixels or "auto".';
 
+  /**
+   * Message for invalid volume.
+   */
   const VOLUME_ERROR_MESSAGE = 'The value entered for Volume is invalid. Please insert a number between 0 and 1.';
 
+  /**
+   * Message for successful settings save.
+   */
   const SAVE_SUCCESS_MESSAGE = 'Your settings have been saved';
 
   /**
@@ -65,7 +74,7 @@ class AblePlayerValidationTestCase extends DrupalWebTestCase {
 
   /**
    * Accepts valid dimensions.
-   *
+   */
   public function testAblePlayerValidDimensions() {
     $data = array();
 
@@ -76,11 +85,11 @@ class AblePlayerValidationTestCase extends DrupalWebTestCase {
     $this->drupalPost('admin/structure/file-types/manage/video/file-display', $data, t('Save configuration'));
     $this->assertText(t('Your settings have been saved.'),
       'Settings submission succeded with valid dimensions.');
-  }*/
+  }
 
   /**
    * Rejects negative width.
-   *
+   */
   public function testAblePlayerNegativeWidth() {
     $data = array();
 
@@ -90,11 +99,11 @@ class AblePlayerValidationTestCase extends DrupalWebTestCase {
     $this->drupalPost('admin/structure/file-types/manage/video/file-display', $data, t('Save configuration'));
     $this->assertText(t(self::DIMENSION_ERROR_MESSAGE, array('@dimension' => 'Width', )),
       'Settings submission failed with negative width.');
-  }*/
+  }
 
   /**
    * Rejects non-numeric width.
-   *
+   */
   public function testAblePlayerNonNumericWidth() {
     $data = array();
 
@@ -104,11 +113,11 @@ class AblePlayerValidationTestCase extends DrupalWebTestCase {
     $this->drupalPost('admin/structure/file-types/manage/video/file-display', $data, t('Save configuration'));
     $this->assertText(t(self::DIMENSION_ERROR_MESSAGE, array('@dimension' => 'Width', )),
       'Setting submission failed with non-numeric width.');
-  }*/
+  }
 
   /**
    * Rejects whitespace characters in width.
-   *
+   */
   public function testAblePlayerSpacesInWidth() {
     $data = array();
 
@@ -118,11 +127,11 @@ class AblePlayerValidationTestCase extends DrupalWebTestCase {
     $this->drupalPost('admin/structure/file-types/manage/video/file-display', $data, t('Save configuration'));
     $this->assertText(t(self::DIMENSION_ERROR_MESSAGE, array('@dimension' => 'Width', )),
       'Settings submission failed with spaces in width.');
-  }*/
+  }
 
   /**
    * Rejects negative height.
-   *
+   */
   public function testAblePlayerNegativeHeight() {
     $data = array();
 
@@ -132,11 +141,11 @@ class AblePlayerValidationTestCase extends DrupalWebTestCase {
     $this->drupalPost('admin/structure/file-types/manage/video/file-display', $data, t('Save configuration'));
     $this->assertText(t(self::DIMENSION_ERROR_MESSAGE, array('@dimension' => 'Height', )),
       'Settings submission failed with negative hieght');
-  }*/
+  }
 
   /**
    * Rejects non-numeric height.
-   *
+   */
   public function testAblePlayerNonNumericHeight() {
     $data = array();
 
@@ -146,11 +155,11 @@ class AblePlayerValidationTestCase extends DrupalWebTestCase {
     $this->drupalPost('admin/structure/file-types/manage/video/file-display', $data, t('Save configuration'));
     $this->assertText(t(self::DIMENSION_ERROR_MESSAGE, array('@dimension' => 'Height', )),
       'Settings submission failed with non-numeric height.');
-  }*/
+  }
 
   /**
    * Rejects spaces in height.
-   *
+   */
   public function testAblePlayerSpacesInHeight() {
     $data = array();
 
@@ -160,11 +169,11 @@ class AblePlayerValidationTestCase extends DrupalWebTestCase {
     $this->drupalPost('admin/structure/file-types/manage/video/file-display', $data, t('Save configuration'));
     $this->assertText(t(self::DIMENSION_ERROR_MESSAGE, array('@dimension' => 'Height', )),
       'Settings submission failed with spaces in height.');
-  }*/
+  }
 
   /**
    * Accepts maximum possible volume.
-   *
+   */
   public function testAblePlayerMaximumVolume() {
     $data = array();
 
@@ -174,11 +183,11 @@ class AblePlayerValidationTestCase extends DrupalWebTestCase {
     $this->drupalPost('admin/structure/file-types/manage/video/file-display', $data, t('Save configuration'));
     $this->assertText(t(self::SAVE_SUCCESS_MESSAGE),
       'Settings submission succeeded with maximum volume.');
-  }*/
+  }
 
   /**
    * Accepts minimum possible volume.
-   *
+   */
   public function testAblePlayerMinimumVolume() {
     $data = array();
 
@@ -188,11 +197,11 @@ class AblePlayerValidationTestCase extends DrupalWebTestCase {
     $this->drupalPost('admin/structure/file-types/manage/video/file-display', $data, t('Save configuration'));
     $this->assertText(t(self::SAVE_SUCCESS_MESSAGE),
       'Settings submission succeeded with minimum volume.');
-  }*/
+  }
 
   /**
    * Rejects negative volume.
-   *
+   */
   public function testAblePlayerNegativeVolume() {
     $data = array();
 
@@ -202,7 +211,7 @@ class AblePlayerValidationTestCase extends DrupalWebTestCase {
     $this->drupalPost('admin/structure/file-types/manage/video/file-display', $data, t('Save configuration'));
     $this->assertText(t(self::VOLUME_ERROR_MESSAGE),
       'Settings submission failed with negative volume.');
-  }*/
+  }
 
   /**
    * Rejects non-numeric volume.
@@ -214,9 +223,8 @@ class AblePlayerValidationTestCase extends DrupalWebTestCase {
     $data['displays[ableplayer][settings][volume]'] = '1a';
 
     $this->drupalPost('admin/structure/file-types/manage/video/file-display', $data, t('Save configuration'));
-    $this->assertRaw('Volume is invalid');
-    // $this->assertText(t(self::VOLUME_ERROR_MESSAGE),
-    //   'Settings submission failed with non-numeric volume.');
+    $this->assertText(t(self::VOLUME_ERROR_MESSAGE),
+      'Settings submission failed with non-numeric volume.');
   }
 
 }
