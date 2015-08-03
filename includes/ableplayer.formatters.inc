@@ -34,12 +34,17 @@ function ableplayer_file_formatter_info() {
  */
 function ableplayer_file_formatter_ableplayer_view($file, $display, $langcode) {
   $theme = 'ableplayer';
-  $items = field_get_items('file', $file, 'ableplayer_transcript');
-  $item = array_shift($items);
-  $transcript = file_create_url($item['uri']);
+  $transcript = FALSE;
   $options = ableplayer_set_view_settings($file, $display);
 
   module_load_include('inc', 'ableplayer', 'includes/ableplayer');
+
+  $items = field_get_items('file', $file, 'ableplayer_transcript');
+
+  if ($items) {
+    $item = array_shift($items);
+    $transcript = file_create_url($item['uri']);
+  }
 
   switch ($file->filemime) {
 

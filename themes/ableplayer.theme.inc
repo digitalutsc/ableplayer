@@ -20,11 +20,11 @@ function ableplayer_preprocess_ableplayer(&$variables) {
 function theme_ableplayer($variables) {
   extract($variables);
 
-  if (strpos($mimetype, 'video') > -1) {
+  if (strpos($mimetype, ABLEPLAYER_BUNDLE_VIDEO) > -1) {
     $open_tag = '<video ';
     $close_tag = '</video>';
   }
-  elseif (strpos($mimetype, 'audio') > -1) {
+  elseif (strpos($mimetype, ABLEPLAYER_BUNDLE_AUDIO) > -1) {
     $open_tag = '<audio ';
     $close_tag = '</audio>';
   }
@@ -82,7 +82,10 @@ function theme_ableplayer($variables) {
 
   if (empty($data_youtube_id)) {
     $output .= '<source type="' . $mimetype . '" src="' . $uri . '" />';
-    $output .= '<track kind="captions" src="' . $transcript . '" />';
+
+    if ($transcript) {
+      $output .= '<track kind="captions" src="' . $transcript . '" />';
+    }
   }
 
   $output .= $close_tag;
