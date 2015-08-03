@@ -10,30 +10,48 @@
  * Implements hook_install().
  */
 function ableplayer_install() {
-  $field = array(
-    'field_name' => 'ableplayer_transcript',
-    'label' => t('Transcript'),
-    'type' => 'file',
-    'entity_type' => 'file',
-    'bundle' => NULL,
-    'cardinality' => 1,
-    'settings' => array(
-      'file_extensions' => 'vtt',
+  $fields = array(
+    array(
+      'field_name' => 'ableplayer_transcript',
+      'label' => t('Transcript'),
+      'type' => 'file',
+      'entity_type' => 'file',
+      'bundle' => NULL,
+      'cardinality' => 1,
+      'required' => FALSE,
+      'locked' => TRUE,
+      'settings' => array(
+        'file_extensions' => 'vtt',
+      ),
+      'display' => array(
+        'default' =>array(
+          'label' => 'hidden',
+          'type' => 'hidden',
+          'settings' => array(),
+        ),
+      ),
     ),
-    'display' => array(
-      'default' =>array(
-        'label' => 'hidden',
-        'type' => 'hidden',
-        'settings' => array(),
+    array(
+      'field_name' => 'ableplayer_description',
+      'label' => t('Description'),
+      'type' => 'file',
+      'entity_type' => 'file',
+      'bundle' => NULL,
+      'cardinality' => 1,
+      'required' => FALSE,
+      'locked' => TRUE,
+      'settings' => array(
+        'file_extensions' => 'vtt',
+      ),
+      'display' => array(
+        'default' => array(
+          'label' => 'hidden',
+          'type' => 'hidden',
+          'settings' => array(),
+        ),
       ),
     ),
   );
-
-  $field_info = field_info_field($field['field_name']);
-
-  if (empty($field_info)) {
-    field_create_field($field);
-  }
 
   $file_types = file_type_load_all();
 
@@ -42,15 +60,23 @@ function ableplayer_install() {
       continue;
     }
 
-    $field['bundle'] = $file_type->type;
-    $instance_info = field_info_instance($field['entity_type'], $field['field_name'], $field['bundle']);
+    foreach ($fields as $field) {
+      $field_info = field_info_field($field['field_name']);
 
-    if (empty($instance_info)) {
-      field_create_instance($field);
+      if (empty($field_info)) {
+        field_create_field($field);
+      }
+
+      $field['bundle'] = $file_type->type;
+      $instance_info = field_info_instance($field['entity_type'], $field['field_name'], $field['bundle']);
+
+      if (empty($instance_info)) {
+        field_create_instance($field);
+      }
     }
   }
 
-  drupal_set_message(st('Able Player settings are available under @link',
+  drupal_set_message(st("Able Player settings are available under @link",
     array('@link' => l(st('Administer > Site Configuration > Media > Able Player'), 'admin/config/media/ableplayer'), )
   ));
 }
