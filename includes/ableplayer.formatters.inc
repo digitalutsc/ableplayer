@@ -16,7 +16,7 @@ function ableplayer_file_formatter_info() {
 
   $formatters['ableplayer'] = array(
     'label' => t('Able Player'),
-    'description' => t('Display an audio or video file in Able Player'),
+    'description' => t('Display an audio or video file in Able Player (file formatter)'),
     'file types' => array(ABLEPLAYER_BUNDLE_AUDIO, ABLEPLAYER_BUNDLE_VIDEO, ),
     'default settings' => ableplayer_default_settings(),
     'view callback' => 'ableplayer_file_formatter_ableplayer_view',
@@ -34,21 +34,23 @@ function ableplayer_file_formatter_info() {
  */
 function ableplayer_file_formatter_ableplayer_view($file, $display, $langcode) {
   $theme = 'ableplayer';
-  $id = $file->fid;
-  $mimetype = file_get_mimetype($file->uri);
+  $items = field_get_items('file', $file, 'field_transcript');
+  $item = array_shift($items);
+  $transcript = file_create_url($item['uri']);
   $options = ableplayer_set_view_settings($file, $display);
 
   module_load_include('inc', 'ableplayer', 'includes/ableplayer');
 
-  switch ($mimetype) {
+  switch ($file->filemime) {
 
     case ABLEPLAYER_BUNDLE_AUDIO . '/mpeg':
     case ABLEPLAYER_BUNDLE_AUDIO . '/ogg':
       $element = array(
         '#theme' => $theme,
-        '#id' => $id,
+        '#id' => $file->fid,
         '#uri' => file_create_url($file->uri),
-        '#mimetype' => $mimetype,
+        '#mimetype' => $file->filemime,
+        '#transcript' => $transcript,
         '#options' => $options,
       );
 
@@ -57,9 +59,10 @@ function ableplayer_file_formatter_ableplayer_view($file, $display, $langcode) {
     case ABLEPLAYER_BUNDLE_VIDEO . '/youtube':
       $element = array(
         '#theme' => $theme,
-        '#id' => $id,
+        '#id' => $file->fid,
         '#uri' => $file->uri,
-        '#mimetype' => $mimetype,
+        '#mimetype' => $file->filemime,
+        '#transcript' => NULL,
         '#options' => $options,
       );
 
@@ -69,9 +72,10 @@ function ableplayer_file_formatter_ableplayer_view($file, $display, $langcode) {
     case ABLEPLAYER_BUNDLE_VIDEO . '/webm':
       $element = array(
         '#theme' => $theme,
-        '#id' => $id,
+        '#id' => $file->fid,
         '#uri' => file_create_url($file->uri),
-        '#mimetype' => $mimetype,
+        '#mimetype' => $file->filemime,
+        '#transcript' => $transcript,
         '#options' => $options,
       );
 

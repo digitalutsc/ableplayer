@@ -82,6 +82,7 @@ function theme_ableplayer($variables) {
 
   if (empty($data_youtube_id)) {
     $output .= '<source type="' . $mimetype . '" src="' . $uri . '" />';
+    $output .= '<track kind="captions" src="' . $transcript . '" />';
   }
 
   $output .= $close_tag;
