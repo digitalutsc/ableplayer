@@ -34,7 +34,7 @@ function ableplayer_file_formatter_info() {
  */
 function ableplayer_file_formatter_ableplayer_view($file, $display, $langcode) {
   $theme = 'ableplayer';
-  $items = field_get_items('file', $file, 'field_transcript');
+  $items = field_get_items('file', $file, 'ableplayer_transcript');
   $item = array_shift($items);
   $transcript = file_create_url($item['uri']);
   $options = ableplayer_set_view_settings($file, $display);

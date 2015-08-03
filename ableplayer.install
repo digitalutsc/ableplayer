@@ -11,20 +11,22 @@
  */
 function ableplayer_install() {
   $field = array(
-    'field_name' => 'field_transcript',
+    'field_name' => 'ableplayer_transcript',
     'label' => t('Transcript'),
     'type' => 'file',
     'entity_type' => 'file',
     'bundle' => NULL,
-    'required' => FALSE,
     'cardinality' => 1,
     'settings' => array(
       'file_extensions' => 'vtt',
     ),
     'display' => array(
-      'label' => 'hidden',
-      'type' => 'hidden',
-     ),
+      'default' =>array(
+        'label' => 'hidden',
+        'type' => 'hidden',
+        'settings' => array(),
+      ),
+    ),
   );
 
   $field_info = field_info_field($field['field_name']);
@@ -36,7 +38,7 @@ function ableplayer_install() {
   $file_types = file_type_load_all();
 
   foreach ($file_types as $file_type) {
-    if (!in_array($file_type->type, array('audio', 'video', ))) {
+    if (!in_array($file_type->type, array(ABLEPLAYER_BUNDLE_AUDIO, ABLEPLAYER_BUNDLE_VIDEO, ))) {
       continue;
     }
 
