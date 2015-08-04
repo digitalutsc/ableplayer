@@ -123,7 +123,7 @@ function ableplayer_installation_status() {
  * - 'label' the native language name as used internally by Drupal
  * - 'uri' the path to the transcript file
  */
-function ableplayer_build_transcript_list($transcript_items) {
+function ableplayer_build_track_list($transcript_items) {
   $entity_translation = module_exists('entity_translation');
   $transcripts = array();
 

@@ -38,7 +38,11 @@ function ableplayer_file_formatter_ableplayer_view($file, $display, $langcode) {
   $theme = 'ableplayer';
   $options = ableplayer_set_view_settings($file, $display);
   $transcript_items = field_get_items('file', $file, 'ableplayer_transcript');
-  $transcripts = ableplayer_build_transcript_list($transcript_items);
+  $description_items = field_get_items('file', $file, 'ableplayer_description');
+  $transcripts = ($transcript_items) ?
+    ableplayer_build_track_list($transcript_items) : array();
+  $descriptions = ($description_items) ?
+    ableplayer_build_track_list($description_items) : array();
 
   switch ($file->filemime) {
 
@@ -50,6 +54,7 @@ function ableplayer_file_formatter_ableplayer_view($file, $display, $langcode) {
         '#uri' => file_create_url($file->uri),
         '#mimetype' => $file->filemime,
         '#transcripts' => $transcripts,
+        '#descriptions' => $descriptions,
         '#options' => $options,
       );
 
@@ -62,6 +67,7 @@ function ableplayer_file_formatter_ableplayer_view($file, $display, $langcode) {
         '#uri' => $file->uri,
         '#mimetype' => $file->filemime,
         '#transcripts' => NULL,
+        '#descriptions' => NULL,
         '#options' => $options,
       );
 
@@ -75,6 +81,7 @@ function ableplayer_file_formatter_ableplayer_view($file, $display, $langcode) {
         '#uri' => file_create_url($file->uri),
         '#mimetype' => $file->filemime,
         '#transcripts' => $transcripts,
+        '#descriptions' => $descriptions,
         '#options' => $options,
       );
 

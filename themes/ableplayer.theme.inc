@@ -86,6 +86,10 @@ function theme_ableplayer($variables) {
     foreach ($transcripts as $transcript) {
       $output .= '<track kind="captions" src="' . $transcript['uri'] . '" srclang="' . $transcript['code'] . '" label="' . $transcript['label'] . '" />';
     }
+
+    foreach ($descriptions as $description) {
+      $output .= '<track kind="descriptions" src="' . $description['uri'] . '" srclang="' . $description['code'] . '" label="' . $description['label'] . '" />';
+    }
   }
 
   $output .= $close_tag;

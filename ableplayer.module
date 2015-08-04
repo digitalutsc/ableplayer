@@ -201,6 +201,7 @@ function ableplayer_theme($existing, $type, $theme, $path) {
       'uri' => NULL,
       'mimetype' => NULL,
       'transcripts' => NULL,
+      'descriptions' => NULL,
       'options' => array(),
     ),
     'file' => 'ableplayer.theme.inc',
