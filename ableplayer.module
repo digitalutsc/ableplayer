@@ -11,6 +11,13 @@ define('ABLEPLAYER_BUNDLE_VIDEO', 'video');
 require_once drupal_get_path('module', 'ableplayer') . '/includes/ableplayer.formatters.inc';
 
 /**
+ * Impelements hook_file_default_types_alter().
+ */
+function ableplayer_file_default_types_alter(&$types) {
+  $types['document']->mimetypes[] = 'text/vtt';
+}
+
+/**
  * Implements hook_help().
  */
 function ableplayer_help($path, $arg) {
@@ -193,7 +200,7 @@ function ableplayer_theme($existing, $type, $theme, $path) {
       'id' => NULL,
       'uri' => NULL,
       'mimetype' => NULL,
-      'transcript' => NULL,
+      'transcripts' => NULL,
       'options' => array(),
     ),
     'file' => 'ableplayer.theme.inc',

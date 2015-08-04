@@ -8,6 +8,7 @@
 *   [jQuery Update](https://www.drupal.org/project/jquery_update)
 *   [Modernizr](https://www.drupal.org/project/modernizr)
 *   [File Entity](https://www.drupal.org/project/file_entity)
+*   [Entity Translation](https://www.drupal.org/project/entity_translation) (optional for multilingual transcript support)
 
 ### Libraries
 
@@ -57,6 +58,34 @@ Provided that Able Player has been enabled as the default file display for the a
 ### Video Captions and Audio Descriptions
 
 A caption field instance is attached to the video and audio file types upon installation of the Able Player module. When a valid WebVTT file is uploaded to this field, it will be displayed by Able Player automatically.
+
+#### Multilingual Transcripts
+
+The [Entity Translation](https://drupal.org/project/entity_translation) module is **required** for support of transcripts in multiple languages.
+
+##### Part 1: Enable and configure Entity Translation
+
+1.  Download and install the **Entity Translation** module
+2.  Navigate to **admin/config/regional/entity_translation**
+3.  Expand the **Translatable entity types** fieldset and check **File**
+4.  Click **Save configuration**
+5.  A tabbed fieldset should appear at the bottom of the page. Click on **File**
+6.  Expand the **Document** fieldset. Uncheck **Hide language selector**.
+7.  Click **Save configuration**
+
+##### Part 2: Configure multilingual support on your Drupal site
+
+1.  Enable the core **Locale** module.
+2.  Navigate to **admin/config/regional/language.**
+3.  Click on **Add language**. Select the language that you want to add from the select box and click **Save** Repeat for each language that you want to support.
+
+##### Part 3: Set the language of transcript files
+
+1.  Navigate to an existing transcript file, or first attach a new one to a video or audio file. Click the **Edit** administration tab.
+2.  There should be a **Language** select box available. Choose the appropriate language for the transcript from this form element.
+3.  Click **Save**.
+
+With the language set on each transcript file, Able Player will display a language selection interface for captions and transcripts. Users will be able to choose their language at playback time.
 
 ### Supported File Types
 

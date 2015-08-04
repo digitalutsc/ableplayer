@@ -110,3 +110,43 @@ function ableplayer_installation_status() {
 
   return $status;
 }
+
+/**
+ * Given a list of transcript file entities, look up their language in the core
+ * language list to get the native language label. This allows the srclang and
+ * label attributes to be set on the track element of the field formatter
+ * output, which Able Player uses to display a select list of available
+ * transcript languages.
+ *
+ * @return array $transcripts Hash of transcript information
+ * - 'code' the ISO language code as used internally by Drupal
+ * - 'label' the native language name as used internally by Drupal
+ * - 'uri' the path to the transcript file
+ */
+function ableplayer_build_transcript_list($transcript_items) {
+  $entity_translation = module_exists('entity_translation');
+  $transcripts = array();
+
+  if ($entity_translation) {
+    $languages = language_list();
+  }
+
+  foreach ($transcript_items as $item) {
+    $code = '';
+    $label = '';
+    $uri = file_create_url($item['uri']);
+
+    if ($entity_translation && array_key_exists('translations', $item)) {
+      $code = $item['translations']->original;
+      $label = $languages[$code]->native;
+    }
+
+    $transcripts[] = array(
+      'code' => $code,
+      'label' => $label,
+      'uri' => $uri,
+    );
+  }
+
+  return $transcripts;
+}

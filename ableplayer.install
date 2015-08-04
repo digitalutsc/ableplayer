@@ -17,7 +17,7 @@ function ableplayer_install() {
       'type' => 'file',
       'entity_type' => 'file',
       'bundle' => NULL,
-      'cardinality' => 1,
+      'cardinality' => FIELD_CARDINALITY_UNLIMITED,
       'required' => FALSE,
       'locked' => TRUE,
       'settings' => array(
@@ -37,7 +37,7 @@ function ableplayer_install() {
       'type' => 'file',
       'entity_type' => 'file',
       'bundle' => NULL,
-      'cardinality' => 1,
+      'cardinality' => FIELD_CARDINALITY_UNLIMITED,
       'required' => FALSE,
       'locked' => TRUE,
       'settings' => array(
@@ -85,10 +85,10 @@ function ableplayer_install() {
  * Implements hook_requirements().
  */
 function ableplayer_requirements($phase) {
+  module_load_include('inc', 'ableplayer', 'includes/ableplayer');
+
   $requirements = array();
   $t = get_t();
-
-  module_load_include('inc', 'ableplayer', 'includes/ableplayer');
 
   switch ($phase) {
 
@@ -122,5 +122,6 @@ function ableplayer_requirements($phase) {
  * Implements hook_uninstall().
  */
 function ableplayer_uninstall() {
+  field_delete_field('ableplayer_transcript');
   variable_del('ableplayer_compression_level');
 }

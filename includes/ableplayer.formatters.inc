@@ -10,9 +10,9 @@
  * Implements hook_file_formatter_info().
  */
 function ableplayer_file_formatter_info() {
-  $formatters = array();
-
   module_load_include('inc', 'ableplayer', 'includes/ableplayer');
+
+  $formatters = array();
 
   $formatters['ableplayer'] = array(
     'label' => t('Able Player'),
@@ -33,18 +33,12 @@ function ableplayer_file_formatter_info() {
  * This is a recommended callback naming scheme, not a true hook function.
  */
 function ableplayer_file_formatter_ableplayer_view($file, $display, $langcode) {
-  $theme = 'ableplayer';
-  $transcript = FALSE;
-  $options = ableplayer_set_view_settings($file, $display);
-
   module_load_include('inc', 'ableplayer', 'includes/ableplayer');
 
-  $items = field_get_items('file', $file, 'ableplayer_transcript');
-
-  if ($items) {
-    $item = array_shift($items);
-    $transcript = file_create_url($item['uri']);
-  }
+  $theme = 'ableplayer';
+  $options = ableplayer_set_view_settings($file, $display);
+  $transcript_items = field_get_items('file', $file, 'ableplayer_transcript');
+  $transcripts = ableplayer_build_transcript_list($transcript_items);
 
   switch ($file->filemime) {
 
@@ -55,7 +49,7 @@ function ableplayer_file_formatter_ableplayer_view($file, $display, $langcode) {
         '#id' => $file->fid,
         '#uri' => file_create_url($file->uri),
         '#mimetype' => $file->filemime,
-        '#transcript' => $transcript,
+        '#transcripts' => $transcripts,
         '#options' => $options,
       );
 
@@ -67,7 +61,7 @@ function ableplayer_file_formatter_ableplayer_view($file, $display, $langcode) {
         '#id' => $file->fid,
         '#uri' => $file->uri,
         '#mimetype' => $file->filemime,
-        '#transcript' => NULL,
+        '#transcripts' => NULL,
         '#options' => $options,
       );
 
@@ -80,7 +74,7 @@ function ableplayer_file_formatter_ableplayer_view($file, $display, $langcode) {
         '#id' => $file->fid,
         '#uri' => file_create_url($file->uri),
         '#mimetype' => $file->filemime,
-        '#transcript' => $transcript,
+        '#transcripts' => $transcripts,
         '#options' => $options,
       );
 
