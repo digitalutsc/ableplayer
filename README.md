@@ -1,4 +1,4 @@
-**[Able Player](https://github.com/ableplayer/ableplayer)** is a fully accessible cross-browser media player created by accessibility specialist Terrill Thompson. It uses the HTML5 <audio> or <video> element for browsers that support them. The Able Player module integrates the jQuery Able Player plugin as a Drupal JavaScript library for use in other projects.
+**[Able Player](https://github.com/ableplayer/ableplayer)** is a fully accessible cross-browser media player created by accessibility specialist Terrill Thompson. It uses the HTML5 <audio> or <video> element for browsers that support them. The Able Player module integrates the jQuery Able Player plugin as a file formatter with support for captions, transcripts, and audio description.
 
 ## Dependencies
 
@@ -8,7 +8,7 @@
 *   [jQuery Update](https://www.drupal.org/project/jquery_update)
 *   [Modernizr](https://www.drupal.org/project/modernizr)
 *   [File Entity](https://www.drupal.org/project/file_entity)
-*   [Entity Translation](https://www.drupal.org/project/entity_translation) (optional for multilingual transcript support)
+*   [Entity Translation](https://www.drupal.org/project/entity_translation) (optional, for multilingual transcript support)
 
 ### Libraries
 
