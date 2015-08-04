@@ -22,7 +22,7 @@ function ableplayer_form() {
     '#type' => 'radios',
     '#title' => t('Compression level'),
     '#description' => t('Development provides a human-readable version of JavaScript and CSS. Production combines and minifies both to conserve bandwidth.'),
-    '#default_value' => variable_get('ableplayer_compression_level', 0),
+    '#default_value' => variable_get('ableplayer_compression_level', 1),
     '#options' => array(
       0 => t('Development'),
       1 => t('Production'),
