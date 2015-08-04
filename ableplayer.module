@@ -5,6 +5,9 @@
  *
  */
 
+/**
+ * Defined constants for the default File entity video and audio bundles.
+ */
 define('ABLEPLAYER_BUNDLE_AUDIO', 'audio');
 define('ABLEPLAYER_BUNDLE_VIDEO', 'video');
 
