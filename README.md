@@ -21,11 +21,11 @@
 2.  Download the latest release of Able Player from the GitHub project [releases page](https://github.com/ableplayer/ableplayer/releases).
 3.  Extract the archive to the libraries directory (usually **sites/all/libraries**).
 4.  Rename the extracted directory to **ableplayer** if it is not already. The final installation path should be **sites/all/libraries/ableplayer**.
-5.  Navigate to **admin/config/development/modernizr**. Click the **Download your Modernizr production build** button. This will open the Modernizr build webpage.
-6.  Click the **Download** button and save the file to **sites/all/libraries/modernizr**.
-7.  Rename the file to **custom.modernizr.js**.
-8.  Navigate to **admin/config/development/jquery_update**. Ensure that the jQuery version is at least 1.7.
-9.  Finally, download and install this module.
+5.  Download this module to **sites/all/modules** and enable it.
+6.  Navigate to **admin/config/development/modernizr**. Click the **Download your Modernizr production build** button. This will open the Modernizr build webpage.
+7.  Click the **Download** button and save the file to **sites/all/libraries/modernizr**.
+8.  Rename the file to **custom.modernizr.js**.
+9.  Navigate to **admin/config/development/jquery_update**. Ensure that the jQuery version is at least 1.7.
 
 ## Configuration
 
