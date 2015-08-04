@@ -122,6 +122,5 @@ function ableplayer_requirements($phase) {
  * Implements hook_uninstall().
  */
 function ableplayer_uninstall() {
-  field_delete_field('ableplayer_description');
   variable_del('ableplayer_compression_level');
 }
