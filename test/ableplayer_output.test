@@ -2,12 +2,15 @@
 
 /**
  * @file
+ *
  * Test case for Able Player file display output.
  */
 class AblePlayerOutputTestCase extends DrupalWebTestCase {
 
   /**
-   * @var object $user The Drupal user that will perform the test operations.
+   * @var object $user
+   *
+   * The Drupal user that will perform the test operations.
    */
   protected $user;
 

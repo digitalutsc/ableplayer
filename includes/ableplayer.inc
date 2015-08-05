@@ -12,7 +12,8 @@
 /**
  * Function returns the complete list of mimetypes supported by Able Player.
  *
- * @return array Able Player supported mimetypes.
+ * @return array
+ *   Able Player supported mimetypes.
  */
 function ableplayer_mimetypes() {
   return array(
@@ -26,7 +27,8 @@ function ableplayer_mimetypes() {
 /**
  * Able Player default player settings.
  *
- * @return array Able Player file formatter default settings.
+ * @return array
+ *   Able Player file formatter default settings.
  */
 function ableplayer_default_settings() {
   return array(
@@ -51,7 +53,8 @@ function ableplayer_default_settings() {
  * The result will be used to configure the display of the Able Player file
  * formatter.
  *
- * @return array Able Player file formatter view settings.
+ * @return array
+ *   Able Player file formatter view settings.
  */
 function ableplayer_set_view_settings($file, $display) {
   $options = array();
