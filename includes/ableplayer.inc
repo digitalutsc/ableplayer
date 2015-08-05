@@ -33,7 +33,7 @@ function ableplayer_default_settings() {
     'width' => 480,
     'height' => 360,
     'autoplay' => FALSE,
-    'preload' => FALSE,
+    'preload' => 0,
     'show_now_playing' => FALSE,
     'use_transcript_button' => FALSE,
     'lyrics_mode' => FALSE,

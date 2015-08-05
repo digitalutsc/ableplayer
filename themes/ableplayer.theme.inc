@@ -11,6 +11,20 @@
 function ableplayer_preprocess_ableplayer(&$variables) {
   $variables['data_translation_path'] = url(libraries_get_path('ableplayer') . '/translations/', array('absolute' => TRUE));
   $variables['id'] = drupal_html_id($variables['id']);
+
+  switch ($variables['options']['preload']) {
+
+    case 0:
+      $variables['options']['preload'] = 'metadata';
+
+      break;
+
+    case 1:
+      $variables['options']['preload'] = 'auto';
+
+      break;
+
+  }
 }
 
 /**
@@ -40,16 +54,12 @@ function theme_ableplayer($variables) {
     $output .= 'autoplay ';
   }
 
-  if ($options['preload']) {
-    $output .= 'preload ';
-  }
-
   if ($options['show_now_playing']) {
     $output .= 'data-show-now-playing ';
   }
 
   if ($options['use_transcript_button']) {
-    $output .= 'data-use-transcript-button ';
+    $output .= 'data-use-transcript-button="false" ';
   }
 
   if ($options['lyrics_mode']) {
@@ -57,6 +67,10 @@ function theme_ableplayer($variables) {
   }
 
   $output .= 'data-volume="' . $options['volume'] . '" ';
+
+  if ($options['preload']) {
+    $output .= 'preload="' . $options['preload'] . '" ';
+  }
 
   if ($options['start_time']) {
     $output .= 'data-start-time="' . $options['start_time'] . '" ';

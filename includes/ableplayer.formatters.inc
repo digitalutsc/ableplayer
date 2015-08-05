@@ -121,6 +121,23 @@ function ableplayer_file_formatter_ableplayer_settings($form, &$form_state, $set
     '#element_validate' => array('ableplayer_validate_dimensions'),
   );
 
+  $element['preload'] = array(
+    '#title' => t('Preload video'),
+    '#type' => 'select',
+    '#default_value' => $settings['preload'],
+    '#options' => array(
+      0 => t('metadata'),
+      1 => t('auto'),
+    ),
+    '#description' => t(
+      'Tells the browser how much media to download when the page loads. If the
+      media is the central focus of the web page, use preload=“auto”, which
+      instructs the browser to download as much of the media as possible. If the
+      media is not a central focus, downloading the entire media resource can
+      consume valuable bandwidth, so preload=“metadata” would be a better
+      option.'),
+  );
+
   $element['autoplay'] = array(
     '#title' => t('Autoplay video on load'),
     '#type' => 'checkbox',
@@ -130,19 +147,6 @@ function ableplayer_file_formatter_ableplayer_settings($form, &$form_state, $set
       is not recommended unless user is sure to expect media to automatically
       start. For example, autoplay could reasonably be used in conjunction with
       data-start-time in a media search application.'),
-  );
-
-  $element['preload'] = array(
-    '#title' => t('Preload video'),
-    '#type' => 'checkbox',
-    '#default_value' => $settings['preload'],
-    '#description' => t(
-      'Tells the browser how much media to download when the page loads. If the
-      media is the central focus of the web page, use preload=“auto”, which
-      instructs the browser to download as much of the media as possible. If the
-      media is not a central focus, downloading the entire media resource can
-      consume valuable bandwidth, so preload=“metadata” would be a better
-      option.'),
   );
 
   $element['show_now_playing'] = array(
@@ -155,11 +159,11 @@ function ableplayer_file_formatter_ableplayer_settings($form, &$form_state, $set
   );
 
   $element['use_transcript_button'] = array(
-    '#title' => t('Use transcript button'),
+    '#title' => t('Disable transcript button'),
     '#type' => 'checkbox',
     '#default_value' => $settings['use_transcript_button'],
     '#description' => t(
-      'Uncheck to exclude transcript button from controller.  If using the
+      'Check to exclude transcript button from controller.  If using the
       data-transcript-div attribute to write the transcript to an external
       container (e.g., on a dedicated transcript page), you might not want users
       to be able to toggle the transcript off.'),
