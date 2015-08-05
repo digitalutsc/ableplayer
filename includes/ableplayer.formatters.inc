@@ -253,7 +253,7 @@ function ableplayer_validate_seek_interval($element, &$form_state, $form) {
  */
 function ableplayer_validate_start_time($element, &$form_state, $form) {
   if (!empty($element['#value'])) {
-    if (!is_integer($element['#value']) || $element['#value'] < 0) {
+    if (!is_int($element['#value']) || $element['#value'] < 0) {
       form_error($element, t(
         'The value entered for @start is invalid. Please insert a positive integer (seconds).',
         array('@start' => $element['#title'])));

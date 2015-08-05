@@ -94,7 +94,7 @@ function ableplayer_installation_status() {
 
     if (!is_file($path) || !is_readable($path)) {
       $missing_files[$path] = t('The file') . ' <em>' . t('@file',
-        array('@file' => $path, )) . '</em> ' . t('was not found.');
+        array('@file' => $path)) . '</em> ' . t('was not found.');
     }
   }
 

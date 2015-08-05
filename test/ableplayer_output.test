@@ -67,7 +67,7 @@ class AblePlayerOutputTestCase extends DrupalWebTestCase {
    */
   public function testAblePlayerAudioLoad() {
     $data = array();
-    $data['files[upload]'] = realpath(drupal_get_path('module', 'ableplayer'). '/test/files/sample.ogg');
+    $data['files[upload]'] = realpath(drupal_get_path('module', 'ableplayer') . '/test/files/sample.ogg');
 
     $this->drupalPost('file/add', $data, t('Next'));
 

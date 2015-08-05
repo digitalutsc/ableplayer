@@ -1,9 +1,7 @@
 <?php
 
 /**
- * @file
- *
- * Install file for Able Player.
+ * @file Install file for Able Player.
  */
 
 /**
@@ -15,7 +13,7 @@ function ableplayer_install() {
   $fields = array(
     array(
       'field_name' => 'ableplayer_transcript',
-      'label' => t('Transcript'),
+      'label' => $t('Transcript'),
       'type' => 'file',
       'entity_type' => 'file',
       'bundle' => NULL,
@@ -35,7 +33,7 @@ function ableplayer_install() {
     ),
     array(
       'field_name' => 'ableplayer_description',
-      'label' => t('Description'),
+      'label' => $t('Description'),
       'type' => 'file',
       'entity_type' => 'file',
       'bundle' => NULL,
@@ -81,9 +79,8 @@ function ableplayer_install() {
   drupal_set_message($t("Able Player settings are available under @link",
     array(
       '@link' => l($t('Administer > Site Configuration > Media > Able Player'),
-      'admin/config/media/ableplayer',
-    ))
-  ));
+      'admin/config/media/ableplayer')
+    )));
 }
 
 /**
