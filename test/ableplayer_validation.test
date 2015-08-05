@@ -82,7 +82,7 @@ class AblePlayerValidationTestCase extends DrupalWebTestCase {
 
     $this->drupalPost('admin/structure/file-types/manage/video/file-display', $data, t('Save configuration'));
     $this->assertText(t('Your settings have been saved.'),
-      'Settings submission succeded with valid dimensions.');
+      'Settings submission succeeded with valid dimensions.');
   }
 
   /**
