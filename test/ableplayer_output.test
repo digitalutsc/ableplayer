@@ -1,7 +1,8 @@
 <?php
 
 /**
- * @file Test case for Able Player file display output.
+ * @file
+ * Test case for Able Player file display output.
  */
 class AblePlayerOutputTestCase extends DrupalWebTestCase {
 

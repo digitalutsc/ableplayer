@@ -1,7 +1,8 @@
 <?php
 
 /**
- * @file Administration callbacks for Able Player.
+ * @file
+ * Administration callbacks for Able Player.
  */
 
 /**

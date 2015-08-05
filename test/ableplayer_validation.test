@@ -1,7 +1,8 @@
 <?php
 
 /**
- * @file Test case for Able Player display settings validation.
+ * @file
+ * Test case for Able Player display settings validation.
  */
 class AblePlayerValidationTestCase extends DrupalWebTestCase {
 

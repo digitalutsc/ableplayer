@@ -1,7 +1,8 @@
 <?php
 
 /**
- * @file Formatter settings for Able Player file display.
+ * @file
+ * Formatter settings for Able Player file display.
  */
 
 /**

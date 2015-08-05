@@ -1,7 +1,8 @@
 <?php
 
 /**
- * @file Helper functions for the Able Player module.
+ * @file
+ * Helper functions for the Able Player module.
  *
  * These functions are intended to be used internally by Able Player and its
  * submodules. This file should neither be loaded in global scope nor relied
