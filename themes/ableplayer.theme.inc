@@ -32,13 +32,11 @@ function ableplayer_preprocess_ableplayer(&$variables) {
  * Theme function for Able Player.
  */
 function theme_ableplayer($variables) {
-  extract($variables);
-
-  if (strpos($mimetype, ABLEPLAYER_BUNDLE_VIDEO) > -1) {
+  if (strpos($variables['mimetype'], ABLEPLAYER_BUNDLE_VIDEO) > -1) {
     $open_tag = '<video ';
     $close_tag = '</video>';
   }
-  elseif (strpos($mimetype, ABLEPLAYER_BUNDLE_AUDIO) > -1) {
+  elseif (strpos($variables['mimetype'], ABLEPLAYER_BUNDLE_AUDIO) > -1) {
     $open_tag = '<audio ';
     $close_tag = '</audio>';
   }
@@ -47,63 +45,63 @@ function theme_ableplayer($variables) {
   }
 
   $output = $open_tag;
-  $output .= 'id="ableplayer-' . $id . '" ';
-  $output .= 'width="' . $options['width'] . '" ';
-  $output .= 'height="' . $options['height'] . '" ';
+  $output .= 'id="ableplayer-' . $variables['id'] . '" ';
+  $output .= 'width="' . $variables['options']['width'] . '" ';
+  $output .= 'height="' . $variables['options']['height'] . '" ';
 
-  if ($options['autoplay']) {
+  if ($variables['options']['autoplay']) {
     $output .= 'autoplay ';
   }
 
-  if ($options['show_now_playing']) {
+  if ($variables['options']['show_now_playing']) {
     $output .= 'data-show-now-playing ';
   }
 
-  if ($options['use_transcript_button']) {
+  if ($variables['options']['use_transcript_button']) {
     $output .= 'data-use-transcript-button="false" ';
   }
 
-  if ($options['lyrics_mode']) {
+  if ($variables['options']['lyrics_mode']) {
     $output .= 'data-lyrics-mode ';
   }
 
-  $output .= 'data-volume="' . $options['volume'] . '" ';
+  $output .= 'data-volume="' . $variables['options']['volume'] . '" ';
 
-  if ($options['preload']) {
-    $output .= 'preload="' . $options['preload'] . '" ';
+  if ($variables['options']['preload']) {
+    $output .= 'preload="' . $variables['options']['preload'] . '" ';
   }
 
-  if ($options['start_time']) {
-    $output .= 'data-start-time="' . $options['start_time'] . '" ';
+  if ($variables['options']['start_time']) {
+    $output .= 'data-start-time="' . $variables['options']['start_time'] . '" ';
   }
 
-  if ($options['seek_interval']) {
-    $output .= 'data-seek-interval="' . $options['seek_interval'] . '" ';
+  if ($variables['options']['seek_interval']) {
+    $output .= 'data-seek-interval="' . $variables['options']['seek_interval'] . '" ';
   }
 
-  if ($options['transcript_title']) {
-    $output .= 'data-transcript-title="' . $options['transcript_title'] . '" ';
+  if ($variables['options']['transcript_title']) {
+    $output .= 'data-transcript-title="' . $variables['options']['transcript_title'] . '" ';
   }
 
-  $output .= 'data-translation-path="' . $data_translation_path . '" ';
+  $output .= 'data-translation-path="' . $variables['data_translation_path'] . '" ';
 
-  if (isset($data_youtube_id)) {
-    $output .= 'data-youtube-id="' . $data_youtube_id . '" ';
+  if (isset($variables['data_youtube_id'])) {
+    $output .= 'data-youtube-id="' . $variables['data_youtube_id'] . '" ';
   }
 
   $output .= 'data-debug ';
   $output .= 'data-able-player>';
 
-  if (empty($data_youtube_id)) {
-    $output .= '<source type="' . $mimetype . '" src="' . $uri . '" />';
+  if (empty($variables['data_youtube_id'])) {
+    $output .= '<source type="' . $variables['mimetype'] . '" src="' . $variables['uri'] . '" />';
 
-    foreach ($transcripts as $transcript) {
+    foreach ($variables['transcripts'] as $transcript) {
       $output .= '<track kind="captions" src="' . $transcript['uri'];
       $output .= '" srclang="' . $transcript['code'];
       $output .= '" label="' . $transcript['label'] . '" />';
     }
 
-    foreach ($descriptions as $description) {
+    foreach ($variables['transcripts'] as $description) {
       $output .= '<track kind="descriptions" src="' . $description['uri'];
       $output .= '" srclang="' . $description['code'];
       $output .= '" label="' . $description['label'] . '" />';
