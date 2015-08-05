@@ -1,9 +1,7 @@
 <?php
 
 /**
- * @file
- *
- * Test case for Able Player display settings validation.
+ * @file Test case for Able Player display settings validation.
  */
 class AblePlayerValidationTestCase extends DrupalWebTestCase {
 
@@ -97,7 +95,7 @@ class AblePlayerValidationTestCase extends DrupalWebTestCase {
     $data['displays[ableplayer][settings][width]'] = '-1';
 
     $this->drupalPost('admin/structure/file-types/manage/video/file-display', $data, t('Save configuration'));
-    $this->assertText(t(self::DIMENSION_ERROR_MESSAGE, array('@dimension' => 'Width', )),
+    $this->assertText(t(self::DIMENSION_ERROR_MESSAGE, array('@dimension' => 'Width')),
       'Settings submission failed with negative width.');
   }
 
@@ -111,7 +109,7 @@ class AblePlayerValidationTestCase extends DrupalWebTestCase {
     $data['displays[ableplayer][settings][width]'] = 'abc';
 
     $this->drupalPost('admin/structure/file-types/manage/video/file-display', $data, t('Save configuration'));
-    $this->assertText(t(self::DIMENSION_ERROR_MESSAGE, array('@dimension' => 'Width', )),
+    $this->assertText(t(self::DIMENSION_ERROR_MESSAGE, array('@dimension' => 'Width')),
       'Setting submission failed with non-numeric width.');
   }
 
@@ -125,7 +123,7 @@ class AblePlayerValidationTestCase extends DrupalWebTestCase {
     $data['displays[ableplayer][settings][width]'] = '1 2';
 
     $this->drupalPost('admin/structure/file-types/manage/video/file-display', $data, t('Save configuration'));
-    $this->assertText(t(self::DIMENSION_ERROR_MESSAGE, array('@dimension' => 'Width', )),
+    $this->assertText(t(self::DIMENSION_ERROR_MESSAGE, array('@dimension' => 'Width')),
       'Settings submission failed with spaces in width.');
   }
 
@@ -139,7 +137,7 @@ class AblePlayerValidationTestCase extends DrupalWebTestCase {
     $data['displays[ableplayer][settings][height]'] = '-1';
 
     $this->drupalPost('admin/structure/file-types/manage/video/file-display', $data, t('Save configuration'));
-    $this->assertText(t(self::DIMENSION_ERROR_MESSAGE, array('@dimension' => 'Height', )),
+    $this->assertText(t(self::DIMENSION_ERROR_MESSAGE, array('@dimension' => 'Height')),
       'Settings submission failed with negative hieght');
   }
 
@@ -153,7 +151,7 @@ class AblePlayerValidationTestCase extends DrupalWebTestCase {
     $data['displays[ableplayer][settings][height]'] = 'abc';
 
     $this->drupalPost('admin/structure/file-types/manage/video/file-display', $data, t('Save configuration'));
-    $this->assertText(t(self::DIMENSION_ERROR_MESSAGE, array('@dimension' => 'Height', )),
+    $this->assertText(t(self::DIMENSION_ERROR_MESSAGE, array('@dimension' => 'Height')),
       'Settings submission failed with non-numeric height.');
   }
 
@@ -167,7 +165,7 @@ class AblePlayerValidationTestCase extends DrupalWebTestCase {
     $data['displays[ableplayer][settings][height]'] = '1 2';
 
     $this->drupalPost('admin/structure/file-types/manage/video/file-display', $data, t('Save configuration'));
-    $this->assertText(t(self::DIMENSION_ERROR_MESSAGE, array('@dimension' => 'Height', )),
+    $this->assertText(t(self::DIMENSION_ERROR_MESSAGE, array('@dimension' => 'Height')),
       'Settings submission failed with spaces in height.');
   }
 

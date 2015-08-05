@@ -1,9 +1,7 @@
 <?php
 
 /**
- * @file
- *
- * Helper functions for the Able Player module.
+ * @file Helper functions for the Able Player module.
  *
  * These functions are intended to be used internally by Able Player and its
  * submodules. This file should neither be loaded in global scope nor relied
@@ -11,6 +9,8 @@
  */
 
 /**
+ * Function returns the complete list of mimetypes supported by Able Player.
+ *
  * @return array Able Player supported mimetypes.
  */
 function ableplayer_mimetypes() {
@@ -23,6 +23,8 @@ function ableplayer_mimetypes() {
 }
 
 /**
+ * Able Player default player settings.
+ *
  * @return array Able Player file formatter default settings.
  */
 function ableplayer_default_settings() {
@@ -42,6 +44,8 @@ function ableplayer_default_settings() {
 }
 
 /**
+ * Construct settings array for Able Player file formatter.
+ *
  * Build the settings array from the configured values, or use the defaults.
  * The result will be used to configure the display of the Able Player file
  * formatter.
@@ -67,9 +71,9 @@ function ableplayer_set_view_settings($file, $display) {
  * and returned.
  *
  * @return array $status Hash of status information.
- * - 'error' indicates whether an error was detected via a boolean value.
- * - 'version' is set to the detected version number of Able Player.
- * - 'message' set if an error was detected.
+ *   - 'error' indicates whether an error was detected via a boolean value.
+ *   - 'version' is set to the detected version number of Able Player.
+ *   - 'message' set if an error was detected.
  */
 function ableplayer_installation_status() {
   $status = array();
@@ -112,6 +116,8 @@ function ableplayer_installation_status() {
 }
 
 /**
+ * Get data for populating track elements for Able Player.
+ *
  * Given a list of transcript file entities, look up their language in the core
  * language list to get the native language label. This allows the srclang and
  * label attributes to be set on the track element of the field formatter
@@ -119,9 +125,9 @@ function ableplayer_installation_status() {
  * transcript languages.
  *
  * @return array $transcripts Hash of transcript information
- * - 'code' the ISO language code as used internally by Drupal
- * - 'label' the native language name as used internally by Drupal
- * - 'uri' the path to the transcript file
+ *   - 'code' the ISO language code as used internally by Drupal
+ *   - 'label' the native language name as used internally by Drupal
+ *   - 'uri' the path to the transcript file
  */
 function ableplayer_build_track_list($transcript_items) {
   $entity_translation = module_exists('entity_translation');

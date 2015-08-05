@@ -1,9 +1,7 @@
 <?php
 
 /**
- * @file
- *
- * Administration callbacks for Able Player.
+ * @file Administration callbacks for Able Player.
  */
 
 /**
@@ -21,7 +19,9 @@ function ableplayer_form() {
   $form['ableplayer_fieldset']['ableplayer_compression_level'] = array(
     '#type' => 'radios',
     '#title' => t('Compression level'),
-    '#description' => t('Development provides a human-readable version of JavaScript and CSS. Production combines and minifies both to conserve bandwidth.'),
+    '#description' => t(
+      'Development provides a human-readable version of JavaScript and CSS.
+      Production combines and minifies both to conserve bandwidth.'),
     '#default_value' => variable_get('ableplayer_compression_level', 1),
     '#options' => array(
       0 => t('Development'),

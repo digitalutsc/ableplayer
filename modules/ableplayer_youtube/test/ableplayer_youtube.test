@@ -1,12 +1,13 @@
 <?php
 
 /**
- * @file
- *
- * Test Able Player YouTube output.
+ * @file Test Able Player YouTube output.
  */
 class AblePlayerYouTubeTestCase extends DrupalWebTestCase {
 
+  /**
+   * @var object $user The Drupal user that will perform the test operations.
+   */
   protected $user;
 
   /**

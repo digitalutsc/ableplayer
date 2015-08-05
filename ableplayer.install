@@ -10,6 +10,8 @@
  * Implements hook_install().
  */
 function ableplayer_install() {
+  $t = get_t();
+
   $fields = array(
     array(
       'field_name' => 'ableplayer_transcript',
@@ -24,7 +26,7 @@ function ableplayer_install() {
         'file_extensions' => 'vtt',
       ),
       'display' => array(
-        'default' =>array(
+        'default' => array(
           'label' => 'hidden',
           'type' => 'hidden',
           'settings' => array(),
@@ -56,7 +58,7 @@ function ableplayer_install() {
   $file_types = file_type_load_all();
 
   foreach ($file_types as $file_type) {
-    if (!in_array($file_type->type, array(ABLEPLAYER_BUNDLE_AUDIO, ABLEPLAYER_BUNDLE_VIDEO, ))) {
+    if (!in_array($file_type->type, array(ABLEPLAYER_BUNDLE_AUDIO, ABLEPLAYER_BUNDLE_VIDEO))) {
       continue;
     }
 
@@ -76,8 +78,11 @@ function ableplayer_install() {
     }
   }
 
-  drupal_set_message(st("Able Player settings are available under @link",
-    array('@link' => l(st('Administer > Site Configuration > Media > Able Player'), 'admin/config/media/ableplayer'), )
+  drupal_set_message($t("Able Player settings are available under @link",
+    array(
+      '@link' => l($t('Administer > Site Configuration > Media > Able Player'),
+      'admin/config/media/ableplayer',
+    ))
   ));
 }
 

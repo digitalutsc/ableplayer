@@ -10,7 +10,7 @@
  * Implements hook_preprocess_THEME().
  */
 function ableplayer_preprocess_ableplayer(&$variables) {
-  $variables['data_translation_path'] = url(libraries_get_path('ableplayer') . '/translations/', array('absolute' => TRUE, ));
+  $variables['data_translation_path'] = url(libraries_get_path('ableplayer') . '/translations/', array('absolute' => TRUE));
   $variables['id'] = drupal_html_id($variables['id']);
 }
 
@@ -84,11 +84,15 @@ function theme_ableplayer($variables) {
     $output .= '<source type="' . $mimetype . '" src="' . $uri . '" />';
 
     foreach ($transcripts as $transcript) {
-      $output .= '<track kind="captions" src="' . $transcript['uri'] . '" srclang="' . $transcript['code'] . '" label="' . $transcript['label'] . '" />';
+      $output .= '<track kind="captions" src="' . $transcript['uri'];
+      $output .= '" srclang="' . $transcript['code'];
+      $output .= '" label="' . $transcript['label'] . '" />';
     }
 
     foreach ($descriptions as $description) {
-      $output .= '<track kind="descriptions" src="' . $description['uri'] . '" srclang="' . $description['code'] . '" label="' . $description['label'] . '" />';
+      $output .= '<track kind="descriptions" src="' . $description['uri'];
+      $output .= '" srclang="' . $description['code'];
+      $output .= '" label="' . $description['label'] . '" />';
     }
   }
 
