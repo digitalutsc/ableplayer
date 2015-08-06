@@ -8,6 +8,7 @@ class AblePlayerOutputTestCase extends DrupalWebTestCase {
 
   /**
    * The Drupal user that will perform the test operations.
+   *
    * @var object $user
    */
   protected $user;
