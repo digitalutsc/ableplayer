@@ -2,7 +2,6 @@
 
 /**
  * @file
- *
  * Theme functions for Able Player.
  */
 

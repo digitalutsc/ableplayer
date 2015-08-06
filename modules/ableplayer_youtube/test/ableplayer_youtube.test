@@ -2,13 +2,13 @@
 
 /**
  * @file
- *
  * Test Able Player YouTube output.
  */
 class AblePlayerYouTubeTestCase extends DrupalWebTestCase {
 
   /**
-   * @var object $user The Drupal user that will perform the test operations.
+   * The Drupal user that will perform the test operations.
+   * @var object $user
    */
   protected $user;
 

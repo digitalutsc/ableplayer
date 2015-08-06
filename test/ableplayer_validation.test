@@ -2,7 +2,6 @@
 
 /**
  * @file
- *
  * Test case for Able Player display settings validation.
  */
 class AblePlayerValidationTestCase extends DrupalWebTestCase {
@@ -23,8 +22,8 @@ class AblePlayerValidationTestCase extends DrupalWebTestCase {
   const SAVE_SUCCESS_MESSAGE = 'Your settings have been saved';
 
   /**
+   * The Drupal user that will perform the test operations.
    * @var object $user
-   *   The Drupal user that will perform the test operations.
    */
   protected $user;
 
