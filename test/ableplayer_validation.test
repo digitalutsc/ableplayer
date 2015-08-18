@@ -11,21 +11,6 @@
 class AblePlayerValidationTestCase extends DrupalWebTestCase {
 
   /**
-   * Message for invalid dimensions.
-   */
-  const DIMENSION_ERROR_MESSAGE = 'The value entered for @dimension is invalid. Please insert a unitless integer for pixels or "auto".';
-
-  /**
-   * Message for invalid volume.
-   */
-  const VOLUME_ERROR_MESSAGE = 'The value entered for Volume is invalid. Please insert a number between 0 and 1.';
-
-  /**
-   * Message for successful settings save.
-   */
-  const SAVE_SUCCESS_MESSAGE = 'Your settings have been saved';
-
-  /**
    * The Drupal user that will perform the test operations.
    *
    * @var object $user
@@ -88,7 +73,7 @@ class AblePlayerValidationTestCase extends DrupalWebTestCase {
     $data['displays[ableplayer][settings][height]'] = '0';
 
     $this->drupalPost('admin/structure/file-types/manage/video/file-display', $data, t('Save configuration'));
-    $this->assertText(t(self::SAVE_SUCCESS_MESSAGE),
+    $this->assertText(t('Your settings have been saved'),
       'Settings submission succeeded with valid dimensions.');
   }
 
@@ -102,7 +87,8 @@ class AblePlayerValidationTestCase extends DrupalWebTestCase {
     $data['displays[ableplayer][settings][width]'] = '-1';
 
     $this->drupalPost('admin/structure/file-types/manage/video/file-display', $data, t('Save configuration'));
-    $this->assertText(t(self::DIMENSION_ERROR_MESSAGE, array('@dimension' => 'Width')),
+    $this->assertText(t('The value entered for @dimension is invalid. Please insert a unitless integer for pixels or "auto".',
+      array('@dimension' => 'Width')),
       'Settings submission failed with negative width.');
   }
 
@@ -116,7 +102,8 @@ class AblePlayerValidationTestCase extends DrupalWebTestCase {
     $data['displays[ableplayer][settings][width]'] = 'abc';
 
     $this->drupalPost('admin/structure/file-types/manage/video/file-display', $data, t('Save configuration'));
-    $this->assertText(t(self::DIMENSION_ERROR_MESSAGE, array('@dimension' => 'Width')),
+    $this->assertText(t('The value entered for @dimension is invalid. Please insert a unitless integer for pixels or "auto".',
+      array('@dimension' => 'Width')),
       'Setting submission failed with non-numeric width.');
   }
 
@@ -130,7 +117,8 @@ class AblePlayerValidationTestCase extends DrupalWebTestCase {
     $data['displays[ableplayer][settings][width]'] = '1 2';
 
     $this->drupalPost('admin/structure/file-types/manage/video/file-display', $data, t('Save configuration'));
-    $this->assertText(t(self::DIMENSION_ERROR_MESSAGE, array('@dimension' => 'Width')),
+    $this->assertText(t('The value entered for @dimension is invalid. Please insert a unitless integer for pixels or "auto".',
+      array('@dimension' => 'Width')),
       'Settings submission failed with spaces in width.');
   }
 
@@ -144,7 +132,8 @@ class AblePlayerValidationTestCase extends DrupalWebTestCase {
     $data['displays[ableplayer][settings][height]'] = '-1';
 
     $this->drupalPost('admin/structure/file-types/manage/video/file-display', $data, t('Save configuration'));
-    $this->assertText(t(self::DIMENSION_ERROR_MESSAGE, array('@dimension' => 'Height')),
+    $this->assertText(t('The value entered for @dimension is invalid. Please insert a unitless integer for pixels or "auto".',
+      array('@dimension' => 'Height')),
       'Settings submission failed with negative hieght');
   }
 
@@ -158,7 +147,8 @@ class AblePlayerValidationTestCase extends DrupalWebTestCase {
     $data['displays[ableplayer][settings][height]'] = 'abc';
 
     $this->drupalPost('admin/structure/file-types/manage/video/file-display', $data, t('Save configuration'));
-    $this->assertText(t(self::DIMENSION_ERROR_MESSAGE, array('@dimension' => 'Height')),
+    $this->assertText(t('The value entered for @dimension is invalid. Please insert a unitless integer for pixels or "auto".',
+      array('@dimension' => 'Height')),
       'Settings submission failed with non-numeric height.');
   }
 
@@ -172,7 +162,8 @@ class AblePlayerValidationTestCase extends DrupalWebTestCase {
     $data['displays[ableplayer][settings][height]'] = '1 2';
 
     $this->drupalPost('admin/structure/file-types/manage/video/file-display', $data, t('Save configuration'));
-    $this->assertText(t(self::DIMENSION_ERROR_MESSAGE, array('@dimension' => 'Height')),
+    $this->assertText(t('The value entered for @dimension is invalid. Please insert a unitless integer for pixels or "auto".',
+      array('@dimension' => 'Height')),
       'Settings submission failed with spaces in height.');
   }
 
@@ -186,7 +177,7 @@ class AblePlayerValidationTestCase extends DrupalWebTestCase {
     $data['displays[ableplayer][settings][volume]'] = '1';
 
     $this->drupalPost('admin/structure/file-types/manage/video/file-display', $data, t('Save configuration'));
-    $this->assertText(t(self::SAVE_SUCCESS_MESSAGE),
+    $this->assertText(t('Your settings have been saved'),
       'Settings submission succeeded with maximum volume.');
   }
 
@@ -200,7 +191,7 @@ class AblePlayerValidationTestCase extends DrupalWebTestCase {
     $data['displays[ableplayer][settings][volume]'] = '0';
 
     $this->drupalPost('admin/structure/file-types/manage/video/file-display', $data, t('Save configuration'));
-    $this->assertText(t(self::SAVE_SUCCESS_MESSAGE),
+    $this->assertText(t('Your settings have been saved'),
       'Settings submission succeeded with minimum volume.');
   }
 
@@ -214,7 +205,7 @@ class AblePlayerValidationTestCase extends DrupalWebTestCase {
     $data['displays[ableplayer][settings][volume]'] = '-1';
 
     $this->drupalPost('admin/structure/file-types/manage/video/file-display', $data, t('Save configuration'));
-    $this->assertText(t(self::VOLUME_ERROR_MESSAGE),
+    $this->assertText(t('The value entered for Volume is invalid. Please insert a number between 0 and 1.'),
       'Settings submission failed with negative volume.');
   }
 
@@ -228,7 +219,7 @@ class AblePlayerValidationTestCase extends DrupalWebTestCase {
     $data['displays[ableplayer][settings][volume]'] = '1a';
 
     $this->drupalPost('admin/structure/file-types/manage/video/file-display', $data, t('Save configuration'));
-    $this->assertText(t(self::VOLUME_ERROR_MESSAGE),
+    $this->assertText(t('The value entered for Volume is invalid. Please insert a number between 0 and 1.'),
       'Settings submission failed with non-numeric volume.');
   }
 
