@@ -4,6 +4,10 @@
  * @file
  * Test case for Able Player file display output.
  */
+
+/**
+ * Test case for Able Player formatter output.
+ */
 class AblePlayerOutputTestCase extends DrupalWebTestCase {
 
   /**

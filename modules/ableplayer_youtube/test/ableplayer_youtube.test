@@ -4,6 +4,10 @@
  * @file
  * Test Able Player YouTube output.
  */
+
+/**
+ * Test case for Able Player Youtube output.
+ */
 class AblePlayerYouTubeTestCase extends DrupalWebTestCase {
 
   /**

@@ -4,6 +4,10 @@
  * @file
  * Test case for Able Player display settings validation.
  */
+
+/**
+ * Test case for Able Player settings validation.
+ */
 class AblePlayerValidationTestCase extends DrupalWebTestCase {
 
   /**
