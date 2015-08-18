@@ -77,10 +77,9 @@ function ableplayer_install() {
     }
   }
 
-  drupal_set_message($t("Able Player settings are available under @link",
+  drupal_set_message($t("Able Player settings are available under <a href='@link'>Administer > Site Configuration > Media > Able Player</a>",
     array(
-      '@link' => l($t('Administer > Site Configuration > Media > Able Player'),
-      'admin/config/media/ableplayer'),
+      '@link' => url('admin/config/media/ableplayer'),
     )));
 }
 
