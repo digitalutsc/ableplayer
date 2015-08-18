@@ -128,14 +128,14 @@ function ableplayer_installation_status() {
  * output, which Able Player uses to display a select list of available
  * transcript languages.
  *
- * @return array $transcripts Hash of transcript information
+ * @return array $tracks Hash of transcript information
  *   - 'code' the ISO language code as used internally by Drupal
  *   - 'label' the native language name as used internally by Drupal
  *   - 'uri' the path to the transcript file
  */
 function ableplayer_build_track_list($transcript_items) {
   $entity_translation = module_exists('entity_translation');
-  $transcripts = array();
+  $tracks = array();
 
   if ($entity_translation) {
     $languages = language_list();
@@ -151,12 +151,12 @@ function ableplayer_build_track_list($transcript_items) {
       $label = $languages[$code]->native;
     }
 
-    $transcripts[] = array(
+    $tracks[] = array(
       'code' => $code,
       'label' => $label,
       'uri' => $uri,
     );
   }
 
-  return $transcripts;
+  return $tracks;
 }

@@ -74,6 +74,15 @@ class AblePlayerOutputTestCase extends DrupalWebTestCase {
 
     $this->drupalPost('file/add', $data, t('Next'));
 
+    $sample_file_path = realpath(drupal_get_path('module', 'ableplayer') . '/test/files/sample.vtt');
+
+    $data = array();
+    $data['files[ableplayer_transcript_und_0]'] = $sample_file_path;
+    $data['files[ableplayer_description_und_0]'] = $sample_file_path;
+    $data['files[ableplayer_chapters_und_0]'] = $sample_file_path;
+
+    $this->drupalPost('file/1/edit', $data, t('Save'));
+
     $this->drupalGet('file/1');
     $this->assertPattern('@<audio[^<>]+data-able-player>@',
       'Attribute "data-able-player" found in raw HTML.');
@@ -92,8 +101,12 @@ class AblePlayerOutputTestCase extends DrupalWebTestCase {
 
     $this->drupalPost('file/add', $data, t('Next'));
 
+    $sample_file_path = realpath(drupal_get_path('module', 'ableplayer') . '/test/files/sample.vtt');
+
     $data = array();
-    $data['files[ableplayer_transcript_und_0]'] = realpath(drupal_get_path('module', 'ableplayer') . '/test/files/sample.vtt');
+    $data['files[ableplayer_transcript_und_0]'] = $sample_file_path;
+    $data['files[ableplayer_description_und_0]'] = $sample_file_path;
+    $data['files[ableplayer_chapters_und_0]'] = $sample_file_path;
 
     $this->drupalPost('file/1/edit', $data, t('Save'));
 
@@ -102,6 +115,10 @@ class AblePlayerOutputTestCase extends DrupalWebTestCase {
       'Attribute "data-able-player" found in raw HTML.');
     $this->assertPattern('@<track kind="captions" src=".*?" srclang="" label="" />@',
       'Transcript track found in raw HTML.');
+    $this->assertPattern('@<track kind="descriptions" src=".*?" srclang="" label="" />@',
+      'Description track found in raw HTML.');
+    $this->assertPattern('@<track kind="chapters" src=".*?" srclang="" label="" />@',
+      'Chapters track found in raw HTML.');
     $this->assertRaw('ableplayer.min.js',
       'ableplayer.min.js loaded successfully');
     $this->assertRaw('ableplayer.min.css',

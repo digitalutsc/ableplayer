@@ -94,16 +94,22 @@ function theme_ableplayer($variables) {
   if (empty($variables['data_youtube_id'])) {
     $output .= '<source type="' . $variables['mimetype'] . '" src="' . $variables['uri'] . '" />';
 
-    foreach ($variables['transcripts'] as $transcript) {
+    foreach ($variables['tracks']['transcripts'] as $transcript) {
       $output .= '<track kind="captions" src="' . $transcript['uri'];
       $output .= '" srclang="' . $transcript['code'];
       $output .= '" label="' . $transcript['label'] . '" />';
     }
 
-    foreach ($variables['transcripts'] as $description) {
+    foreach ($variables['tracks']['descriptions'] as $description) {
       $output .= '<track kind="descriptions" src="' . $description['uri'];
       $output .= '" srclang="' . $description['code'];
       $output .= '" label="' . $description['label'] . '" />';
+    }
+
+    foreach ($variables['tracks']['chapters'] as $chapter) {
+      $output .= '<track kind="chapters" src="' . $chapter['uri'];
+      $output .= '" srclang="' . $chapter['code'];
+      $output .= '" label="' . $chapter['label'] . '" />';
     }
   }
 

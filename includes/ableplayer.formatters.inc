@@ -36,12 +36,24 @@ function ableplayer_file_formatter_ableplayer_view($file, $display, $langcode) {
 
   $theme = 'ableplayer';
   $options = ableplayer_set_view_settings($file, $display);
+
   $transcript_items = field_get_items('file', $file, 'ableplayer_transcript');
-  $description_items = field_get_items('file', $file, 'ableplayer_description');
   $transcripts = ($transcript_items) ?
     ableplayer_build_track_list($transcript_items) : array();
+
+  $description_items = field_get_items('file', $file, 'ableplayer_description');
   $descriptions = ($description_items) ?
     ableplayer_build_track_list($description_items) : array();
+
+  $chapters_items = field_get_items('file', $file, 'ableplayer_chapters');
+  $chapters = ($chapters_items) ?
+    ableplayer_build_track_list($chapters_items) : array();
+
+  $tracks = array(
+    'transcripts' => $transcripts,
+    'descriptions' => $descriptions,
+    'chapters' => $chapters,
+  );
 
   switch ($file->filemime) {
 
@@ -52,8 +64,7 @@ function ableplayer_file_formatter_ableplayer_view($file, $display, $langcode) {
         '#id' => $file->fid,
         '#uri' => file_create_url($file->uri),
         '#mimetype' => $file->filemime,
-        '#transcripts' => $transcripts,
-        '#descriptions' => $descriptions,
+        '#tracks' => $tracks,
         '#options' => $options,
       );
 
@@ -65,8 +76,6 @@ function ableplayer_file_formatter_ableplayer_view($file, $display, $langcode) {
         '#id' => $file->fid,
         '#uri' => $file->uri,
         '#mimetype' => $file->filemime,
-        '#transcripts' => NULL,
-        '#descriptions' => NULL,
         '#options' => $options,
       );
 
@@ -79,8 +88,7 @@ function ableplayer_file_formatter_ableplayer_view($file, $display, $langcode) {
         '#id' => $file->fid,
         '#uri' => file_create_url($file->uri),
         '#mimetype' => $file->filemime,
-        '#transcripts' => $transcripts,
-        '#descriptions' => $descriptions,
+        '#tracks' => $tracks,
         '#options' => $options,
       );
 

@@ -52,6 +52,26 @@ function ableplayer_install() {
         ),
       ),
     ),
+    array(
+      'field_name' => 'ableplayer_chapters',
+      'label' => $t('Chapters'),
+      'type' => 'file',
+      'entity_type' => 'file',
+      'bundle' => NULL,
+      'cardinality' => FIELD_CARDINALITY_UNLIMITED,
+      'required' => FALSE,
+      'locked' => TRUE,
+      'settings' => array(
+        'file_extensions' => 'vtt',
+      ),
+      'display' => array(
+        'default' => array(
+          'label' => 'hidden',
+          'type' => 'hidden',
+          'settings' => array(),
+        ),
+      ),
+    ),
   );
 
   $file_types = file_type_load_all();
