@@ -106,7 +106,7 @@ function ableplayer_installation_status() {
     $message = trim(implode(' ', $missing_files));
   }
   elseif (!$ableplayer['installed']) {
-    $message = t($ableplayer['error message']);
+    $message = $ableplayer['error message'];
   }
   else {
     $version = $ableplayer['version'];
