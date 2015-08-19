@@ -17,10 +17,10 @@ function ableplayer_file_formatter_info() {
     'label' => t('Able Player'),
     'description' => t('Display an audio or video file in Able Player (file formatter)'),
     'file types' => array(ABLEPLAYER_BUNDLE_AUDIO, ABLEPLAYER_BUNDLE_VIDEO),
+    'mime types' => ableplayer_mimetypes(),
     'default settings' => ableplayer_default_settings(),
     'view callback' => 'ableplayer_file_formatter_ableplayer_view',
     'settings callback' => 'ableplayer_file_formatter_ableplayer_settings',
-    'mime types' => ableplayer_mimetypes(),
   );
 
   return $formatters;

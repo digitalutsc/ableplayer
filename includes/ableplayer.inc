@@ -155,12 +155,15 @@ function ableplayer_installation_status() {
  * output, which Able Player uses to display a select list of available
  * transcript languages.
  *
+ * @param array $track_items
+ *   Array of files associated as tracks with a parent file.
+ *
  * @return array $tracks Hash of transcript information
  *   - 'code' the ISO language code as used internally by Drupal
  *   - 'label' the native language name as used internally by Drupal
  *   - 'uri' the path to the transcript file
  */
-function ableplayer_build_track_list($transcript_items) {
+function ableplayer_build_track_list($track_items) {
   $entity_translation = module_exists('entity_translation');
   $tracks = array();
 
@@ -168,7 +171,7 @@ function ableplayer_build_track_list($transcript_items) {
     $languages = language_list();
   }
 
-  foreach ($transcript_items as $item) {
+  foreach ($track_items as $item) {
     $code = '';
     $label = '';
     $uri = file_create_url($item['uri']);
