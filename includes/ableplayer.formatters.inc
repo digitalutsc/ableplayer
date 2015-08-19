@@ -116,9 +116,10 @@ function ableplayer_file_formatter_ableplayer_settings($form, &$form_state, $set
     '#type' => 'select',
     '#default_value' => $settings['preload'],
     '#options' => array(
-      0 => t('metadata'),
-      1 => t('auto'),
+      'metadata' => t('metadata'),
+      'auto' => t('auto'),
     ),
+    '#empty_value' => '',
     '#description' => t(
       'Tells the browser how much media to download when the page loads. If the
       media is the central focus of the web page, use preload=“auto”, which
@@ -165,6 +166,18 @@ function ableplayer_file_formatter_ableplayer_settings($form, &$form_state, $set
     '#default_value' => $settings['lyrics_mode'],
     '#description' => t(
       'Forces a line break between and within captions in the transcript.'),
+  );
+
+  $element['force_lang'] = array(
+    '#title' => t('Force language'),
+    '#type' => 'checkbox',
+    '#default_value' => $settings['force_lang'],
+    '#description' => t(
+      "Force the player to use the value of data-lang as the player language.
+      Otherwise, the player language will be set as follows, in order of
+      precedence: 1) the language of the web page or user's web browser if
+      either is known and if there is a matching translation file; 2) the value
+      of data-lang if provided; 3) English."),
   );
 
   $element['volume'] = array(
