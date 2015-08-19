@@ -43,7 +43,7 @@ a file formatter with support for captions, transcripts, and audio description.
     webpage.
 6.  Click the **Download** button and save the file to
     **sites/all/libraries/modernizr**.
-7.  Rename the file to **custom.modernizr.js**.
+7.  Rename the file to **modernizr.custom.js**.
 8.  Navigate to **admin/config/development/jquery_update**. Ensure that the
     jQuery version is at least 1.7.
 
