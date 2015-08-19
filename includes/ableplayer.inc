@@ -35,6 +35,7 @@ function ableplayer_attach() {
 
   $attached['libraries_load'][] = $ableplayer;
   $attached['library'][] = array('system', 'jquery.cookie');
+  $attached['css'][] = drupal_get_path('module', 'ableplayer') . '/css/ableplayer.override.css';
 
   return $attached;
 }

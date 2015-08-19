@@ -73,6 +73,14 @@ function ableplayer_help($path, $arg) {
 function ableplayer_libraries_info() {
   $libraries = array();
 
+  $js_options = array(
+    'group' => JS_LIBRARY,
+  );
+
+  $css_options = array(
+    'group' => CSS_DEFAULT,
+  );
+
   $libraries['ableplayer'] = array(
     'name' => 'Able Player',
     'vendor url' => 'https://github.com/ableplayer/ableplayer',
@@ -83,24 +91,24 @@ function ableplayer_libraries_info() {
     ),
     'files' => array(
       'js' => array(
-        'build/ableplayer.min.js' => array('group' => JS_LIBRARY, 'preprocess' => FALSE),
+        'build/ableplayer.min.js' => $js_options,
       ),
       'css' => array(
-        'build/ableplayer.min.css' => array('group' => CSS_DEFAULT),
+        'build/ableplayer.min.css' => $css_options,
       ),
     ),
     'variants' => array(
       'source' => array(
         'files' => array(
           'js' => array(
-            'build/ableplayer.js' => array('group' => JS_LIBRARY, 'preprocess' => FALSE),
+            'build/ableplayer.js' => $js_options,
           ),
           'css' => array(
-            'styles/ableplayer-playlist.css' => array('group' => CSS_DEFAULT),
-            'styles/ableplayer-search.css' => array('group' => CSS_DEFAULT),
-            'styles/ableplayer-sign.css' => array('group' => CSS_DEFAULT),
-            'styles/ableplayer-transcript.css' => array('group' => CSS_DEFAULT),
-            'styles/ableplayer.css' => array('group' => CSS_DEFAULT),
+            'styles/ableplayer-playlist.css' => $css_options,
+            'styles/ableplayer-search.css' => $css_options,
+            'styles/ableplayer-sign.css' => $css_options,
+            'styles/ableplayer-transcript.css' => $css_options,
+            'styles/ableplayer.css' => $css_options,
           ),
         ),
       ),
