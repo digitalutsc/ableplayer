@@ -35,10 +35,7 @@ function ableplayer_file_formatter_info() {
 function ableplayer_file_formatter_ableplayer_view($file, $display, $langcode) {
   module_load_include('inc', 'ableplayer', 'includes/ableplayer');
 
-  $theme = 'ableplayer';
   $tracks = array();
-  $options = ableplayer_set_view_settings($file, $display);
-  $attached = ableplayer_attach();
 
   switch ($file->filemime) {
 
@@ -70,13 +67,13 @@ function ableplayer_file_formatter_ableplayer_view($file, $display, $langcode) {
   }
 
   $element = array(
-    '#theme' => $theme,
+    '#theme' => 'ableplayer',
     '#id' => $file->fid,
     '#uri' => $uri,
     '#mimetype' => $file->filemime,
     '#tracks' => $tracks,
-    '#options' => $options,
-    '#attached' => $attached,
+    '#options' => ableplayer_set_view_settings($file, $display, $langcode),
+    '#attached' => ableplayer_attach(),
   );
 
   return $element;

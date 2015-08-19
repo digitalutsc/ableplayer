@@ -23,8 +23,8 @@
  *   Render array to pass to libraries_load.
  */
 function ableplayer_attach() {
-  $attach = array();
   $compression_level = variable_get('ableplayer_compression_level', 1);
+  $attached = array();
 
   if ($compression_level === '0') {
     $ableplayer = array('ableplayer', 'source');
@@ -33,9 +33,9 @@ function ableplayer_attach() {
     $ableplayer = array('ableplayer');
   }
 
-  $attach['libraries_load'][] = $ableplayer;
+  $attached['libraries_load'][] = $ableplayer;
 
-  return $attach;
+  return $attached;
 }
 
 /**
