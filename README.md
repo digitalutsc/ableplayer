@@ -93,9 +93,21 @@ appropriate file types, the file field should now be formatted with Able Player.
 
 ### Captions, Descriptions, and Chapters
 
-A caption field instance is attached to the video and audio file types upon
-installation of the Able Player module. When a valid WebVTT file is uploaded to
-this field, it will be displayed by Able Player automatically.
+Field instances for captions, descriptions, and chapters are attached to the
+video and audio file bundles upon installation of the Able Player module. When
+a valid WebVTT file is uploaded to this field, it will be displayed by Able
+Player automatically. You can add transcripts to audio and video uploaded via
+the file field on a content type as well:
+
+*   Upload a file via the file field on any node.
+*   Navigate to **admin/content/file** and find the transcript file you just
+    upload. Click the **Edit** link for that file.
+*   Upload transcript files to the appropriate fields.
+*   Click **Save**.
+
+**Tip:** install **Media** to streamline this process. With Media installed,
+set all file field widgets to **Media Browser** and you will be able to
+directly edit the files attached to any file field instance.
 
 #### Multilingual Transcripts
 
@@ -117,8 +129,8 @@ is **required** for support of transcripts in multiple languages.
 1.  Enable the core **Locale** module.
 2.  Navigate to **admin/config/regional/language.**
 3.  Click on **Add language**. Select the language that you want to add from the
-    select box and click **Save** Repeat for each language that you want to
-    support.
+    select box and click **Save**.
+4.  Repeat for each language that you want to support.
 
 ##### Part 3: Set the language of transcript files
 
