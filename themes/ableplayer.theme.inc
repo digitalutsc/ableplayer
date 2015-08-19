@@ -69,7 +69,7 @@ function theme_ableplayer($variables) {
   }
 
   if ($variables['options']['lang']) {
-    $output .= 'data-lang="' . $variables['options']['lang'] .'" ';
+    $output .= 'data-lang="' . $variables['options']['lang'] . '" ';
   }
 
   $output .= 'data-translation-path="' . $variables['data_translation_path'] . '" ';
