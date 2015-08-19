@@ -1,3 +1,5 @@
+## Introduction
+
 **[Able Player](https://github.com/ableplayer/ableplayer)** is a fully
 accessible cross-browser media player created by accessibility specialist
 Terrill Thompson. It uses the HTML5 <audio> or <video> element for browsers that
@@ -12,8 +14,14 @@ a file formatter with support for captions, transcripts, and audio description.
 *   [jQuery Update](https://www.drupal.org/project/jquery_update)
 *   [Modernizr](https://www.drupal.org/project/modernizr)
 *   [File Entity](https://www.drupal.org/project/file_entity)
+
+#### Recommended
+
+*   [Media](https://www.drupal.org/project/media)
+
+#### Internationalization
+
 *   [Entity Translation](https://www.drupal.org/project/entity_translation)
-    (optional, for multilingual transcript support)
 
 ### Libraries
 
@@ -83,7 +91,7 @@ Able Player.
 Provided that Able Player has been enabled as the default file display for the
 appropriate file types, the file field should now be formatted with Able Player.
 
-### Video Captions and Audio Descriptions
+### Captions, Descriptions, and Chapters
 
 A caption field instance is attached to the video and audio file types upon
 installation of the Able Player module. When a valid WebVTT file is uploaded to
