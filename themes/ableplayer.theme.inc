@@ -72,6 +72,10 @@ function theme_ableplayer($variables) {
     $output .= 'data-lang="' . $variables['options']['lang'] . '" ';
   }
 
+  if ($variables['options']['force_lang']) {
+    $output .= 'data-force-lang ';
+  }
+
   $output .= 'data-translation-path="' . $variables['data_translation_path'] . '" ';
 
   if (isset($variables['data_youtube_id'])) {
