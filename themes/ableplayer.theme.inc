@@ -82,6 +82,10 @@ function theme_ableplayer($variables) {
     $output .= 'data-transcript-title="' . $variables['options']['transcript_title'] . '" ';
   }
 
+  if ($variables['options']['lang']) {
+    $output .= 'data-lang="' . $variables['options']['lang'] .'" ';
+  }
+
   $output .= 'data-translation-path="' . $variables['data_translation_path'] . '" ';
 
   if (isset($variables['data_youtube_id'])) {

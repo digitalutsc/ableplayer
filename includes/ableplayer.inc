@@ -72,6 +72,7 @@ function ableplayer_default_settings() {
     'start_time' => 0,
     'seek_interval' => FALSE,
     'transcript_title' => FALSE,
+    'lang' => FALSE,
   );
 }
 
@@ -85,13 +86,23 @@ function ableplayer_default_settings() {
  * @return array
  *   Able Player file formatter view settings.
  */
-function ableplayer_set_view_settings($file, $display) {
+function ableplayer_set_view_settings($file, $display, $langcode) {
+  $entity_translation = module_exists('entity_translation');
   $options = array();
 
   foreach (array_keys(ableplayer_default_settings()) as $setting) {
     $options[$setting] = isset($file->override[$setting]) ?
       $file->override[$setting] :
       $display['settings'][$setting];
+  }
+
+  if (empty($options['lang'])) {
+    if ($entity_translation && property_exists($file, 'translations')) {
+      $options['lang'] = $file->translations->original;
+    }
+    else {
+      $options['lang'] = $langcode;
+    }
   }
 
   return $options;
