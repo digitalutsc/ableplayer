@@ -15,7 +15,8 @@ function ableplayer_file_formatter_info() {
 
   $formatters['ableplayer'] = array(
     'label' => t('Able Player'),
-    'description' => t('Display an audio or video file in Able Player (file formatter)'),
+    'description' => t(
+      'Display an audio or video file in Able Player (file formatter)'),
     'file types' => array(ABLEPLAYER_BUNDLE_AUDIO, ABLEPLAYER_BUNDLE_VIDEO),
     'mime types' => ableplayer_mimetypes(),
     'default settings' => ableplayer_default_settings(),
@@ -214,7 +215,8 @@ function ableplayer_file_formatter_ableplayer_settings($form, &$form_state, $set
 function ableplayer_validate_dimensions($element, &$form_state, $form) {
   if (!empty($element['#value']) && !preg_match('/^(auto|[0-9]*)$/', $element['#value'])) {
     form_error($element, t(
-      'The value entered for @dimension is invalid. Please insert a unitless integer for pixels or "auto".',
+      'The value entered for @dimension is invalid. Please insert a unitless
+      integer for pixels or "auto".',
       array('@dimension' => $element['#title'])));
   }
 }
@@ -226,7 +228,8 @@ function ableplayer_validate_volume($element, &$form_state, $form) {
   if (!empty($element['#value'])) {
     if (!is_numeric($element['#value']) || $element['#value'] < 0 || $element['#value'] > 1) {
       form_error($element, t(
-        'The value entered for @volume is invalid. Please insert a number between 0 and 1.',
+        'The value entered for @volume is invalid. Please insert a number
+        between 0 and 1.',
         array('@volume' => $element['#title'])));
     }
   }
@@ -239,7 +242,8 @@ function ableplayer_validate_seek_interval($element, &$form_state, $form) {
   if (!empty($element['#value'])) {
     if (!is_numeric($element['#value'])) {
       form_error($element, t(
-        'The value entered for @seek is invalid. Please insert a number (seconds).',
+        'The value entered for @seek is invalid. Please insert a number
+        (seconds).',
         array('@seek' => $element['#title'])));
     }
   }
@@ -252,7 +256,8 @@ function ableplayer_validate_start_time($element, &$form_state, $form) {
   if (!empty($element['#value'])) {
     if (!is_int($element['#value']) || $element['#value'] < 0) {
       form_error($element, t(
-        'The value entered for @start is invalid. Please insert a positive integer (seconds).',
+        'The value entered for @start is invalid. Please insert a positive
+        integer (seconds).',
         array('@start' => $element['#title'])));
     }
   }
