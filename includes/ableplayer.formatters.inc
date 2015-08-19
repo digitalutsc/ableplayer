@@ -35,66 +35,50 @@ function ableplayer_file_formatter_ableplayer_view($file, $display, $langcode) {
   module_load_include('inc', 'ableplayer', 'includes/ableplayer');
 
   $theme = 'ableplayer';
+  $tracks = array();
   $options = ableplayer_set_view_settings($file, $display);
-
-  $transcript_items = field_get_items('file', $file, 'ableplayer_transcript');
-  $transcripts = ($transcript_items) ?
-    ableplayer_build_track_list($transcript_items) : array();
-
-  $description_items = field_get_items('file', $file, 'ableplayer_description');
-  $descriptions = ($description_items) ?
-    ableplayer_build_track_list($description_items) : array();
-
-  $chapters_items = field_get_items('file', $file, 'ableplayer_chapters');
-  $chapters = ($chapters_items) ?
-    ableplayer_build_track_list($chapters_items) : array();
-
-  $tracks = array(
-    'transcripts' => $transcripts,
-    'descriptions' => $descriptions,
-    'chapters' => $chapters,
-  );
+  $attached = ableplayer_attach();
 
   switch ($file->filemime) {
 
-    case ABLEPLAYER_BUNDLE_AUDIO . '/mpeg':
-    case ABLEPLAYER_BUNDLE_AUDIO . '/ogg':
-      $element = array(
-        '#theme' => $theme,
-        '#id' => $file->fid,
-        '#uri' => file_create_url($file->uri),
-        '#mimetype' => $file->filemime,
-        '#tracks' => $tracks,
-        '#options' => $options,
-      );
+    case ABLEPLAYER_BUNDLE_AUDIO . '/' . ABLEPLAYER_MIME_MPEG:
+    case ABLEPLAYER_BUNDLE_AUDIO . '/' . ABLEPLAYER_MIME_OGG:
+    case ABLEPLAYER_BUNDLE_VIDEO . '/' . ABLEPLAYER_MIME_MP4:
+    case ABLEPLAYER_BUNDLE_VIDEO . '/' . ABLEPLAYER_MIME_WEBM:
+      $uri = file_create_url($file->uri);
 
-      return $element;
+      $transcript_items = field_get_items('file', $file, 'ableplayer_transcript');
+      $tracks['transcripts'] = ($transcript_items) ?
+        ableplayer_build_track_list($transcript_items) : array();
 
-    case ABLEPLAYER_BUNDLE_VIDEO . '/youtube':
-      $element = array(
-        '#theme' => $theme,
-        '#id' => $file->fid,
-        '#uri' => $file->uri,
-        '#mimetype' => $file->filemime,
-        '#options' => $options,
-      );
+      $description_items = field_get_items('file', $file, 'ableplayer_description');
+      $tracks['descriptions'] = ($description_items) ?
+        ableplayer_build_track_list($description_items) : array();
 
-      return $element;
+      $chapters_items = field_get_items('file', $file, 'ableplayer_chapters');
+      $tracks['chapters'] = ($chapters_items) ?
+        ableplayer_build_track_list($chapters_items) : array();
 
-    case ABLEPLAYER_BUNDLE_VIDEO . '/mp4':
-    case ABLEPLAYER_BUNDLE_VIDEO . '/webm':
-      $element = array(
-        '#theme' => $theme,
-        '#id' => $file->fid,
-        '#uri' => file_create_url($file->uri),
-        '#mimetype' => $file->filemime,
-        '#tracks' => $tracks,
-        '#options' => $options,
-      );
+      break;
 
-      return $element;
+    case ABLEPLAYER_BUNDLE_VIDEO . '/' . ABLEPLAYER_MIME_YOUTUBE:
+      $uri = $file->uri;
+
+      break;
 
   }
+
+  $element = array(
+    '#theme' => $theme,
+    '#id' => $file->fid,
+    '#uri' => $uri,
+    '#mimetype' => $file->filemime,
+    '#tracks' => $tracks,
+    '#options' => $options,
+    '#attached' => $attached,
+  );
+
+  return $element;
 }
 
 /**

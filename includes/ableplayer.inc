@@ -10,6 +10,33 @@
  */
 
 /**
+ * Return code to attach the Able Player library to an element using the
+ * Libraries API in the '#attach' property of render arrays.
+ *
+ * Usage:
+ *
+ *   $element['#attach'] = ableplayer_attach();
+ *
+ * @return array
+ *   Render array to pass to libraries_load.
+ */
+function ableplayer_attach() {
+  $attach = array();
+  $compression_level = variable_get('ableplayer_compression_level', 1);
+
+  if ($compression_level === '0') {
+    $ableplayer = array('ableplayer', 'source');
+  }
+  else {
+    $ableplayer = array('ableplayer');
+  }
+
+  $attach['libraries_load'][] = $ableplayer;
+
+  return $attach;
+}
+
+/**
  * Function returns the complete list of mimetypes supported by Able Player.
  *
  * @return array
@@ -17,10 +44,10 @@
  */
 function ableplayer_mimetypes() {
   return array(
-    ABLEPLAYER_BUNDLE_AUDIO . '/mpeg',
-    ABLEPLAYER_BUNDLE_AUDIO . '/ogg',
-    ABLEPLAYER_BUNDLE_VIDEO . '/mp4',
-    ABLEPLAYER_BUNDLE_VIDEO . '/webm',
+    ABLEPLAYER_BUNDLE_AUDIO . '/' . ABLEPLAYER_MIME_MPEG,
+    ABLEPLAYER_BUNDLE_AUDIO . '/' . ABLEPLAYER_MIME_OGG,
+    ABLEPLAYER_BUNDLE_VIDEO . '/' . ABLEPLAYER_MIME_MP4,
+    ABLEPLAYER_BUNDLE_VIDEO . '/' . ABLEPLAYER_MIME_WEBM,
   );
 }
 
