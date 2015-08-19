@@ -10,6 +10,8 @@
  */
 
 /**
+ * Able Player libraries load render array.
+ *
  * Return code to attach the Able Player library to an element using the
  * Libraries API in the '#attach' property of render arrays.
  *
@@ -163,7 +165,7 @@ function ableplayer_installation_status() {
  *   - 'label' the native language name as used internally by Drupal
  *   - 'uri' the path to the transcript file
  */
-function ableplayer_build_track_list($track_items) {
+function ableplayer_build_track_list(array $track_items) {
   $entity_translation = module_exists('entity_translation');
   $tracks = array();
 
