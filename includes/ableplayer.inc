@@ -34,6 +34,7 @@ function ableplayer_attach() {
   }
 
   $attached['libraries_load'][] = $ableplayer;
+  $attached['library'][] = array('system', 'jquery.cookie');
 
   return $attached;
 }

@@ -84,7 +84,6 @@ function ableplayer_libraries_info() {
     'files' => array(
       'js' => array(
         'build/ableplayer.min.js' => array('group' => JS_LIBRARY, 'preprocess' => FALSE),
-        'thirdparty/jquery.cookie.js' => array('group' => JS_LIBRARY, 'preprocess' => FALSE),
       ),
       'css' => array(
         'build/ableplayer.min.css' => array('group' => CSS_DEFAULT),
@@ -95,7 +94,6 @@ function ableplayer_libraries_info() {
         'files' => array(
           'js' => array(
             'build/ableplayer.js' => array('group' => JS_LIBRARY, 'preprocess' => FALSE),
-            'thirdparty/jquery.cookie.js' => array('group' => JS_LIBRARY, 'preprocess' => FALSE),
           ),
           'css' => array(
             'styles/ableplayer-playlist.css' => array('group' => CSS_DEFAULT),

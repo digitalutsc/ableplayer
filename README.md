@@ -152,8 +152,6 @@ for filetypes and third-party media hosts, may be found at the [**Able Player
 
 ## Known Issues
 
-*   The core **jquery.cookie** is incompatible with Able Player. **Solution:**
-    Disable the default Toolbar module and install Admin Menu or Navbar.
 *   Able player settings cannot be set on a per-field (or per-file) basis at
     this time.
 
