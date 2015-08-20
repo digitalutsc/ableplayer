@@ -136,6 +136,12 @@ function ableplayer_init() {
  * Implements hook_js_alter().
  */
 function ableplayer_js_alter(&$javascript) {
+  $ableplayer = libraries_detect('ableplayer');
+
+  if (!$ableplayer['installed']) {
+    return;
+  }
+
   $system = 'misc/jquery.cookie.js';
   $jquery_update = drupal_get_path('module', 'jquery_update') . '/replace/ui/external/jquery.cookie.js';
 
