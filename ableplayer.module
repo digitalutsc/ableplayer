@@ -125,7 +125,11 @@ function ableplayer_libraries_info() {
  * Implements hook_init().
  */
 function ableplayer_init() {
-  drupal_add_js(libraries_get_path('ableplayer') . '/thirdparty/jquery.cookie.js');
+  $ableplayer = libraries_get_path('ableplayer');
+
+  if ($ableplayer) {
+    drupal_add_js($ableplayer . '/thirdparty/jquery.cookie.js');
+  }
 }
 
 /**
