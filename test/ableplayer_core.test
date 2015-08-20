@@ -54,6 +54,10 @@ class AblePlayerCoreTestCase extends DrupalWebTestCase {
     $this->drupalLogin($this->user);
   }
 
+  /**
+   * Test that the default mimetypes for the Document type are updated for VTT
+   * files.
+   */
   public function testAblePlayerFileDefaultTypesAlter() {
     $types = file_type_load_all();
 
@@ -63,6 +67,9 @@ class AblePlayerCoreTestCase extends DrupalWebTestCase {
       'text/vtt mimetype added to Document file type');
   }
 
+  /**
+   * Test that the jquery.cookie.js file is removed when present.
+   */
   public function testAblePlayerJsAlter() {
     $javascript = array();
 
@@ -80,6 +87,9 @@ class AblePlayerCoreTestCase extends DrupalWebTestCase {
       'jQuery Update jquery.cookie.js successfully removed.');
   }
 
+  /**
+   * Test that the theme hook returns the ableplayer key.
+   */
   public function testAblePlayerTheme() {
     $existing = array();
     $type = 'module';
