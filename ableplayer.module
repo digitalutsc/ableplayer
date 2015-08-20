@@ -122,6 +122,22 @@ function ableplayer_libraries_info() {
 }
 
 /**
+ * Implements hook_js_alter().
+ */
+function ableplayer_js_alter(&$javascript) {
+  $system = 'misc/jquery.cookie.js';
+  $jquery_update = drupal_get_path('module', 'jquery_update') . '/replace/ui/external/jquery.cookie.js';
+
+  if (array_key_exists($system, $javascript)) {
+    unset($javascript[$system]);
+  }
+
+  if (array_key_exists($jquery_update, $javascript)) {
+    unset($javascript[$jquery_update]);
+  }
+}
+
+/**
  * Implements hook_menu().
  */
 function ableplayer_menu() {
@@ -185,6 +201,13 @@ function ableplayer_modernizr_info() {
   );
 
   return $tests;
+}
+
+/**
+ * Implements hook_page_build().
+ */
+function ableplayer_init() {
+  drupal_add_js(libraries_get_path('ableplayer') . '/thirdparty/jquery.cookie.js');
 }
 
 /**
