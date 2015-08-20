@@ -194,6 +194,7 @@ function ableplayer_file_formatter_ableplayer_settings($form, &$form_state, $set
   $element['start_time'] = array(
     '#title' => t('Start time'),
     '#type' => 'textfield',
+    '#default_value' => $settings['start_time'],
     '#size' => 6,
     '#description' => t(
       'Time at which you want the audio to start playing (in seconds).'),
@@ -202,6 +203,7 @@ function ableplayer_file_formatter_ableplayer_settings($form, &$form_state, $set
   $element['seek_interval'] = array(
     '#title' => t('Seek interval'),
     '#type' => 'textfield',
+    '#default_value' => $settings['seek_interval'],
     '#size' => 6,
     '#description' => t(
       'Interval (in seconds) of forward and rewind buttons. By default, seek
@@ -211,6 +213,7 @@ function ableplayer_file_formatter_ableplayer_settings($form, &$form_state, $set
   $element['transcript_title'] = array(
     '#title' => t('Transcript title'),
     '#type' => 'textfield',
+    '#default_value' => $settings['transcript_title'],
     '#size' => 18,
     '#description' => t('Override default transcript title (default is
     "Transcript", or "Lyrics" if the data-lyrics-mode attribute is present).'),
