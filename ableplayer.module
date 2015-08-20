@@ -221,7 +221,7 @@ function ableplayer_page_build() {
       'requires_jquery' => TRUE,
     );
 
-    $javascript = drupal_add_js($ableplayer . '/thirdparty/jquery.cookie.js', $options);
+    drupal_add_js($ableplayer . '/thirdparty/jquery.cookie.js', $options);
   }
 }
 
