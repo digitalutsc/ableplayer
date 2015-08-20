@@ -123,6 +123,8 @@ function ableplayer_libraries_info() {
 
 /**
  * Implements hook_js_alter().
+ *
+ * Removes other jquery.cookie.js instances.
  */
 function ableplayer_js_alter(&$javascript) {
   $ableplayer = libraries_get_path('ableplayer');
@@ -131,18 +133,11 @@ function ableplayer_js_alter(&$javascript) {
     return;
   }
 
-  $system = 'misc/jquery.cookie.js';
-  $jquery_update = drupal_get_path('module', 'jquery_update') . '/replace/ui/external/jquery.cookie.js';
-
-  if (array_key_exists($system, $javascript)) {
-    unset($javascript[$system]);
+  foreach ($javascript as $key => $value) {
+    if (strpos($key, 'jquery.cookie.js') !== FALSE && strpos($key, 'ableplayer') === FALSE) {
+      unset($javascript[$key]);
+    }
   }
-
-  if (array_key_exists($jquery_update, $javascript)) {
-    unset($javascript[$jquery_update]);
-  }
-
-  drupal_add_js($ableplayer . '/thirdparty/jquery.cookie.js');
 }
 
 /**
@@ -209,6 +204,25 @@ function ableplayer_modernizr_info() {
   );
 
   return $tests;
+}
+
+/**
+ * Implements hook_page_build().
+ *
+ * Add the jquery.cookie.js that ships with Able Player.
+ */
+function ableplayer_page_build() {
+  $ableplayer = libraries_get_path('ableplayer');
+
+  if ($ableplayer) {
+    $options = array(
+      'group' => JS_LIBRARY,
+      'every_page' => TRUE,
+      'requires_jquery' => TRUE,
+    );
+
+    $javascript = drupal_add_js($ableplayer . '/thirdparty/jquery.cookie.js', $options);
+  }
 }
 
 /**
