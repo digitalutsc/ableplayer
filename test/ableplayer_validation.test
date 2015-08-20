@@ -23,7 +23,7 @@ class AblePlayerValidationTestCase extends DrupalWebTestCase {
   public static function getInfo() {
     $info = array();
 
-    $info['name'] = 'Able Player validtion test';
+    $info['name'] = 'Able Player Validation';
     $info['description'] = 'Ensure that the settings validation functions operate correctly';
     $info['group'] = 'Able Player';
 

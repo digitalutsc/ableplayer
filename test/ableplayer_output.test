@@ -23,7 +23,7 @@ class AblePlayerOutputTestCase extends DrupalWebTestCase {
   public static function getInfo() {
     $info = array();
 
-    $info['name'] = 'Able Player output test';
+    $info['name'] = 'Able Player Output';
     $info['description'] = 'Verify that the HTML output of the Able Player is correct with given settings';
     $info['group'] = 'Able Player';
 
