@@ -40,18 +40,48 @@ function ableplayer_attach() {
 }
 
 /**
- * Function returns the complete list of mimetypes supported by Able Player.
+ * Get data for populating track elements for Able Player.
  *
- * @return array
- *   Able Player supported mimetypes.
+ * Given a list of transcript file entities, look up their language in the core
+ * language list to get the native language label. This allows the srclang and
+ * label attributes to be set on the track element of the field formatter
+ * output, which Able Player uses to display a select list of available
+ * transcript languages.
+ *
+ * @param array $track_items
+ *   Array of files associated as tracks with a parent file.
+ *
+ * @return array $tracks Hash of transcript information
+ *   - 'code' the ISO language code as used internally by Drupal
+ *   - 'label' the native language name as used internally by Drupal
+ *   - 'uri' the path to the transcript file
  */
-function ableplayer_mimetypes() {
-  return array(
-    ABLEPLAYER_BUNDLE_AUDIO . '/' . ABLEPLAYER_MIME_MPEG,
-    ABLEPLAYER_BUNDLE_AUDIO . '/' . ABLEPLAYER_MIME_OGG,
-    ABLEPLAYER_BUNDLE_VIDEO . '/' . ABLEPLAYER_MIME_MP4,
-    ABLEPLAYER_BUNDLE_VIDEO . '/' . ABLEPLAYER_MIME_WEBM,
-  );
+function ableplayer_build_track_list(array $track_items) {
+  $entity_translation = module_exists('entity_translation');
+  $tracks = array();
+
+  if ($entity_translation) {
+    $languages = language_list();
+  }
+
+  foreach ($track_items as $item) {
+    $code = '';
+    $label = '';
+    $uri = file_create_url($item['uri']);
+
+    if ($entity_translation && array_key_exists('translations', $item)) {
+      $code = $item['translations']->original;
+      $label = $languages[$code]->native;
+    }
+
+    $tracks[] = array(
+      'code' => $code,
+      'label' => $label,
+      'uri' => $uri,
+    );
+  }
+
+  return $tracks;
 }
 
 /**
@@ -76,38 +106,6 @@ function ableplayer_default_settings() {
     'transcript_title' => FALSE,
     'lang' => FALSE,
   );
-}
-
-/**
- * Construct settings array for Able Player file formatter.
- *
- * Build the settings array from the configured values, or use the defaults.
- * The result will be used to configure the display of the Able Player file
- * formatter.
- *
- * @return array
- *   Able Player file formatter view settings.
- */
-function ableplayer_set_view_settings($file, $display, $langcode) {
-  $entity_translation = module_exists('entity_translation');
-  $options = array();
-
-  foreach (array_keys(ableplayer_default_settings()) as $setting) {
-    $options[$setting] = isset($file->override[$setting]) ?
-      $file->override[$setting] :
-      $display['settings'][$setting];
-  }
-
-  if (empty($options['lang'])) {
-    if ($entity_translation && property_exists($file, 'translations')) {
-      $options['lang'] = $file->translations->original;
-    }
-    else {
-      $options['lang'] = $langcode;
-    }
-  }
-
-  return $options;
 }
 
 /**
@@ -162,46 +160,48 @@ function ableplayer_installation_status() {
 }
 
 /**
- * Get data for populating track elements for Able Player.
+ * Function returns the complete list of mimetypes supported by Able Player.
  *
- * Given a list of transcript file entities, look up their language in the core
- * language list to get the native language label. This allows the srclang and
- * label attributes to be set on the track element of the field formatter
- * output, which Able Player uses to display a select list of available
- * transcript languages.
- *
- * @param array $track_items
- *   Array of files associated as tracks with a parent file.
- *
- * @return array $tracks Hash of transcript information
- *   - 'code' the ISO language code as used internally by Drupal
- *   - 'label' the native language name as used internally by Drupal
- *   - 'uri' the path to the transcript file
+ * @return array
+ *   Able Player supported mimetypes.
  */
-function ableplayer_build_track_list(array $track_items) {
+function ableplayer_mimetypes() {
+  return array(
+    ABLEPLAYER_BUNDLE_AUDIO . '/' . ABLEPLAYER_MIME_MPEG,
+    ABLEPLAYER_BUNDLE_AUDIO . '/' . ABLEPLAYER_MIME_OGG,
+    ABLEPLAYER_BUNDLE_VIDEO . '/' . ABLEPLAYER_MIME_MP4,
+    ABLEPLAYER_BUNDLE_VIDEO . '/' . ABLEPLAYER_MIME_WEBM,
+  );
+}
+
+/**
+ * Construct settings array for Able Player file formatter.
+ *
+ * Build the settings array from the configured values, or use the defaults.
+ * The result will be used to configure the display of the Able Player file
+ * formatter.
+ *
+ * @return array
+ *   Able Player file formatter view settings.
+ */
+function ableplayer_set_view_settings($file, $display, $langcode) {
   $entity_translation = module_exists('entity_translation');
-  $tracks = array();
+  $options = array();
 
-  if ($entity_translation) {
-    $languages = language_list();
+  foreach (array_keys(ableplayer_default_settings()) as $setting) {
+    $options[$setting] = isset($file->override[$setting]) ?
+      $file->override[$setting] :
+      $display['settings'][$setting];
   }
 
-  foreach ($track_items as $item) {
-    $code = '';
-    $label = '';
-    $uri = file_create_url($item['uri']);
-
-    if ($entity_translation && array_key_exists('translations', $item)) {
-      $code = $item['translations']->original;
-      $label = $languages[$code]->native;
+  if (empty($options['lang'])) {
+    if ($entity_translation && property_exists($file, 'translations')) {
+      $options['lang'] = $file->translations->original;
     }
-
-    $tracks[] = array(
-      'code' => $code,
-      'label' => $label,
-      'uri' => $uri,
-    );
+    else {
+      $options['lang'] = $langcode;
+    }
   }
 
-  return $tracks;
+  return $options;
 }
