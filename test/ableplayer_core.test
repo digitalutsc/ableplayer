@@ -55,8 +55,7 @@ class AblePlayerCoreTestCase extends DrupalWebTestCase {
   }
 
   /**
-   * Test that the default mimetypes for the Document type are updated for VTT
-   * files.
+   * Test that the default mimetypes for the Document type include VTT.
    */
   public function testAblePlayerFileDefaultTypesAlter() {
     $types = file_type_load_all();
