@@ -16,7 +16,7 @@ function ableplayer_file_formatter_info() {
   $formatters['ableplayer'] = array(
     'label' => t('Able Player'),
     'description' => t(
-      'Display an audio or video file in Able Player (file formatter)'),
+      'Render an audio or video file with Able Player.'),
     'file types' => array(ABLEPLAYER_BUNDLE_AUDIO, ABLEPLAYER_BUNDLE_VIDEO),
     'mime types' => ableplayer_mimetypes(),
     'default settings' => ableplayer_default_settings(),
