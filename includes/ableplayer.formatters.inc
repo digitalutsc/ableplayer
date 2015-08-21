@@ -226,9 +226,15 @@ function ableplayer_file_formatter_ableplayer_settings($form, &$form_state, $set
  * Validate that video dimensions are numbers or "auto".
  */
 function ableplayer_validate_dimensions($element, &$form_state, $form) {
-  if (!empty($element['#value']) && (!is_numeric($element['#value']) || $element['#value'] < 0)) {
+  $options = array(
+    'options' => array(
+      'min_range' => 0,
+    ),
+  );
+
+  if (filter_var($element['#value'], FILTER_VALIDATE_INT, $options) === FALSE) {
     form_error($element, t(
-      'The value entered for @dimension is invalid. Please insert a unitless integer for pixels.',
+      'The value entered for @dimension is invalid. Please insert a positive integer (pixels).',
       array('@dimension' => $element['#title'])));
   }
 }
@@ -251,7 +257,7 @@ function ableplayer_validate_volume($element, &$form_state, $form) {
  */
 function ableplayer_validate_seek_interval($element, &$form_state, $form) {
   if (!empty($element['#value'])) {
-    if (!is_numeric($element['#value'])) {
+    if (filter_var($element['#value'], FILTER_VALIDATE_FLOAT) === FALSE || $element['#value'] < 0) {
       form_error($element, t(
         'The value entered for @seek is invalid. Please insert a number (seconds).',
         array('@seek' => $element['#title'])));
@@ -263,8 +269,14 @@ function ableplayer_validate_seek_interval($element, &$form_state, $form) {
  * Validate that the start time setting is an integer and greater than 0.
  */
 function ableplayer_validate_start_time($element, &$form_state, $form) {
+  $options = array(
+    'options' => array(
+      'min_range' => 0,
+    ),
+  );
+
   if (!empty($element['#value'])) {
-    if (!is_int($element['#value']) || $element['#value'] < 0) {
+    if (filter_var($element['#value'], FILTER_VALIDATE_INT, $options) === FALSE) {
       form_error($element, t(
         'The value entered for @start is invalid. Please insert a positive integer (seconds).',
         array('@start' => $element['#title'])));
