@@ -226,9 +226,9 @@ function ableplayer_file_formatter_ableplayer_settings($form, &$form_state, $set
  * Validate that video dimensions are numbers or "auto".
  */
 function ableplayer_validate_dimensions($element, &$form_state, $form) {
-  if (!empty($element['#value']) && !preg_match('/^(auto|[0-9]*)$/', $element['#value'])) {
+  if (!empty($element['#value']) && (!is_numeric($element['#value']) || $element['#value'] < 0)) {
     form_error($element, t(
-      'The value entered for @dimension is invalid. Please insert a unitless integer for pixels or "auto".',
+      'The value entered for @dimension is invalid. Please insert a unitless integer for pixels.',
       array('@dimension' => $element['#title'])));
   }
 }
