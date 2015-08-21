@@ -1,5 +1,5 @@
 name = Able Player
-description = Able Player library
+description = Accessible audio and video
 core = 7.x
 dependencies[] = libraries
 dependencies[] = modernizr
