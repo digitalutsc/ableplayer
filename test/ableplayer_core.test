@@ -67,26 +67,6 @@ class AblePlayerCoreTestCase extends DrupalWebTestCase {
   }
 
   /**
-   * Test that the jquery.cookie.js file is removed when present.
-   */
-  public function testAblePlayerJsAlter() {
-    $javascript = array();
-
-    $system = 'misc/jquery.cookie.js';
-    $jquery_update = drupal_get_path('module', 'jquery_update') . '/replace/ui/external/jquery.cookie.js';
-
-    $javascript[$system] = TRUE;
-    $javascript[$jquery_update] = TRUE;
-
-    drupal_alter('js', $javascript);
-
-    $this->assertFalse(array_key_exists($system, $javascript),
-      'System jquery.cookie.js successfully removed.');
-    $this->assertFalse(array_key_exists($jquery_update, $javascript),
-      'jQuery Update jquery.cookie.js successfully removed.');
-  }
-
-  /**
    * Test that the theme hook returns the ableplayer key.
    */
   public function testAblePlayerTheme() {
