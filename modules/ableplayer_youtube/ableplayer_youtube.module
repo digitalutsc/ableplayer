@@ -9,7 +9,7 @@
  * Implements hook_file_formatter_info_alter().
  */
 function ableplayer_youtube_file_formatter_info_alter(&$info) {
-  $info['ableplayer']['mime types'][] = 'video/youtube';
+  $info['ableplayer']['mime types'][] = ABLEPLAYER_BUNDLE_VIDEO . '/' . ABLEPLAYER_MIME_YOUTUBE;
 }
 
 /**
@@ -18,7 +18,7 @@ function ableplayer_youtube_file_formatter_info_alter(&$info) {
 function ableplayer_youtube_preprocess_ableplayer(&$variables) {
   switch ($variables['mimetype']) {
 
-    case 'video/youtube':
+    case ABLEPLAYER_BUNDLE_VIDEO . '/' . ABLEPLAYER_MIME_YOUTUBE:
       $variables['data_youtube_id'] = ableplayer_youtube_get_video_id($variables['uri']);
 
       break;

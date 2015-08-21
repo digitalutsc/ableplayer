@@ -23,7 +23,7 @@ class AblePlayerYouTubeTestCase extends DrupalWebTestCase {
   public static function getInfo() {
     $info = array();
 
-    $info['name'] = 'Able Player YouTube output test';
+    $info['name'] = 'Able Player YouTube';
     $info['description'] = 'Verify that the HTML output of the Able Player YouTube is correct with given settings';
     $info['group'] = 'Able Player';
 
