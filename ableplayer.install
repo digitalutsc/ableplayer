@@ -145,4 +145,5 @@ function ableplayer_requirements($phase) {
  */
 function ableplayer_uninstall() {
   variable_del('ableplayer_compression_level');
+  variable_del('ableplayer_test_fallback');
 }
