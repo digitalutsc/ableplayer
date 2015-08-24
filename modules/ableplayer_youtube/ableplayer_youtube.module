@@ -19,7 +19,7 @@ function ableplayer_youtube_preprocess_ableplayer(&$variables) {
   switch ($variables['mimetype']) {
 
     case ABLEPLAYER_BUNDLE_VIDEO . '/' . ABLEPLAYER_MIME_YOUTUBE:
-      $variables['data_youtube_id'] = ableplayer_youtube_get_video_id($variables['uri']);
+      $variables['youtube_id'] = ableplayer_youtube_get_video_id($variables['uri']);
 
       break;
 

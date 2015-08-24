@@ -9,7 +9,9 @@
  * Implements hook_preprocess_THEME().
  */
 function ableplayer_preprocess_ableplayer(&$variables) {
-  $variables['data_translation_path'] = url(libraries_get_path('ableplayer') . '/translations/', array('absolute' => TRUE));
+  $variables['fallback_path'] = url(libraries_get_path('jwplayer') . '/', array('absolute' => TRUE));
+  $variables['test_fallback'] = variable_get('ableplayer_test_fallback', 0);
+  $variables['translation_path'] = url(libraries_get_path('ableplayer') . '/translations/', array('absolute' => TRUE));
   $variables['id'] = drupal_html_id($variables['id']);
 }
 
@@ -76,17 +78,21 @@ function theme_ableplayer($variables) {
     $output .= 'data-force-lang ';
   }
 
-  $output .= 'data-translation-path="' . $variables['data_translation_path'] . '" ';
-
-  if (isset($variables['data_youtube_id'])) {
-    $output .= 'data-youtube-id="' . $variables['data_youtube_id'] . '" ';
+  if (isset($variables['youtube_id'])) {
+    $output .= 'data-youtube-id="' . $variables['youtube_id'] . '" ';
   }
 
+  if ($variables['test_fallback']) {
+    $output .= 'data-test-fallback ';
+  }
+
+  $output .= 'data-fallback-path="' . $variables['fallback_path'] . '" ';
+  $output .= 'data-translation-path="' . $variables['translation_path'] . '" ';
   $output .= 'data-debug ';
   $output .= 'data-able-player>';
   $output .= "\n";
 
-  if (empty($variables['data_youtube_id'])) {
+  if (empty($variables['youtube_id'])) {
     $output .= '<source type="' . $variables['mimetype'] . '" src="' . $variables['uri'] . '" />';
     $output .= "\n";
 
