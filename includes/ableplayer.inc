@@ -13,18 +13,21 @@
  * Able Player libraries load render array.
  *
  * Return code to attach the Able Player library to an element using the
- * Libraries API in the '#attach' property of render arrays.
+ * Libraries API in the '#attached' property of render arrays. With the
+ * exception of 'js' and 'css', which are special cases, keys in the '#attached'
+ * element of render arrays are treated as function callabacks; the value should
+ * be an array of arguments to pass to the callback.
  *
  * Usage:
  *
- *   $element['#attach'] = ableplayer_attach();
+ *   $element['#attached'] = ableplayer_attach();
  *
  * @return array
  *   Render array to pass to libraries_load.
  */
 function ableplayer_attach() {
-  $compression_level = variable_get('ableplayer_compression_level', 1);
   $attached = array();
+  $compression_level = variable_get('ableplayer_compression_level', 1);
 
   if ($compression_level === '0') {
     $ableplayer = array('ableplayer', 'source');
@@ -57,8 +60,8 @@ function ableplayer_attach() {
  *   - 'uri' the path to the transcript file
  */
 function ableplayer_build_track_list(array $track_items) {
-  $entity_translation = module_exists('entity_translation');
   $tracks = array();
+  $entity_translation = module_exists('entity_translation');
 
   if ($entity_translation) {
     $languages = language_list();
@@ -185,8 +188,8 @@ function ableplayer_mimetypes() {
  *   Able Player file formatter view settings.
  */
 function ableplayer_set_view_settings($file, $display, $langcode) {
-  $entity_translation = module_exists('entity_translation');
   $options = array();
+  $entity_translation = module_exists('entity_translation');
 
   foreach (array_keys(ableplayer_default_settings()) as $setting) {
     $options[$setting] = isset($file->override[$setting]) ?
