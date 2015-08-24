@@ -131,25 +131,25 @@ function ableplayer_libraries_info() {
  * version required by Able Player.
  */
 function ableplayer_js_alter(&$javascript) {
-  $ableplayer = libraries_get_path('ableplayer');
+  $ableplayer = libraries_detect('ableplayer');
 
-  if (!$ableplayer) {
+  if ($ableplayer === FALSE || !$ableplayer['installed']) {
     return;
   }
 
-  $ableplayer_loaded = FALSE;
+  $loaded = FALSE;
   $versions = array();
 
   foreach ($javascript as $key => $value) {
     if (strpos($key, 'ableplayer') !== FALSE) {
-      $ableplayer_loaded = TRUE;
+      $loaded = TRUE;
     }
     elseif (strpos($key, 'jquery.cookie.js') !== FALSE) {
-      $versions[] = $key;
+      $versions[$key] = $value;
     }
   }
 
-  if ($ableplayer_loaded) {
+  if ($loaded) {
     $javascript = array_diff_key($javascript, $versions);
   }
 }
