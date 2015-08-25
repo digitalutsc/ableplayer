@@ -54,10 +54,11 @@ function ableplayer_attach() {
  * @param array $track_items
  *   Array of files associated as tracks with a parent file.
  *
- * @return array $tracks Hash of transcript information
- *   - 'code' the ISO language code as used internally by Drupal
- *   - 'label' the native language name as used internally by Drupal
- *   - 'uri' the path to the transcript file
+ * @return array
+ *   Hash of transcript information
+ *     - 'code' the ISO language code as used internally by Drupal
+ *     - 'label' the native language name as used internally by Drupal
+ *     - 'uri' the path to the transcript file
  */
 function ableplayer_build_track_list(array $track_items) {
   $tracks = array();
@@ -117,10 +118,11 @@ function ableplayer_default_settings() {
  * Files that are not found installed in the expected location are colletected
  * and returned.
  *
- * @return array $status Hash of status information.
- *   - 'error' indicates whether an error was detected via a boolean value.
- *   - 'version' is set to the detected version number of Able Player.
- *   - 'message' set if an error was detected.
+ * @return array
+ *   Hash of status information.
+ *     - 'error' indicates whether an error was detected via a boolean value.
+ *     - 'version' is set to the detected version number of Able Player.
+ *     - 'message' set if an error was detected.
  */
 function ableplayer_installation_status() {
   $status = array();
