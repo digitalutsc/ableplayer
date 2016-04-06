@@ -93,7 +93,7 @@ function ableplayer_libraries_info() {
     'files' => array(
       'js' => array(
         'build/ableplayer.min.js' => $js_options,
-        'thirdparty/jquery.cookie.js' => $js_options,
+        'thirdparty/js.cookie.js' => $js_options,
       ),
       'css' => array(
         'build/ableplayer.min.css' => $css_options,
@@ -104,7 +104,7 @@ function ableplayer_libraries_info() {
         'files' => array(
           'js' => array(
             'build/ableplayer.js' => $js_options,
-            'thirdparty/jquery.cookie.js' => $js_options,
+            'thirdparty/js.cookie.js' => $js_options,
           ),
           'css' => array(
             'styles/ableplayer-playlist.css' => $css_options,
@@ -122,36 +122,6 @@ function ableplayer_libraries_info() {
   );
 
   return $libraries;
-}
-
-/**
- * Implements hook_js_alter().
- *
- * Removes other jquery.cookie.js versions to avoid conflict with the updated
- * version required by Able Player.
- */
-function ableplayer_js_alter(&$javascript) {
-  $ableplayer = libraries_detect('ableplayer');
-
-  if ($ableplayer === FALSE || !$ableplayer['installed']) {
-    return;
-  }
-
-  $loaded = FALSE;
-  $versions = array();
-
-  foreach ($javascript as $key => $value) {
-    if (strpos($key, 'ableplayer') !== FALSE) {
-      $loaded = TRUE;
-    }
-    elseif (strpos($key, 'jquery.cookie.js') !== FALSE) {
-      $versions[$key] = $value;
-    }
-  }
-
-  if ($loaded) {
-    $javascript = array_diff_key($javascript, $versions);
-  }
 }
 
 /**
