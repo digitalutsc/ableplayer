@@ -6,7 +6,7 @@
  */
 
 /**
- * Implements hook_form().
+ * Form constructor for the Able Player administration form.
  */
 function ableplayer_form() {
   $form = array();
