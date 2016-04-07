@@ -28,7 +28,7 @@ function ableplayer_file_formatter_info() {
 }
 
 /**
- * Impelemtnts hook_file_formatter_FORMATTER_view().
+ * Implements hook_file_formatter_FORMATTER_view().
  *
  * This is a recommended callback naming scheme, not a true hook function.
  */
