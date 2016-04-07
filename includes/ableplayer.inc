@@ -142,8 +142,7 @@ function ableplayer_installation_status() {
     $path = $ableplayer['library path'] . '/' . $file;
 
     if (!is_file($path) || !is_readable($path)) {
-      $missing_files[$path] = t('The file') . ' <em>' . t('@file',
-        array('@file' => $path)) . '</em> ' . t('was not found.');
+      $missing_files[$path] = t('The file %file was not found.', array('%file' => $path));
     }
   }
 
