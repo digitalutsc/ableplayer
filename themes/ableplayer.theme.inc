@@ -9,6 +9,7 @@
  * Implements hook_preprocess_THEME().
  */
 function ableplayer_preprocess_ableplayer(&$variables) {
+  $variables['options']['transcript_title'] = check_plain(filter_xss($variables['options']['transcript_title']));
   $variables['fallback_path'] = url(libraries_get_path('jwplayer') . '/', array('absolute' => TRUE));
   $variables['test_fallback'] = variable_get('ableplayer_test_fallback', 0);
   $variables['translation_path'] = url(libraries_get_path('ableplayer') . '/translations/', array('absolute' => TRUE));
