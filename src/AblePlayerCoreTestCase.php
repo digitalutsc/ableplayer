@@ -1,9 +1,5 @@
 <?php
-
-/**
- * @file
- * Test case for Able Player core functions.
- */
+namespace Drupal\ableplayer;
 
 /**
  * Test case for Able Player core functions.

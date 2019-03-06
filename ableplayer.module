@@ -47,8 +47,8 @@ function ableplayer_help($path, $arg) {
         return NULL;
       }
 
-      if (module_exists('markdown')) {
-        $filters = module_invoke('markdown', 'filter_info');
+      if (\Drupal::moduleHandler()->moduleExists('markdown')) {
+        $filters = \Drupal::moduleHandler()->invoke('markdown', 'filter_info');
         $info = $filters['filter_markdown'];
 
         if (function_exists($info['process callback'])) {

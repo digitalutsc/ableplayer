@@ -9,7 +9,7 @@
  * Implements hook_install().
  */
 function ableplayer_install() {
-  $t = get_t();
+  $t = 't';
 
   $fields = array(
     array(
@@ -85,22 +85,39 @@ function ableplayer_install() {
       $field_info = field_info_field($field['field_name']);
 
       if (empty($field_info)) {
-        field_create_field($field);
+        // @FIXME
+// Fields and field instances are now exportable configuration entities, and
+// the Field Info API has been removed.
+// 
+// 
+// @see https://www.drupal.org/node/2012896
+// field_create_field($field);
+
       }
 
       $field['bundle'] = $file_type->type;
       $instance_info = field_info_instance($field['entity_type'], $field['field_name'], $field['bundle']);
 
       if (empty($instance_info)) {
-        field_create_instance($field);
+        // @FIXME
+// Fields and field instances are now exportable configuration entities, and
+// the Field Info API has been removed.
+// 
+// 
+// @see https://www.drupal.org/node/2012896
+// field_create_instance($field);
+
       }
     }
   }
 
-  drupal_set_message($t("Able Player settings are available under <a href='@link'>Administration > Configuration > Media > Able Player</a>",
-    array(
-      '@link' => url('admin/config/media/ableplayer'),
-    )));
+  // @FIXME
+// url() expects a route name or an external URI.
+// drupal_set_message($t("Able Player settings are available under <a href='@link'>Administration > Configuration > Media > Able Player</a>",
+//     array(
+//       '@link' => url('admin/config/media/ableplayer'),
+//     )));
+
 }
 
 /**
@@ -110,7 +127,7 @@ function ableplayer_requirements($phase) {
   module_load_include('inc', 'ableplayer', 'includes/ableplayer');
 
   $requirements = array();
-  $t = get_t();
+  $t = 't';
 
   switch ($phase) {
 
@@ -144,6 +161,6 @@ function ableplayer_requirements($phase) {
  * Implements hook_uninstall().
  */
 function ableplayer_uninstall() {
-  variable_del('ableplayer_compression_level');
-  variable_del('ableplayer_test_fallback');
+  \Drupal::config('ableplayer.settings')->clear('ableplayer_compression_level')->save();
+  \Drupal::config('ableplayer.settings')->clear('ableplayer_test_fallback')->save();
 }

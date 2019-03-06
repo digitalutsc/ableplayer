@@ -27,7 +27,7 @@
  */
 function ableplayer_attach() {
   $attached = array();
-  $compression_level = variable_get('ableplayer_compression_level', 1);
+  $compression_level = \Drupal::config('ableplayer.settings')->get('ableplayer_compression_level');
 
   if ($compression_level === '0') {
     $ableplayer = array('ableplayer', 'source');
@@ -62,7 +62,7 @@ function ableplayer_attach() {
  */
 function ableplayer_build_track_list(array $track_items) {
   $tracks = array();
-  $entity_translation = module_exists('entity_translation');
+  $entity_translation = \Drupal::moduleHandler()->moduleExists('entity_translation');
 
   if ($entity_translation) {
     $languages = language_list();
@@ -190,7 +190,7 @@ function ableplayer_mimetypes() {
  */
 function ableplayer_set_view_settings($file, $display, $langcode) {
   $options = array();
-  $entity_translation = module_exists('entity_translation');
+  $entity_translation = \Drupal::moduleHandler()->moduleExists('entity_translation');
 
   foreach (array_keys(ableplayer_default_settings()) as $setting) {
     $options[$setting] = isset($file->override[$setting]) ?

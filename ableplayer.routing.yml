@@ -1,0 +1,7 @@
+ableplayer.form:
+  path: /admin/config/media/ableplayer
+  defaults:
+    _title: 'Able Player'
+    _form: \Drupal\ableplayer\Form\AbleplayerForm
+  requirements:
+    _permission: 'administer site configuration'

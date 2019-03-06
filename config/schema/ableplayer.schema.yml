@@ -1,0 +1,8 @@
+ableplayer.settings:
+  type: mapping
+  label: Settings
+  mapping:
+    ableplayer_compression_level:
+      type: integer
+    ableplayer_test_fallback:
+      type: integer

@@ -1,0 +1,5 @@
+ableplayer.form:
+  route_name: ableplayer.form
+  title: 'Able Player'
+  description: 'Configuration for Able Player library'
+  parent: system.admin_config_media

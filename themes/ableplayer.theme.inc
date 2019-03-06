@@ -9,11 +9,17 @@
  * Implements hook_preprocess_THEME().
  */
 function ableplayer_preprocess_ableplayer(&$variables) {
-  $variables['options']['transcript_title'] = check_plain(filter_xss($variables['options']['transcript_title']));
-  $variables['fallback_path'] = url(libraries_get_path('jwplayer') . '/', array('absolute' => TRUE));
-  $variables['test_fallback'] = variable_get('ableplayer_test_fallback', 0);
-  $variables['translation_path'] = url(libraries_get_path('ableplayer') . '/translations/', array('absolute' => TRUE));
-  $variables['id'] = drupal_html_id($variables['id']);
+  $variables['options']['transcript_title'] = \Drupal\Component\Utility\Html::escape(\Drupal\Component\Utility\Xss::filter($variables['options']['transcript_title']));
+  // @FIXME
+// url() expects a route name or an external URI.
+// $variables['fallback_path'] = url(libraries_get_path('jwplayer') . '/', array('absolute' => TRUE));
+
+  $variables['test_fallback'] = \Drupal::config('ableplayer.settings')->get('ableplayer_test_fallback');
+  // @FIXME
+// url() expects a route name or an external URI.
+// $variables['translation_path'] = url(libraries_get_path('ableplayer') . '/translations/', array('absolute' => TRUE));
+
+  $variables['id'] = \Drupal\Component\Utility\Html::getId($variables['id']);
 }
 
 /**

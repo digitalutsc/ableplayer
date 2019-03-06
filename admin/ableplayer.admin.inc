@@ -23,7 +23,7 @@ function ableplayer_form() {
     '#description' => t(
       'Development provides a human-readable version of JavaScript and CSS.
       Production combines and minifies both to conserve bandwidth.'),
-    '#default_value' => variable_get('ableplayer_compression_level', 1),
+    '#default_value' => \Drupal::config('ableplayer.settings')->get('ableplayer_compression_level'),
     '#options' => array(
       0 => t('Development'),
       1 => t('Production'),
@@ -35,7 +35,7 @@ function ableplayer_form() {
     '#title' => t('Test Fallback'),
     '#description' => t(
       'Force Able Player to load the fallback player (jwplayer). This is recommended for testing purposes only.'),
-    '#default_value' => variable_get('ableplayer_test_fallback', 0),
+    '#default_value' => \Drupal::config('ableplayer.settings')->get('ableplayer_test_fallback'),
   );
 
   return system_settings_form($form);
