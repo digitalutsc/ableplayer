@@ -129,7 +129,10 @@ function ableplayer_installation_status() {
   $version = NULL;
   $message = NULL;
 
-  $ableplayer = libraries_detect('ableplayer');
+  // @FIXME
+  // Libraries detect is not defined. Convert to Drupal core library or require
+  // Libraries API.
+  // $ableplayer = libraries_detect('ableplayer');
 
   $files = array_keys(array_merge(
     $ableplayer['files']['js'],
