@@ -74,7 +74,9 @@ function ableplayer_install() {
     ),
   );
 
-  $file_types = file_type_load_all();
+  // @FIXME
+  // $file_types = file_type_load_all();
+  $file_types = array();
 
   foreach ($file_types as $file_type) {
     if (!in_array($file_type->type, array(ABLEPLAYER_BUNDLE_AUDIO, ABLEPLAYER_BUNDLE_VIDEO))) {
@@ -86,13 +88,12 @@ function ableplayer_install() {
 
       if (empty($field_info)) {
         // @FIXME
-// Fields and field instances are now exportable configuration entities, and
-// the Field Info API has been removed.
-// 
-// 
-// @see https://www.drupal.org/node/2012896
-// field_create_field($field);
-
+        // Fields and field instances are now exportable configuration entities, and
+        // the Field Info API has been removed.
+        //
+        //
+        // @see https://www.drupal.org/node/2012896
+        // field_create_field($field);
       }
 
       $field['bundle'] = $file_type->type;
@@ -100,24 +101,22 @@ function ableplayer_install() {
 
       if (empty($instance_info)) {
         // @FIXME
-// Fields and field instances are now exportable configuration entities, and
-// the Field Info API has been removed.
-// 
-// 
-// @see https://www.drupal.org/node/2012896
-// field_create_instance($field);
-
+        // Fields and field instances are now exportable configuration entities, and
+        // the Field Info API has been removed.
+        //
+        //
+        // @see https://www.drupal.org/node/2012896
+        // field_create_instance($field);
       }
     }
   }
 
   // @FIXME
-// url() expects a route name or an external URI.
-// drupal_set_message($t("Able Player settings are available under <a href='@link'>Administration > Configuration > Media > Able Player</a>",
-//     array(
-//       '@link' => url('admin/config/media/ableplayer'),
-//     )));
-
+  // url() expects a route name or an external URI.
+  // drupal_set_message($t("Able Player settings are available under <a href='@link'>Administration > Configuration > Media > Able Player</a>",
+  //     array(
+  //       '@link' => url('admin/config/media/ableplayer'),
+  //     )));
 }
 
 /**
@@ -161,6 +160,7 @@ function ableplayer_requirements($phase) {
  * Implements hook_uninstall().
  */
 function ableplayer_uninstall() {
-  \Drupal::config('ableplayer.settings')->clear('ableplayer_compression_level')->save();
-  \Drupal::config('ableplayer.settings')->clear('ableplayer_test_fallback')->save();
+  // @FIXME
+  // \Drupal::config('ableplayer.settings')->clear('ableplayer_compression_level')->save();
+  // \Drupal::config('ableplayer.settings')->clear('ableplayer_test_fallback')->save();
 }
