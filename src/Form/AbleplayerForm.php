@@ -21,6 +21,13 @@ class AbleplayerForm extends ConfigFormBase {
   }
 
   /**
+    * {@inheritdoc}
+    */
+   public function validateForm(array &$form, FormStateInterface $form_state) {
+
+   }
+
+  /**
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
@@ -46,31 +53,24 @@ class AbleplayerForm extends ConfigFormBase {
   }
 
   public function buildForm(array $form, \Drupal\Core\Form\FormStateInterface $form_state) {
-    $form = [];
+    $form = parent::buildForm($form, $form_state);
+   // Default settings.
+   $config = $this->config('ableplayer.settings');
 
-    $form['ableplayer_fieldset'] = [
-      '#type' => 'fieldset',
-      '#title' => t('Able Player'),
-      '#collapsible' => FALSE,
+
+    $form['ableplayer_youtube_api_key'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('YouTube Data API Key'),
+      '#default_value' => $config->get('ableplayer_youtube_api_key'),
+      '#description' => $this->t('Get a YouTube Data API key by registering your application at the Google Developer Console. For complete instructions, see Google\'s Getting Started page. Note: All that\'s needed for playing YouTube videos in Able Player is a simple API key, not OAuth 2.0.'),
     ];
 
-    $form['ableplayer_fieldset']['ableplayer_compression_level'] = [
-      '#type' => 'radios',
-      '#title' => t('Compression level'),
-      '#description' => t('Development provides a human-readable version of JavaScript and CSS.
-      Production combines and minifies both to conserve bandwidth.'),
-      '#default_value' => variable_get('ableplayer_compression_level', 1),
-      '#options' => [
-        0 => t('Development'),
-        1 => t('Production'),
-      ],
-    ];
 
-    $form['ableplayer_fieldset']['ableplayer_test_fallback'] = [
+    $form['ableplayer.test_fallback'] = [
       '#type' => 'checkbox',
-      '#title' => t('Test Fallback'),
-      '#description' => t('Force Able Player to load the fallback player (jwplayer). This is recommended for testing purposes only.'),
-      '#default_value' => variable_get('ableplayer_test_fallback', 0),
+      '#title' => $this->t('Test Fallback'),
+      '#description' => $this->t('Force Able Player to load the fallback player (jwplayer). This is recommended for testing purposes only.'),
+      '#default_value' => $config->get('ableplayer_test_fallback', 0),
     ];
 
     return parent::buildForm($form, $form_state);

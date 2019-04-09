@@ -145,6 +145,5 @@ function ableplayer_requirements($phase) {
  */
 function ableplayer_uninstall() {
   // @FIXME
-  // \Drupal::config('ableplayer.settings')->clear('ableplayer_compression_level')->save();
   // \Drupal::config('ableplayer.settings')->clear('ableplayer_test_fallback')->save();
 }
