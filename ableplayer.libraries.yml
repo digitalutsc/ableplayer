@@ -1,0 +1,11 @@
+ableplayer:
+  version: 1.x
+  css:
+    theme:
+      css/ableplayer.min.css: {}
+  js:
+    js/js.cookie.js: {}
+    js/modernizr.custom.js: {}
+    js/ableplayer.min.js: {}
+    dependencies:
+     - core/jquery

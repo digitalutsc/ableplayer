@@ -6,6 +6,17 @@
  */
 
 /**
+ * Implement hook_element_info_alter ()
+ * This is for testing that libraries are included properly.
+*/
+ function ableplayer_element_info_alter(array &$types) {
+   if (isset($types['html_tag'])) {
+     $types['html_tag']['#attached']['library'][] = 'ableplayer/ableplayer';
+   }
+ }
+
+
+/**
  * Defined constants for the default File Entity video and audio bundles.
  */
 define('ABLEPLAYER_BUNDLE_AUDIO', 'audio');
@@ -68,63 +79,6 @@ function ableplayer_help($path, $arg) {
 }
 
 /**
- * Implements hook_libraries_info().
- */
-function ableplayer_libraries_info() {
-  $libraries = array();
-
-  $js_options = array(
-    'group' => JS_LIBRARY,
-    'requires_jquery' => TRUE,
-  );
-
-  $css_options = array(
-    'group' => CSS_DEFAULT,
-  );
-
-  $libraries['ableplayer'] = array(
-    'name' => 'Able Player',
-    'vendor url' => 'https://github.com/ableplayer/ableplayer',
-    'download url' => 'https://github.com/ableplayer/ableplayer/releases',
-    'version arguments' => array(
-      'file' => 'build/ableplayer.min.js',
-      'pattern' => '@ableplayer V?(\d+\.\d+\.\d+)@',
-    ),
-    'files' => array(
-      'js' => array(
-        'build/ableplayer.min.js' => $js_options,
-        'thirdparty/js.cookie.js' => $js_options,
-      ),
-      'css' => array(
-        'build/ableplayer.min.css' => $css_options,
-      ),
-    ),
-    'variants' => array(
-      'source' => array(
-        'files' => array(
-          'js' => array(
-            'build/ableplayer.js' => $js_options,
-            'thirdparty/js.cookie.js' => $js_options,
-          ),
-          'css' => array(
-            'styles/ableplayer-playlist.css' => $css_options,
-            'styles/ableplayer-search.css' => $css_options,
-            'styles/ableplayer-sign.css' => $css_options,
-            'styles/ableplayer-transcript.css' => $css_options,
-            'styles/ableplayer.css' => $css_options,
-          ),
-        ),
-      ),
-    ),
-    'dependencies' => array(
-      'modernizr',
-    ),
-  );
-
-  return $libraries;
-}
-
-/**
  * Implements hook_menu().
  */
 function ableplayer_menu() {
@@ -141,53 +95,6 @@ function ableplayer_menu() {
   );
 
   return $items;
-}
-
-/**
- * Implements hook_modernizr_info().
- */
-function ableplayer_modernizr_info() {
-  $tests = array(
-    /* CSS */
-    'fontface',
-    'backgroundsize',
-    'borderimage',
-    'borderradius',
-    'boxshadow',
-    'flexbox',
-    'flexboxlegacy',
-    'hsla',
-    'multiplebgs',
-    'opacity',
-    'rgba',
-    'textshadow',
-    'cssanimations',
-    'csscolumns',
-    'generatedcontent',
-    'cssgradients',
-    'cssreflections',
-    'csstransforms',
-    'csstransforms3d',
-    'csstransitions',
-    /* HTML5 */
-    'audio',
-    'video',
-    'input',
-    'inputtypes',
-    /* Extensibility */
-    'teststyles',
-    'testprop',
-    'testallprops',
-    'prefixes',
-    'domprefixes',
-    /* Extra */
-    'shiv',
-    'load',
-    'mq',
-    'cssclasses',
-  );
-
-  return $tests;
 }
 
 /**
