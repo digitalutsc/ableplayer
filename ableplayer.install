@@ -128,28 +128,12 @@ function ableplayer_requirements($phase) {
   $requirements = array();
   $t = 't';
 
-  switch ($phase) {
-
-    case 'runtime':
-      $status = ableplayer_installation_status();
-
-      if ($status['error']) {
-        $value = $t('Not installed');
-        $description = $status['message'];
-        $severity = REQUIREMENT_ERROR;
-      }
-      else {
-        $value = $status['version'];
-        $description = FALSE;
-        $severity = REQUIREMENT_OK;
-      }
+ if ($phase == 'runtime') {
 
       $requirements['ableplayer']['title'] = $t('Able Player');
       $requirements['ableplayer']['value'] = $value;
       $requirements['ableplayer']['description'] = $description;
       $requirements['ableplayer']['severity'] = $severity;
-
-      break;
 
   }
 

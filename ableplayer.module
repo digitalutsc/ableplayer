@@ -6,14 +6,12 @@
  */
 
 /**
- * Implement hook_element_info_alter ()
+ * Implements hook_page_attachments().
  * This is for testing that libraries are included properly.
-*/
- function ableplayer_element_info_alter(array &$types) {
-   if (isset($types['html_tag'])) {
-     $types['html_tag']['#attached']['library'][] = 'ableplayer/ableplayer';
-   }
- }
+ */
+function ableplayer_page_attachments(array &$attachments) {
+  $attachments['#attached']['library'][] = 'ableplayer/ableplayer';
+}
 
 
 /**

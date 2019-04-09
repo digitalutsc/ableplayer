@@ -7,5 +7,5 @@ ableplayer:
     js/js.cookie.js: {}
     js/modernizr.custom.js: {}
     js/ableplayer.min.js: {}
-    dependencies:
+  dependencies:
      - core/jquery
