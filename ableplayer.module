@@ -113,5 +113,12 @@ function ableplayer_theme($existing, $type, $theme, $path) {
     'path' => $path . '/themes',
   );
 
+  $themes['ableplayer_video'] = array(
+    'variables' => array(
+      'files' => array(),
+      'attributes' => NULL,
+    ),
+  );
+
   return $themes;
 }
