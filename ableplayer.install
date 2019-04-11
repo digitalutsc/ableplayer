@@ -139,11 +139,3 @@ function ableplayer_requirements($phase) {
 
   return $requirements;
 }
-
-/**
- * Implements hook_uninstall().
- */
-function ableplayer_uninstall() {
-  // @FIXME
-  // \Drupal::config('ableplayer.settings')->clear('ableplayer_test_fallback')->save();
-}
