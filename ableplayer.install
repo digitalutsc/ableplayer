@@ -114,7 +114,7 @@ function ableplayer_install() {
   // @FIXME
   // url() expects a route name or an external URI.
   // drupal_set_message($t("Able Player settings are available under <a href='@link'>Administration > Configuration > Media > Able Player</a>",
-  //     array(
+  //     array( 
   //       '@link' => url('admin/config/media/ableplayer'),
   //     )));
 }
