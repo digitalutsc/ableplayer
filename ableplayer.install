@@ -14,105 +14,55 @@ use \Drupal\field\Entity\FieldConfig;
 function ableplayer_install() {
   $t = 't';
 
-  $fields = array(
-    array(
-      'field_name' => 'ableplayer_transcript',
-      'type' => 'file',
-      'entity_type' => 'media',
-      'cardinality' => FIELD_CARDINALITY_UNLIMITED,
-      'settings' => array(
-        'file_extensions' => 'vtt',
-      ),
-    ),
-    array(
-      'field_name' => 'ableplayer_description',
-      'type' => 'file',
-      'entity_type' => 'media',
-      'cardinality' => FIELD_CARDINALITY_UNLIMITED,
-      'settings' => array(
-        'file_extensions' => 'vtt',
-      ),
-    ),
-    array(
-      'field_name' => 'ableplayer_chapters',
-      'type' => 'file',
-      'entity_type' => 'media',
-      'cardinality' => FIELD_CARDINALITY_UNLIMITED,
-      'settings' => array(
-        'file_extensions' => 'vtt',
-      ),
+  $field = array(
+    'field_name' => 'ableplayer_transcript',
+    'type' => 'file',
+    'entity_type' => 'media',
+    'settings' => array(
+      'file_extensions' => 'vtt',
     ),
   );
 
-  foreach ($fields as $config) {
-    FieldStorageConfig::create($config)->save();
-  }
+  $storage = FieldStorageConfig::create($field);
+  $storage->save();
 
-  $types = \Drupal::entityTypeManager()->getListBuilder('media_type')->load();
+  $bundles = \Drupal::entityTypeManager()->getListBuilder('media_type')->load();
 
-  foreach ($types as $type) {
-    $source = $type->get('source');
-    $bundle = $type->get('id');
-    $definition = array(
-      array(
-        'field_name' => 'ableplayer_transcript',
-        'field_type' => 'file',
-        'entity_type' => 'media',
-        'bundle' => $bundle,
-        'label' => $t('Transcript'),
-        'settings' => array(
-          'file_extensions' => 'vtt',
-        ),
-      ),
-      array(
-        'field_name' => 'ableplayer_description',
-        'field_type' => 'file',
-        'entity_type' => 'media',
-        'bundle' => $bundle,
-        'label' => $t('Description'),
-        'settings' => array(
-          'file_extensions' => 'vtt',
-        ),
-      ),
-      array(
-        'field_name' => 'ableplayer_chapters',
-        'field_type' => 'file',
-        'entity_type' => 'media',
-        'bundle' => $bundle,
-        'label' => $t('Chapters'),
-        'settings' => array(
-          'file_extensions' => 'vtt',
-        ),
+  foreach ($bundles as $bundle) {
+    $source = $bundle->get('source');
+    $name = $bundle->get('id');
+
+    $instance = array(
+      'storage' => $storage,
+      'field_name' => 'ableplayer_transcript',
+      'field_type' => 'file',
+      'entity_type' => 'media',
+      'label' => $t('Transcript'),
+      'bundle' => $name,
+      'settings' => array(
+        'file_extensions' => 'vtt',
       ),
     );
 
     switch ($source) {
       case 'video_file':
       case 'audio_file':
-        foreach ($definition as $instance) {
-          FieldConfig::create($instance)->save();
-        }
+        $config = FieldConfig::create($instance);
+        $config->save();
 
         break;
     }
   }
-
-  // @FIXME
-  // url() expects a route name or an external URI.
-  // drupal_set_message($t("Able Player settings are available under <a href='@link'>Administration > Configuration > Media > Able Player</a>",
-  //     array( 
-  //       '@link' => url('admin/config/media/ableplayer'),
-  //     )));
 }
 
 /**
  * Implements hook_uninstall().
  */
 function ableplayer_uninstall() {
-  $types = \Drupal::entityTypeManager()->getListBuilder('media_type')->load();
+  $bundles = \Drupal::entityTypeManager()->getListBuilder('media_type')->load();
 
-  foreach ($types as $type) {
-    $bundle = $type->get('id');
+  foreach ($bundles as $bundle) {
+    $bundle = $bundle->get('id');
 
     foreach (array('ableplayer_transcript', 'ableplayer_description', 'ableplayer_chapters') as $field) {
       $instance = FieldConfig::loadByName('media', $bundle, $field);
