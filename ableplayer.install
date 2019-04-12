@@ -118,24 +118,3 @@ function ableplayer_install() {
   //       '@link' => url('admin/config/media/ableplayer'),
   //     )));
 }
-
-/**
- * Implements hook_requirements().
- */
-function ableplayer_requirements($phase) {
-  module_load_include('inc', 'ableplayer', 'includes/ableplayer');
-
-  $requirements = array();
-  $t = 't';
-
- if ($phase == 'runtime') {
-
-      $requirements['ableplayer']['title'] = $t('Able Player');
-      $requirements['ableplayer']['value'] = $value;
-      $requirements['ableplayer']['description'] = $description;
-      $requirements['ableplayer']['severity'] = $severity;
-
-  }
-
-  return $requirements;
-}
