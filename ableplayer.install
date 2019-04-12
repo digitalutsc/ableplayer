@@ -1,5 +1,8 @@
 <?php
 
+use \Drupal\field\Entity\FieldStorageConfig;
+use \Drupal\field\Entity\FieldConfig;
+
 /**
  * @file
  * Install file for Able Player.
@@ -14,100 +17,107 @@ function ableplayer_install() {
   $fields = array(
     array(
       'field_name' => 'ableplayer_transcript',
-      'label' => $t('Transcript'),
       'type' => 'file',
-      'entity_type' => 'file',
-      'bundle' => NULL,
+      'entity_type' => 'media',
       'cardinality' => FIELD_CARDINALITY_UNLIMITED,
-      'required' => FALSE,
-      'locked' => TRUE,
+      'persist_with_no_fields' => TRUE,
       'settings' => array(
         'file_extensions' => 'vtt',
-      ),
-      'display' => array(
-        'default' => array(
-          'label' => 'hidden',
-          'type' => 'hidden',
-          'settings' => array(),
-        ),
       ),
     ),
     array(
       'field_name' => 'ableplayer_description',
-      'label' => $t('Description'),
       'type' => 'file',
-      'entity_type' => 'file',
-      'bundle' => NULL,
+      'entity_type' => 'media',
       'cardinality' => FIELD_CARDINALITY_UNLIMITED,
-      'required' => FALSE,
-      'locked' => TRUE,
+      'persist_with_no_fields' => TRUE,
       'settings' => array(
         'file_extensions' => 'vtt',
-      ),
-      'display' => array(
-        'default' => array(
-          'label' => 'hidden',
-          'type' => 'hidden',
-          'settings' => array(),
-        ),
       ),
     ),
     array(
       'field_name' => 'ableplayer_chapters',
-      'label' => $t('Chapters'),
       'type' => 'file',
-      'entity_type' => 'file',
-      'bundle' => NULL,
+      'entity_type' => 'media',
       'cardinality' => FIELD_CARDINALITY_UNLIMITED,
-      'required' => FALSE,
-      'locked' => TRUE,
+      'persist_with_no_fields' => TRUE,
       'settings' => array(
         'file_extensions' => 'vtt',
-      ),
-      'display' => array(
-        'default' => array(
-          'label' => 'hidden',
-          'type' => 'hidden',
-          'settings' => array(),
-        ),
       ),
     ),
   );
 
-  // @FIXME
-  // $file_types = file_type_load_all();
-  $file_types = array();
+  foreach ($fields as $config) {
+    FieldStorageConfig::create($config)->save();
+  }
 
-  foreach ($file_types as $file_type) {
-    if (!in_array($file_type->type, array(ABLEPLAYER_BUNDLE_AUDIO, ABLEPLAYER_BUNDLE_VIDEO))) {
-      continue;
-    }
+  $types = \Drupal::entityTypeManager()->getListBuilder('media_type')->load();
 
-    foreach ($fields as $field) {
-      $field_info = field_info_field($field['field_name']);
+  foreach ($types as $type) {
+    $source = $type->get('source');
+    $bundle = $type->get('id');
+    $definition = array(
+      array(
+        'field_name' => 'ableplayer_transcript',
+        'field_type' => 'file',
+        'entity_type' => 'media',
+        'bundle' => $bundle,
+        'label' => $t('Transcript'),
+        'settings' => array(
+          'file_extensions' => 'vtt',
+        ),
+        'display' => array(
+          'default' => array(
+            'label' => 'hidden',
+            'type' => 'hidden',
+            'settings' => array(),
+          ),
+        ),
+      ),
+      array(
+        'field_name' => 'ableplayer_description',
+        'field_type' => 'file',
+        'entity_type' => 'media',
+        'bundle' => $bundle,
+        'label' => $t('Transcript'),
+        'settings' => array(
+          'file_extensions' => 'vtt',
+        ),
+        'display' => array(
+          'default' => array(
+            'label' => 'hidden',
+            'type' => 'hidden',
+            'settings' => array(),
+          ),
+        ),
+      ),
+      array(
+        'field_name' => 'ableplayer_chapters',
+        'field_type' => 'file',
+        'entity_type' => 'media',
+        'bundle' => $bundle,
+        'label' => $t('Transcript'),
+        'settings' => array(
+          'file_extensions' => 'vtt',
+        ),
+        'display' => array(
+          'default' => array(
+            'label' => 'hidden',
+            'type' => 'hidden',
+            'settings' => array(),
+          ),
+        ),
+      ),
+    );
 
-      if (empty($field_info)) {
-        // @FIXME
-        // Fields and field instances are now exportable configuration entities, and
-        // the Field Info API has been removed.
-        //
-        //
-        // @see https://www.drupal.org/node/2012896
-        // field_create_field($field);
-      }
+    switch ($source) {
+      case 'video_file':
+      case 'audio_file':
+        foreach ($definition as $instance) {
+          FieldConfig::create($instance)->save();
+        }
 
-      $field['bundle'] = $file_type->type;
-      $instance_info = field_info_instance($field['entity_type'], $field['field_name'], $field['bundle']);
-
-      if (empty($instance_info)) {
-        // @FIXME
-        // Fields and field instances are now exportable configuration entities, and
-        // the Field Info API has been removed.
-        //
-        //
-        // @see https://www.drupal.org/node/2012896
-        // field_create_instance($field);
-      }
+        break;
     }
   }
 
@@ -128,14 +138,39 @@ function ableplayer_requirements($phase) {
   $requirements = array();
   $t = 't';
 
- if ($phase == 'runtime') {
+  if ($phase == 'runtime') {
 
-      $requirements['ableplayer']['title'] = $t('Able Player');
-      $requirements['ableplayer']['value'] = $value;
-      $requirements['ableplayer']['description'] = $description;
-      $requirements['ableplayer']['severity'] = $severity;
+    $requirements['ableplayer']['title'] = $t('Able Player');
+    $requirements['ableplayer']['value'] = $value;
+    $requirements['ableplayer']['description'] = $description;
+    $requirements['ableplayer']['severity'] = $severity;
 
   }
 
   return $requirements;
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function ableplayer_uninstall() {
+  $types = \Drupal::entityTypeManager()->getListBuilder('media_type')->load();
+
+  foreach ($types as $type) {
+    $bundle = $type->get('id');
+
+    foreach (array('ableplayer_transcript', 'ableplayer_description', 'ableplayer_chapters') as $field) {
+      $instance = FieldConfig::loadByName('media', $bundle, $field);
+
+      if ($instance) {
+        $instance->delete();
+      }
+
+      $storage = FieldStorageConfig::loadByName('media', $field);
+
+      if ($storage) {
+        $storage->delete();
+      }
+    }
+  }
 }

@@ -1,4 +1,8 @@
 name: 'Able Player'
 description: 'Accessible audio and video'
-core: 8.x
+
 type: module
+core: 8.x
+
+dependencies:
+  - drupal:media
