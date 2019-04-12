@@ -11,7 +11,11 @@ ableplayer-modernizr:
   dependencies:
     - core/jquery
 ableplayer:
-  version: 1.x
+  version: 4.0.0
+  license:
+    name: MIT
+    url: https://github.com/ableplayer/ableplayer/blob/master/LICENSE
+    gpl-compatible: true
   css:
     theme:
       css/ableplayer.min.css: {}
