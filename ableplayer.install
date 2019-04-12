@@ -20,7 +20,6 @@ function ableplayer_install() {
       'type' => 'file',
       'entity_type' => 'media',
       'cardinality' => FIELD_CARDINALITY_UNLIMITED,
-      'persist_with_no_fields' => TRUE,
       'settings' => array(
         'file_extensions' => 'vtt',
       ),
@@ -30,7 +29,6 @@ function ableplayer_install() {
       'type' => 'file',
       'entity_type' => 'media',
       'cardinality' => FIELD_CARDINALITY_UNLIMITED,
-      'persist_with_no_fields' => TRUE,
       'settings' => array(
         'file_extensions' => 'vtt',
       ),
@@ -40,7 +38,6 @@ function ableplayer_install() {
       'type' => 'file',
       'entity_type' => 'media',
       'cardinality' => FIELD_CARDINALITY_UNLIMITED,
-      'persist_with_no_fields' => TRUE,
       'settings' => array(
         'file_extensions' => 'vtt',
       ),
@@ -66,29 +63,15 @@ function ableplayer_install() {
         'settings' => array(
           'file_extensions' => 'vtt',
         ),
-        'display' => array(
-          'default' => array(
-            'label' => 'hidden',
-            'type' => 'hidden',
-            'settings' => array(),
-          ),
-        ),
       ),
       array(
         'field_name' => 'ableplayer_description',
         'field_type' => 'file',
         'entity_type' => 'media',
         'bundle' => $bundle,
-        'label' => $t('Transcript'),
+        'label' => $t('Description'),
         'settings' => array(
           'file_extensions' => 'vtt',
-        ),
-        'display' => array(
-          'default' => array(
-            'label' => 'hidden',
-            'type' => 'hidden',
-            'settings' => array(),
-          ),
         ),
       ),
       array(
@@ -96,16 +79,9 @@ function ableplayer_install() {
         'field_type' => 'file',
         'entity_type' => 'media',
         'bundle' => $bundle,
-        'label' => $t('Transcript'),
+        'label' => $t('Chapters'),
         'settings' => array(
           'file_extensions' => 'vtt',
-        ),
-        'display' => array(
-          'default' => array(
-            'label' => 'hidden',
-            'type' => 'hidden',
-            'settings' => array(),
-          ),
         ),
       ),
     );
