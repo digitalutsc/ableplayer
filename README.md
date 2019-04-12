@@ -144,28 +144,6 @@ With the language set on each transcript file, Able Player will display a
 language selection interface for captions and transcripts. Users will be able to
 choose their language at playback time.
 
-### Fallback Player
-
-Able Player can use JWPlayer as a fallback for older browsers that do not
-support HTML5 media elements. Currently, JWPlayer is the only supported
-fallback. Note that JWPlayer only supports mp4 video and mp3 audio.
-
-JWPlayer is licensed and distributed separately from Able Player. Production
-self-hosting assets may be aquired at [jwplayer.com](http://www.jwplayer.com/).
-
-You do **not** need to install the JW Player Drupal module. While Able Player
-and JW Player may be installed at the same time, Able Player will directly load
-the JWPlayer library files in the event that a fallback is necessary.
-
-*   Download the JWPlayer 6.x release archive from jwplayer.com and extract the
-    contents (**jwplayer.js**, **jwplayer.html5.js**, and
-    **jwplayer.flash.swf**) to **sites/all/libraries/jwplayer**.
-*   Test your installation of JWPlayer by navigating to
-    **admin/config/media/ableplayer** and checking **Test Fallback**.
-*   Navigate to any existing mp4 or mp3 file on your site set to the Able
-    Player file display. You should see the "jwplayer" watermark overlaid on the
-    video.
-
 ### Supported File Types
 
 Details on the usage of the Able Player library, including up-to-date support

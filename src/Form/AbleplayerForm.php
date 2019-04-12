@@ -65,14 +65,6 @@ class AbleplayerForm extends ConfigFormBase {
       '#description' => $this->t('Get a YouTube Data API key by registering your application at the Google Developer Console. For complete instructions, see Google\'s Getting Started page. Note: All that\'s needed for playing YouTube videos in Able Player is a simple API key, not OAuth 2.0.'),
     ];
 
-
-    $form['ableplayer.test_fallback'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('Test Fallback'),
-      '#description' => $this->t('Force Able Player to load the fallback player (jwplayer). This is recommended for testing purposes only.'),
-      '#default_value' => $config->get('ableplayer_test_fallback', 0),
-    ];
-
     return parent::buildForm($form, $form_state);
   }
 

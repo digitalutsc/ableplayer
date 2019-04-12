@@ -10,12 +10,7 @@
  */
 function ableplayer_preprocess_ableplayer(&$variables) {
   $variables['options']['transcript_title'] = \Drupal\Component\Utility\Html::escape(\Drupal\Component\Utility\Xss::filter($variables['options']['transcript_title']));
-  // @FIXME
-// url() expects a route name or an external URI.
-// $variables['fallback_path'] = url(libraries_get_path('jwplayer') . '/', array('absolute' => TRUE));
-
-  $variables['test_fallback'] = \Drupal::config('ableplayer.settings')->get('ableplayer_test_fallback');
-  // @FIXME
+// @FIXME
 // url() expects a route name or an external URI.
 // $variables['translation_path'] = url(libraries_get_path('ableplayer') . '/translations/', array('absolute' => TRUE));
 

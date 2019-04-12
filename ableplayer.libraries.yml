@@ -4,12 +4,6 @@ ableplayer-cookie:
     js/js.cookie.js: {}
   dependencies:
     - core/jquery
-ableplayer-modernizr:
-  version: 1.x
-  js:
-    js/modernizr.custom.js: {}
-  dependencies:
-    - core/jquery
 ableplayer:
   version: 4.0.0
   license:
@@ -24,4 +18,3 @@ ableplayer:
   dependencies:
     - core/jquery
     - ableplayer/ableplayer-cookie
-    - ableplayer/ableplayer-modernizr
