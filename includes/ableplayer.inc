@@ -113,6 +113,57 @@ function ableplayer_default_settings() {
 }
 
 /**
+ * Helper function to return information about the Able Player installation.
+ *
+ * Files that are not found installed in the expected location are colletected
+ * and returned.
+ *
+ * @return array
+ *   Hash of status information.
+ *     - 'error' indicates whether an error was detected via a boolean value.
+ *     - 'version' is set to the detected version number of Able Player.
+ *     - 'message' set if an error was detected.
+ */
+function ableplayer_installation_status() {
+  $status = array();
+  $version = NULL;
+  $message = NULL;
+
+  $ableplayer = libraries_detect('ableplayer');
+
+  $files = array_keys(array_merge(
+    $ableplayer['files']['js'],
+    $ableplayer['files']['css']
+  ));
+
+  $missing_files = array();
+
+  foreach ($files as $file) {
+    $path = $ableplayer['library path'] . '/' . $file;
+
+    if (!is_file($path) || !is_readable($path)) {
+      $missing_files[$path] = t('The file %file was not found.', array('%file' => $path));
+    }
+  }
+
+  if (!empty($missing_files)) {
+    $message = trim(implode(' ', $missing_files));
+  }
+  elseif (!$ableplayer['installed']) {
+    $message = $ableplayer['error message'];
+  }
+  else {
+    $version = $ableplayer['version'];
+  }
+
+  $status['error'] = !empty($message);
+  $status['version'] = $version;
+  $status['message'] = $message;
+
+  return $status;
+}
+
+/**
  * Function returns the complete list of mimetypes supported by Able Player.
  *
  * @return array
