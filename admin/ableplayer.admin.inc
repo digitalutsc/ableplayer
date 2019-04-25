@@ -30,13 +30,5 @@ function ableplayer_form() {
     ),
   );
 
-  $form['ableplayer_fieldset']['ableplayer_test_fallback'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Test Fallback'),
-    '#description' => t(
-      'Force Able Player to load the fallback player (jwplayer). This is recommended for testing purposes only.'),
-    '#default_value' => \Drupal::config('ableplayer.settings')->get('ableplayer_test_fallback'),
-  );
-
   return system_settings_form($form);
 }
