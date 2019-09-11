@@ -5,14 +5,8 @@
  * Module file for Able Player.
  */
 
-/**
- * Implements hook_page_attachments().
- * This is for testing that libraries are included properly.
- */
-function ableplayer_page_attachments(array &$attachments) {
-  $attachments['#attached']['library'][] = 'ableplayer/ableplayer';
-}
 
+use \Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 
 /**
  * Defined constants for the default File Entity video and audio bundles.
@@ -30,6 +24,14 @@ define('ABLEPLAYER_MIME_WEBM', 'webm');
 define('ABLEPLAYER_MIME_YOUTUBE', 'youtube');
 
 require_once drupal_get_path('module', 'ableplayer') . '/includes/ableplayer.formatters.inc';
+
+/**
+ * Implements hook_page_attachments().
+ * This is for testing that libraries are included properly.
+ */
+function ableplayer_page_attachments(array &$attachments) {
+  $attachments['#attached']['library'][] = 'ableplayer/ableplayer';
+}
 
 /**
  * Impelements hook_file_default_types_alter().
@@ -98,7 +100,7 @@ function ableplayer_menu() {
 /**
  * Implements hook_theme().
  */
-function ableplayer_theme($existing, $type, $theme, $path) {
+function ableplayer_theme(array $existing, $type, $theme, $path) {
   $themes = array();
 
   $themes['ableplayer'] = array(
@@ -116,14 +118,23 @@ function ableplayer_theme($existing, $type, $theme, $path) {
   $themes['ableplayer_video'] = array(
     'variables' => array(
       'files' => array(),
+      'transcripts' => array(),
       'attributes' => NULL,
     ),
   );
+
   $themes['ableplayer_audio'] = array(
     'variables' => array(
       'files' => array(),
+      'transcripts' => array(),
       'attributes' => NULL,
     ),
+  );
+
+  $themes['ableplayer_transcript'] = array(
+    'variables' => array(
+      'file' => NULL,
+    )
   );
 
   return $themes;

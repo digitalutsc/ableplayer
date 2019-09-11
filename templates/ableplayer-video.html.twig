@@ -19,4 +19,8 @@
   {% for file in files %}
     <source {{ file.source_attributes }} />
   {% endfor %}
+
+  {% for transcript in transcripts %}
+    {{ transcript }}
+  {% endfor %}
 </video>

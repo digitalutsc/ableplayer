@@ -1,5 +1,7 @@
 <?php
 
+use Drupal\Core\Render\Element;
+
 /**
  * @file
  * Theme functions for Able Player.
@@ -21,6 +23,8 @@ function ableplayer_preprocess_ableplayer(&$variables) {
  * Theme function for Able Player.
  */
 function theme_ableplayer($variables) {
+  kint($variables);
+
   if (strpos($variables['mimetype'], ABLEPLAYER_BUNDLE_VIDEO) > -1) {
     $open_tag = '<video ';
     $close_tag = '</video>';
