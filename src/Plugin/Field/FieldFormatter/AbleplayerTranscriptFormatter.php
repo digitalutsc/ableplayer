@@ -10,7 +10,7 @@ use Drupal\file\Plugin\Field\FieldFormatter\FileFormatterBase;
  *
  * @FieldFormatter(
  *   id = "ableplayer_transcript",
- *   label = @Translation("Ableplayer Transcript"),
+ *   label = @Translation("Transcript"),
  *   description = @Translation("Display media transcript"),
  *   field_types = {
  *     "file"
@@ -23,9 +23,7 @@ class AbleplayerTranscriptFormatter extends FileFormatterBase {
    * {@inheritdoc}
    */
   public function view(FieldItemListInterface $items, $langcode = NULL) {
-    $elements = parent::view($items, $langcode);
-
-    return $elements;
+    return array();
   }
 
   /**

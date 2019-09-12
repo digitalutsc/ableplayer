@@ -82,17 +82,17 @@ function ableplayer_help($path, $arg) {
  * Implements hook_menu().
  */
 function ableplayer_menu() {
-  $items = array();
+  $items = [];
 
-  $items['admin/config/media/ableplayer'] = array(
+  $items['admin/config/media/ableplayer'] = [
     'title' => 'Able Player',
     'description' => 'Configuration for Able Player library',
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('ableplayer_form'),
-    'access arguments' => array('administer site configuration'),
+    'page arguments' => ['ableplayer_form'],
+    'access arguments' => ['administer site configuration'],
     'type' => MENU_NORMAL_ITEM,
     'file' => 'admin/ableplayer.admin.inc',
-  );
+  ];
 
   return $items;
 }
@@ -101,41 +101,46 @@ function ableplayer_menu() {
  * Implements hook_theme().
  */
 function ableplayer_theme(array $existing, $type, $theme, $path) {
-  $themes = array();
+  $themes = [];
 
-  $themes['ableplayer'] = array(
-    'variables' => array(
+  $themes['ableplayer'] = [
+    'variables' => [
       'id' => NULL,
       'uri' => NULL,
       'mimetype' => NULL,
-      'tracks' => array(),
-      'options' => array(),
-    ),
+      'tracks' => [],
+      'options' => [],
+    ],
     'file' => 'ableplayer.theme.inc',
     'path' => $path . '/themes',
-  );
+  ];
 
-  $themes['ableplayer_video'] = array(
-    'variables' => array(
-      'files' => array(),
-      'transcripts' => array(),
+  $themes['ableplayer_video'] = [
+    'variables' => [
+      'files' => [],
+      'transcripts' => [],
       'attributes' => NULL,
-    ),
-  );
+    ],
+  ];
 
-  $themes['ableplayer_audio'] = array(
-    'variables' => array(
-      'files' => array(),
-      'transcripts' => array(),
+  $themes['ableplayer_audio'] = [
+    'variables' => [
+      'files' => [],
+      'transcripts' => [],
       'attributes' => NULL,
-    ),
-  );
+    ],
+  ];
 
-  $themes['ableplayer_transcript'] = array(
-    'variables' => array(
+  $themes['ableplayer_transcript'] = [
+    'variables' => [
       'file' => NULL,
-    )
-  );
+    ],
+  ];
+
+  $themes['field__ableplayer_transcript'] = [
+    'template' => 'field--ableplayer-transcript',
+    'base hook' => 'field',
+  ];
 
   return $themes;
 }
