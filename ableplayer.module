@@ -23,8 +23,6 @@ define('ABLEPLAYER_MIME_MP4', 'mp4');
 define('ABLEPLAYER_MIME_WEBM', 'webm');
 define('ABLEPLAYER_MIME_YOUTUBE', 'youtube');
 
-require_once drupal_get_path('module', 'ableplayer') . '/includes/ableplayer.formatters.inc';
-
 /**
  * Implements hook_page_attachments().
  * This is for testing that libraries are included properly.
