@@ -116,7 +116,7 @@ function ableplayer_theme(array $existing, $type, $theme, $path) {
   $themes['ableplayer_video'] = [
     'variables' => [
       'files' => [],
-      'transcripts' => [],
+      'transcript' => [],
       'attributes' => NULL,
     ],
   ];
@@ -124,7 +124,7 @@ function ableplayer_theme(array $existing, $type, $theme, $path) {
   $themes['ableplayer_audio'] = [
     'variables' => [
       'files' => [],
-      'transcripts' => [],
+      'transcript' => [],
       'attributes' => NULL,
     ],
   ];

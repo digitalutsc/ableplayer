@@ -4,6 +4,7 @@ namespace Drupal\ableplayer\Plugin\Field\FieldFormatter;
 
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
+
 use Drupal\file\Plugin\Field\FieldFormatter\FileFormatterBase;
 
 /**
@@ -25,13 +26,6 @@ class AbleplayerTranscriptFormatter extends FileFormatterBase {
    */
   public static function isApplicable(FieldDefinitionInterface $field_definition) {
     return $field_definition->getName() === 'ableplayer_transcript';
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function view(FieldItemListInterface $items, $langcode = NULL) {
-    return array();
   }
 
   /**
