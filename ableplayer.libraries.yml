@@ -14,7 +14,7 @@ ableplayer:
     theme:
       css/ableplayer.min.css: {}
   js:
-    js/ableplayer.min.js: {}
+    js/ableplayer.min.js: {preprocess: false}
   dependencies:
     - core/jquery
     - ableplayer/ableplayer-cookie

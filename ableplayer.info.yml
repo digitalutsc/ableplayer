@@ -1,6 +1,6 @@
 name: 'Able Player'
 description: 'Accessible audio and video'
-
+package: Media
 type: module
 core: 8.x
 
