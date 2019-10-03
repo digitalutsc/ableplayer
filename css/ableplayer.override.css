@@ -5,3 +5,7 @@
 .able-prefs-form legend {
   position: static;
 }
+
+.able-wrapper {
+  z-index: 1;
+}

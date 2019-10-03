@@ -3,8 +3,44 @@
 **[Able Player](https://github.com/ableplayer/ableplayer)** is a fully
 accessible cross-browser media player created by accessibility specialist
 Terrill Thompson. It uses the HTML5 <audio> or <video> element for browsers that
-support them. The Able Player module integrates the jQuery Able Player plugin as
-a file formatter with support for captions, transcripts, and audio description.
+support them.
+
+## Supported File Types
+
+Details on the usage of the Able Player library, including up-to-date support
+for filetypes and third-party media hosts, may be found at the [**Able Player
+  GitHub page**](https://github.com/ableplayer/ableplayer).
+
+
+## Drupal 8
+The Drupal 8 module is under active development.
+
+### Dependencies
+
+#### Modules
+
+*   Media - Part of Drupal 8 core
+
+### Installation
+1. Enable the module either either through the UI
+(Extend -> Media -> Ableplayer) or via Drush $pm-enable ableplayer
+
+### Configuration
+1. If your site does not yet have a video media type create it.
+(/admin/structure/media/add and then select Video file as the media source)
+2. Set the video file format to Ableplayer, go to
+(/admin/structure/media/manage/videos/display) and under the display column
+change the display to use Ableplayer
+3. Save the Configuration
+
+
+### Usage
+1. Add a new media file and transcript
+2. Add media file to content, for example to a basic page
+3. When you visit the page you will see your video now rendering with Ableplayer
+
+
+## Drupal 7
 
 ## Dependencies
 
@@ -144,18 +180,7 @@ With the language set on each transcript file, Able Player will display a
 language selection interface for captions and transcripts. Users will be able to
 choose their language at playback time.
 
-### Supported File Types
-
-Details on the usage of the Able Player library, including up-to-date support
-for filetypes and third-party media hosts, may be found at the [**Able Player
-  GitHub page**](https://github.com/ableplayer/ableplayer).
-
-## Known Issues
+## Known Issues for Drupal 7 version
 
 *   Able player settings cannot be set on a per-field (or per-file) basis at
     this time.
-
-## Future Enhancements
-
-*   Allow multiple file sources to be displayed by Able Player for a file
-    instance, for maximum browser compatibility.
