@@ -1,0 +1,11 @@
+{#
+/**
+ * @file
+ * Render ableplayer transcript field without field wrapper markup.
+ */
+ #}
+{% spaceless %}
+{% for item in items %}
+  {{ item.content }}
+{% endfor %}
+{% endspaceless %}

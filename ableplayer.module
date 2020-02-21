@@ -5,14 +5,8 @@
  * Module file for Able Player.
  */
 
-/**
- * Implements hook_page_attachments().
- * This is for testing that libraries are included properly.
- */
-function ableplayer_page_attachments(array &$attachments) {
-  $attachments['#attached']['library'][] = 'ableplayer/ableplayer';
-}
 
+use \Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 
 /**
  * Defined constants for the default File Entity video and audio bundles.
@@ -29,7 +23,13 @@ define('ABLEPLAYER_MIME_MP4', 'mp4');
 define('ABLEPLAYER_MIME_WEBM', 'webm');
 define('ABLEPLAYER_MIME_YOUTUBE', 'youtube');
 
-require_once drupal_get_path('module', 'ableplayer') . '/includes/ableplayer.formatters.inc';
+/**
+ * Implements hook_page_attachments().
+ * This is for testing that libraries are included properly.
+ */
+function ableplayer_page_attachments(array &$attachments) {
+  $attachments['#attached']['library'][] = 'ableplayer/ableplayer';
+}
 
 /**
  * Impelements hook_file_default_types_alter().
@@ -80,17 +80,17 @@ function ableplayer_help($path, $arg) {
  * Implements hook_menu().
  */
 function ableplayer_menu() {
-  $items = array();
+  $items = [];
 
-  $items['admin/config/media/ableplayer'] = array(
+  $items['admin/config/media/ableplayer'] = [
     'title' => 'Able Player',
     'description' => 'Configuration for Able Player library',
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('ableplayer_form'),
-    'access arguments' => array('administer site configuration'),
+    'page arguments' => ['ableplayer_form'],
+    'access arguments' => ['administer site configuration'],
     'type' => MENU_NORMAL_ITEM,
     'file' => 'admin/ableplayer.admin.inc',
-  );
+  ];
 
   return $items;
 }
@@ -98,33 +98,47 @@ function ableplayer_menu() {
 /**
  * Implements hook_theme().
  */
-function ableplayer_theme($existing, $type, $theme, $path) {
-  $themes = array();
+function ableplayer_theme(array $existing, $type, $theme, $path) {
+  $themes = [];
 
-  $themes['ableplayer'] = array(
-    'variables' => array(
+  $themes['ableplayer'] = [
+    'variables' => [
       'id' => NULL,
       'uri' => NULL,
       'mimetype' => NULL,
-      'tracks' => array(),
-      'options' => array(),
-    ),
+      'tracks' => [],
+      'options' => [],
+    ],
     'file' => 'ableplayer.theme.inc',
     'path' => $path . '/themes',
-  );
+  ];
 
-  $themes['ableplayer_video'] = array(
-    'variables' => array(
-      'files' => array(),
+  $themes['ableplayer_video'] = [
+    'variables' => [
+      'files' => [],
+      'transcript' => [],
       'attributes' => NULL,
-    ),
-  );
-  $themes['ableplayer_audio'] = array(
-    'variables' => array(
-      'files' => array(),
+    ],
+  ];
+
+  $themes['ableplayer_audio'] = [
+    'variables' => [
+      'files' => [],
+      'transcript' => [],
       'attributes' => NULL,
-    ),
-  );
+    ],
+  ];
+
+  $themes['ableplayer_transcript'] = [
+    'variables' => [
+      'file' => NULL,
+    ],
+  ];
+
+  $themes['field__ableplayer_transcript'] = [
+    'template' => 'field--ableplayer-transcript',
+    'base hook' => 'field',
+  ];
 
   return $themes;
 }

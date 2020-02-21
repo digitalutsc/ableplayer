@@ -14,43 +14,97 @@ use \Drupal\field\Entity\FieldConfig;
 function ableplayer_install() {
   $t = 't';
 
-  $field = array(
-    'field_name' => 'ableplayer_transcript',
-    'type' => 'file',
-    'entity_type' => 'media',
-    'settings' => array(
-      'file_extensions' => 'vtt',
-    ),
-  );
-
-  $storage = FieldStorageConfig::create($field);
-  $storage->save();
+  $fields = [
+    [
+      'storage' => [
+        'field_name' => 'ableplayer_transcript',
+        'type' => 'file',
+        'entity_type' => 'media',
+        'settings' => [
+          'file_extensions' => 'vtt',
+        ],
+      ],
+      'instance' => [
+        'field_name' => 'ableplayer_transcript',
+        'field_type' => 'file',
+        'entity_type' => 'media',
+        'label' => $t('Transcript'),
+        'bundle' => '',
+        'storage' => NULL,
+        'settings' => [
+          'file_extensions' => 'vtt',
+        ],
+      ],
+    ],
+    [
+      'storage' => [
+        'field_name' => 'ableplayer_description',
+        'type' => 'file',
+        'entity_type' => 'media',
+        'settings' => [
+          'file_extensions' => 'vtt',
+        ],
+      ],
+      'instance' => [
+        'field_name' => 'ableplayer_description',
+        'field_type' => 'file',
+        'entity_type' => 'media',
+        'label' => $t('Description'),
+        'bundle' => '',
+        'storage' => NULL,
+        'settings' => [
+          'file_extensions' => 'vtt',
+        ],
+      ],
+    ],
+    [
+      'storage' => [
+        'field_name' => 'ableplayer_chapters',
+        'type' => 'file',
+        'entity_type' => 'media',
+        'settings' => [
+          'file_extensions' => 'vtt',
+        ],
+      ],
+      'instance' => [
+        'field_name' => 'ableplayer_chapters',
+        'field_type' => 'file',
+        'entity_type' => 'media',
+        'label' => $t('Chapters'),
+        'bundle' => '',
+        'storage' => NULL,
+        'settings' => [
+          'file_extensions' => 'vtt',
+        ],
+      ],
+    ]
+  ];
 
   $bundles = \Drupal::entityTypeManager()->getListBuilder('media_type')->load();
 
   foreach ($bundles as $bundle) {
-    $source = $bundle->get('source');
-    $name = $bundle->get('id');
+    if (!in_array($bundle->get('source'), ['video_file', 'audio_file'])) {
+      continue;
+    }
 
-    $instance = array(
-      'storage' => $storage,
-      'field_name' => 'ableplayer_transcript',
-      'field_type' => 'file',
-      'entity_type' => 'media',
-      'label' => $t('Transcript'),
-      'bundle' => $name,
-      'settings' => array(
-        'file_extensions' => 'vtt',
-      ),
-    );
+    foreach ($fields as $field) {
+      $storage = FieldStorageConfig::loadByName('media', $field['storage']['field_name']);
 
-    switch ($source) {
-      case 'video_file':
-      case 'audio_file':
-        $config = FieldConfig::create($instance);
-        $config->save();
+      if (is_null($storage)) {
+        $storage = FieldStorageConfig::create($field['storage']);
+        $storage->save();
+      }
 
-        break;
+      $field['instance']['bundle'] = $bundle->get('id');
+      $field['instance']['storage'] = $storage;
+
+      if (is_null(FieldConfig::loadByName('media', $bundle->get('id'), $field['storage']['field_name']))) {
+        $instance = FieldConfig::create($field['instance']);
+        $instance->save();
+      }
+
+      $form = \Drupal::entityTypeManager()->getStorage('entity_form_display')->load('media.' . $bundle->get('id') . '.default');
+      $form->setComponent($field['storage']['field_name'])->save();
     }
   }
 }
@@ -62,10 +116,8 @@ function ableplayer_uninstall() {
   $bundles = \Drupal::entityTypeManager()->getListBuilder('media_type')->load();
 
   foreach ($bundles as $bundle) {
-    $bundle = $bundle->get('id');
-
-    foreach (array('ableplayer_transcript', 'ableplayer_description', 'ableplayer_chapters') as $field) {
-      $instance = FieldConfig::loadByName('media', $bundle, $field);
+    foreach (['ableplayer_transcript', 'ableplayer_description', 'ableplayer_chapters'] as $field) {
+      $instance = FieldConfig::loadByName('media', $bundle->get('id'), $field);
 
       if ($instance) {
         $instance->delete();
