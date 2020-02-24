@@ -86,9 +86,9 @@ class AblePlayerOutputTestCase extends DrupalWebTestCase {
     $this->drupalGet('file/1');
     $this->assertPattern('@<audio[^<>]+data-able-player>@',
       'Attribute "data-able-player" found in raw HTML.');
-    $this->assertRaw('ableplayer.min.js',
+    $this ->assertSession()->responseContains('ableplayer.min.js',
       'ableplayer.min.js loaded successfully');
-    $this->assertRaw('ableplayer.min.css',
+    $this ->assertSession()->responseContains('ableplayer.min.css',
       'ableplayer.min.css loaded successfully');
   }
 
@@ -119,9 +119,9 @@ class AblePlayerOutputTestCase extends DrupalWebTestCase {
       'Description track found in raw HTML.');
     $this->assertPattern('@<track kind="chapters" src=".*?" srclang="" label="" />@',
       'Chapters track found in raw HTML.');
-    $this->assertRaw('ableplayer.min.js',
+    $this ->assertSession()->responseContains('ableplayer.min.js',
       'ableplayer.min.js loaded successfully');
-    $this->assertRaw('ableplayer.min.css',
+    $this ->assertSession()->responseContains('ableplayer.min.css',
       'ableplayer.min.css loaded successfully');
   }
 
