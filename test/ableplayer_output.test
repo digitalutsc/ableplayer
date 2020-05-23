@@ -81,7 +81,7 @@ class AblePlayerOutputTestCase extends DrupalWebTestCase {
     $sample_file_path = realpath(drupal_get_path('module', 'ableplayer') . '/test/files/sample.vtt');
 
     $data = array();
-    $data['files[ableplayer_transcript_und_0]'] = $sample_file_path;
+    $data['files[ableplayer_caption_und_0]'] = $sample_file_path;
     $data['files[ableplayer_description_und_0]'] = $sample_file_path;
     $data['files[ableplayer_chapters_und_0]'] = $sample_file_path;
 
@@ -108,7 +108,7 @@ class AblePlayerOutputTestCase extends DrupalWebTestCase {
     $sample_file_path = realpath(drupal_get_path('module', 'ableplayer') . '/test/files/sample.vtt');
 
     $data = array();
-    $data['files[ableplayer_transcript_und_0]'] = $sample_file_path;
+    $data['files[ableplayer_caption_und_0]'] = $sample_file_path;
     $data['files[ableplayer_description_und_0]'] = $sample_file_path;
     $data['files[ableplayer_chapters_und_0]'] = $sample_file_path;
 
@@ -118,7 +118,7 @@ class AblePlayerOutputTestCase extends DrupalWebTestCase {
     $this->assertPattern('@<video[^<>]+data-able-player>@',
       'Attribute "data-able-player" found in raw HTML.');
     $this->assertPattern('@<track kind="captions" src=".*?" srclang="" label="" />@',
-      'Transcript track found in raw HTML.');
+      'Caption track found in raw HTML.');
     $this->assertPattern('@<track kind="descriptions" src=".*?" srclang="" label="" />@',
       'Description track found in raw HTML.');
     $this->assertPattern('@<track kind="chapters" src=".*?" srclang="" label="" />@',

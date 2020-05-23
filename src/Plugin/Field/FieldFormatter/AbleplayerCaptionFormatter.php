@@ -11,21 +11,21 @@ use Drupal\file\Plugin\Field\FieldFormatter\FileFormatterBase;
  * Plugin implementation of the 'ableplayer_video' formatter.
  *
  * @FieldFormatter(
- *   id = "ableplayer_transcript",
- *   label = @Translation("Transcript"),
- *   description = @Translation("Display media transcript"),
+ *   id = "ableplayer_caption",
+ *   label = @Translation("Caption"),
+ *   description = @Translation("Display media caption"),
  *   field_types = {
  *     "file"
  *   }
  * )
  */
-class AbleplayerTranscriptFormatter extends FileFormatterBase {
+class AbleplayerCaptionFormatter extends FileFormatterBase {
 
   /**
    * {@inheritdoc}
    */
   public static function isApplicable(FieldDefinitionInterface $field_definition) {
-    return $field_definition->getName() === 'ableplayer_transcript';
+    return $field_definition->getName() === 'ableplayer_caption';
   }
 
   /**

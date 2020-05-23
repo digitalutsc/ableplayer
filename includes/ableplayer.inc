@@ -45,20 +45,20 @@ function ableplayer_attach() {
 /**
  * Get data for populating track elements for Able Player.
  *
- * Given a list of transcript file entities, look up their language in the core
+ * Given a list of caption file entities, look up their language in the core
  * language list to get the native language label. This allows the srclang and
  * label attributes to be set on the track element of the field formatter
  * output, which Able Player uses to display a select list of available
- * transcript languages.
+ * caption languages.
  *
  * @param array $track_items
  *   Array of files associated as tracks with a parent file.
  *
  * @return array
- *   Hash of transcript information
+ *   Hash of caption information
  *     - 'code' the ISO language code as used internally by Drupal
  *     - 'label' the native language name as used internally by Drupal
- *     - 'uri' the path to the transcript file
+ *     - 'uri' the path to the caption file
  */
 function ableplayer_build_track_list(array $track_items) {
   $tracks = array();
@@ -101,13 +101,13 @@ function ableplayer_default_settings() {
     'autoplay' => FALSE,
     'preload' => FALSE,
     'show_now_playing' => FALSE,
-    'use_transcript_button' => FALSE,
+    'use_caption_button' => FALSE,
     'lyrics_mode' => FALSE,
     'force_lang' => FALSE,
     'volume' => 0.5,
     'start_time' => 0,
     'seek_interval' => FALSE,
-    'transcript_title' => FALSE,
+    'caption_title' => FALSE,
     'lang' => FALSE,
   );
 }

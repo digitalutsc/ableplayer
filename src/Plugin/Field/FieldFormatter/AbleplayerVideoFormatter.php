@@ -34,9 +34,9 @@ class AbleplayerVideoFormatter extends FileMediaFormatterBase {
     $elements = parent::viewElements($items, $langcode);
     $parent = $items->getEntity();
 
-    if ($parent->hasField('ableplayer_transcript')) {
+    if ($parent->hasField('ableplayer_caption')) {
       foreach ($elements as &$element) {
-        $element['#transcript'] = $parent->ableplayer_transcript->view(['type' => 'ableplayer_transcript']);
+        $element['#caption'] = $parent->ableplayer_caption->view(['type' => 'ableplayer_caption']);
       }
     }
 
