@@ -36,7 +36,7 @@ This module requires the Media Drupal core module.
 ### Usage
 
   1. Navigate to Content › Media and select the 'Add media' button.
-  2. Upload your video file and associated captions, transcript, and description.
+  2. Upload your video file and associated captions, descriptions, and chapters.
   3. Add a Media File Entity Reference field to an existing or new Entity Type (such as Content Type).
   4. Create a new Entity node using the configured Entity Type.
   5. Add your video file and publish the node.
