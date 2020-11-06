@@ -52,7 +52,7 @@ class AbleplayerForm extends ConfigFormBase {
     return ['ableplayer.settings'];
   }
 
-  public function buildForm(array $form, \Drupal\Core\Form\FormStateInterface $form_state) {
+  public function buildForm(array $form, FormStateInterface $form_state) {
     $form = parent::buildForm($form, $form_state);
    // Default settings.
    $config = $this->config('ableplayer.settings');

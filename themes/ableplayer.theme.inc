@@ -1,5 +1,7 @@
 <?php
 
+use Drupal\Component\Utility\Html;
+use Drupal\Component\Utility\Xss;
 use Drupal\Core\Render\Element;
 
 /**
@@ -11,7 +13,7 @@ use Drupal\Core\Render\Element;
  * Implements hook_preprocess_THEME().
  */
 function ableplayer_preprocess_ableplayer(&$variables) {
-  $variables['options']['caption_title'] = \Drupal\Component\Utility\Html::escape(\Drupal\Component\Utility\Xss::filter($variables['options']['caption_title']));
+  $variables['options']['caption_title'] = Html::escape(Xss::filter($variables['options']['caption_title']));
 
-  $variables['id'] = \Drupal\Component\Utility\Html::getId($variables['id']);
+  $variables['id'] = Html::getId($variables['id']);
 }
