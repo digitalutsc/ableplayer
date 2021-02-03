@@ -40,6 +40,12 @@ class AbleplayerVideoFormatter extends FileMediaFormatterBase {
       }
     }
 
+    if ($parent->hasField('ableplayer_chapter')) {
+      foreach ($elements as &$element) {
+        $element['#chapter'] = $parent->ableplayer_chapter->view(['type' => 'ableplayer_chapter']);
+      }
+    }
+
     return $elements;
   }
 
