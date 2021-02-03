@@ -59,7 +59,7 @@ function ableplayer_install() {
     ],
     [
       'storage' => [
-        'field_name' => 'ableplayer_chapters',
+        'field_name' => 'ableplayer_chapter',
         'type' => 'file',
         'entity_type' => 'media',
         'settings' => [
@@ -67,7 +67,7 @@ function ableplayer_install() {
         ],
       ],
       'instance' => [
-        'field_name' => 'ableplayer_chapters',
+        'field_name' => 'ableplayer_chapter',
         'field_type' => 'file',
         'entity_type' => 'media',
         'label' => $t('Chapters'),
@@ -116,7 +116,7 @@ function ableplayer_uninstall() {
   $bundles = \Drupal::entityTypeManager()->getListBuilder('media_type')->load();
 
   foreach ($bundles as $bundle) {
-    foreach (['ableplayer_transcript', 'ableplayer_description', 'ableplayer_chapters'] as $field) {
+    foreach (['ableplayer_transcript', 'ableplayer_description', 'ableplayer_chapter'] as $field) {
       $instance = FieldConfig::loadByName('media', $bundle->get('id'), $field);
 
       if ($instance) {

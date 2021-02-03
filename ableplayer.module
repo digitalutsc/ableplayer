@@ -117,6 +117,7 @@ function ableplayer_theme(array $existing, $type, $theme, $path) {
     'variables' => [
       'files' => [],
       'transcript' => [],
+      'chapter' => [],
       'attributes' => NULL,
     ],
   ];
@@ -136,6 +137,16 @@ function ableplayer_theme(array $existing, $type, $theme, $path) {
   ];
 
   $themes['field__ableplayer_transcript'] = [
+    'template' => 'field--ableplayer-transcript',
+    'base hook' => 'field',
+  ];
+
+$themes['ableplayer_chapter'] = [
+ 'variables' => [
+    'file' => NULL,
+  ],
+];
+  $themes['field__ableplayer_chapter'] = [
     'template' => 'field--ableplayer-transcript',
     'base hook' => 'field',
   ];
