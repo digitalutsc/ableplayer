@@ -2,6 +2,7 @@
 
 namespace Drupal\ableplayer\Plugin\Field\FieldFormatter;
 
+use Drupal\Core\Field\EntityReferenceFieldItemListInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 
 use Drupal\file\Plugin\Field\FieldFormatter\FileMediaFormatterBase;
@@ -58,6 +59,23 @@ class AbleplayerVideoFormatter extends FileMediaFormatterBase {
     }
 
     return $elements;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function getSourceFiles(EntityReferenceFieldItemListInterface $items, $langcode) {
+    $source_files = parent::getSourceFiles($items, $langcode);
+    $parent = $items->getEntity();
+    $data_sign_src = render($parent->ableplayer_sign_language->view(['type' => 'ableplayer_sign_language']));
+
+    foreach ($source_files as $source_file) {
+      foreach ($source_file as $element) {
+        $element['source_attributes']->setAttribute('data-sign-src', $data_sign_src);
+      }
+    }
+
+    return $source_files;
   }
 
 }

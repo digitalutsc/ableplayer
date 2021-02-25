@@ -118,6 +118,7 @@ function ableplayer_theme(array $existing, $type, $theme, $path) {
       'files' => [],
       'caption' => [],
       'chapter' => [],
+      'sign_language' => [],
       'attributes' => NULL,
     ],
   ];
@@ -148,6 +149,17 @@ $themes['ableplayer_chapter'] = [
 ];
   $themes['field__ableplayer_chapter'] = [
     'template' => 'field--ableplayer-transcript',
+    'base hook' => 'field',
+  ];
+
+  $themes['ableplayer_sign_language'] = [
+    'variables' => [
+      'file' => NULL,
+    ],
+  ];
+
+  $themes['field__ableplayer_sign_language'] = [
+    'template' => 'field--ableplayer-sign-language',
     'base hook' => 'field',
   ];
 

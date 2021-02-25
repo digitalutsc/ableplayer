@@ -77,7 +77,28 @@ function ableplayer_install() {
           'file_extensions' => 'vtt',
         ],
       ],
-    ]
+    ],
+    [
+      'storage' => [
+        'field_name' => 'ableplayer_sign_language',
+        'type' => 'file',
+        'entity_type' => 'media',
+        'settings' => [
+          'file_extensions' => 'mp4',
+        ],
+      ],
+      'instance' => [
+        'field_name' => 'ableplayer_sign_language',
+        'field_type' => 'file',
+        'entity_type' => 'media',
+        'label' => $t('Sign Language Video'),
+        'bundle' => '',
+        'storage' => NULL,
+        'settings' => [
+          'file_extensions' => 'mp4',
+        ],
+      ],
+    ],
   ];
 
   $bundles = \Drupal::entityTypeManager()->getListBuilder('media_type')->load();
@@ -116,7 +137,7 @@ function ableplayer_uninstall() {
   $bundles = \Drupal::entityTypeManager()->getListBuilder('media_type')->load();
 
   foreach ($bundles as $bundle) {
-    foreach (['ableplayer_caption', 'ableplayer_description', 'ableplayer_chapter'] as $field) {
+    foreach (['ableplayer_caption', 'ableplayer_description', 'ableplayer_chapter', 'ableplayer_sign_language'] as $field) {
       $instance = FieldConfig::loadByName('media', $bundle->get('id'), $field);
 
       if ($instance) {
