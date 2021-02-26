@@ -148,7 +148,7 @@ $themes['ableplayer_chapter'] = [
   ],
 ];
   $themes['field__ableplayer_chapter'] = [
-    'template' => 'field--ableplayer-transcript',
+    'template' => 'field--ableplayer-chapter',
     'base hook' => 'field',
   ];
 
