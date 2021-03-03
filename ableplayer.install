@@ -20,6 +20,7 @@ function ableplayer_install() {
         'field_name' => 'ableplayer_caption',
         'type' => 'file',
         'entity_type' => 'media',
+        'cardinality' => '-1',
         'settings' => [
           'file_extensions' => 'vtt',
         ],
