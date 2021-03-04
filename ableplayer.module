@@ -163,5 +163,16 @@ $themes['ableplayer_chapter'] = [
     'base hook' => 'field',
   ];
 
+  $themes['ableplayer_poster_image'] = [
+    'variables' => [
+      'file' => NULL,
+    ],
+  ];
+
+  $themes['field__ableplayer_poster_image'] = [
+    'template' => 'field--ableplayer-poster-image',
+    'base hook' => 'field',
+  ];
+
   return $themes;
 }

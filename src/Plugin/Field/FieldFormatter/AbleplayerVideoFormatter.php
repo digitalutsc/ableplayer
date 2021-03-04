@@ -68,10 +68,12 @@ class AbleplayerVideoFormatter extends FileMediaFormatterBase {
     $source_files = parent::getSourceFiles($items, $langcode);
     $parent = $items->getEntity();
     $data_sign_src = render($parent->ableplayer_sign_language->view(['type' => 'ableplayer_sign_language']));
+    $poster = render($parent->ableplayer_poster_image->view(['type' => 'ableplayer_poster_image']));
 
     foreach ($source_files as $source_file) {
       foreach ($source_file as $element) {
         $element['source_attributes']->setAttribute('data-sign-src', $data_sign_src);
+        $element['source_attributes']->setAttribute('poster', $poster);
       }
     }
 

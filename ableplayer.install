@@ -100,6 +100,27 @@ function ableplayer_install() {
         ],
       ],
     ],
+    [
+      'storage' => [
+        'field_name' => 'ableplayer_poster_image',
+        'type' => 'file',
+        'entity_type' => 'media',
+        'settings' => [
+          'file_extensions' => 'jpg','png',
+        ],
+      ],
+      'instance' => [
+        'field_name' => 'ableplayer_poster_image',
+        'field_type' => 'file',
+        'entity_type' => 'media',
+        'label' => $t('Poster Image'),
+        'bundle' => '',
+        'storage' => NULL,
+        'settings' => [
+          'file_extensions' => 'jpg', 'png',
+        ],
+      ],
+    ],
   ];
 
   $bundles = \Drupal::entityTypeManager()->getListBuilder('media_type')->load();
