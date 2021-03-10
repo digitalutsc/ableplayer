@@ -106,7 +106,7 @@ function ableplayer_install() {
         'type' => 'file',
         'entity_type' => 'media',
         'settings' => [
-          'file_extensions' => 'jpg','png',
+          'file_extensions' => 'jpg png',
         ],
       ],
       'instance' => [
@@ -117,7 +117,7 @@ function ableplayer_install() {
         'bundle' => '',
         'storage' => NULL,
         'settings' => [
-          'file_extensions' => 'jpg', 'png',
+          'file_extensions' => 'jpg png',
         ],
       ],
     ],
@@ -159,7 +159,7 @@ function ableplayer_uninstall() {
   $bundles = \Drupal::entityTypeManager()->getListBuilder('media_type')->load();
 
   foreach ($bundles as $bundle) {
-    foreach (['ableplayer_caption', 'ableplayer_description', 'ableplayer_chapter', 'ableplayer_sign_language'] as $field) {
+    foreach (['ableplayer_caption', 'ableplayer_description', 'ableplayer_chapter', 'ableplayer_sign_language', 'ableplayer_poster_image'] as $field) {
       $instance = FieldConfig::loadByName('media', $bundle->get('id'), $field);
 
       if ($instance) {
