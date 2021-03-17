@@ -21,7 +21,6 @@ define('ABLEPLAYER_MIME_MPEG', 'mpeg');
 define('ABLEPLAYER_MIME_OGG', 'ogg');
 define('ABLEPLAYER_MIME_MP4', 'mp4');
 define('ABLEPLAYER_MIME_WEBM', 'webm');
-define('ABLEPLAYER_MIME_YOUTUBE', 'youtube');
 
 /**
  * Implements hook_page_attachments().
