@@ -25,4 +25,10 @@ class AbleplayerRemoteVideoFormatter extends FileMediaFormatterBase {
     return 'remote_video';
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function viewElements(FieldItemListInterface $items, $langcode) {
+  }
+
 }
