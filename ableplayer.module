@@ -76,25 +76,6 @@ function ableplayer_help($path, $arg) {
 }
 
 /**
- * Implements hook_menu().
- */
-function ableplayer_menu() {
-  $items = [];
-
-  $items['admin/config/media/ableplayer'] = [
-    'title' => 'Able Player',
-    'description' => 'Configuration for Able Player library',
-    'page callback' => 'drupal_get_form',
-    'page arguments' => ['ableplayer_form'],
-    'access arguments' => ['administer site configuration'],
-    'type' => MENU_NORMAL_ITEM,
-    'file' => 'admin/ableplayer.admin.inc',
-  ];
-
-  return $items;
-}
-
-/**
  * Implements hook_theme().
  */
 function ableplayer_theme(array $existing, $type, $theme, $path) {
