@@ -2,6 +2,7 @@
 
 namespace Drupal\ableplayer\Plugin\Field\FieldFormatter;
 
+use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\FormatterBase;
@@ -105,21 +106,45 @@ class AbleplayerRemoteVideoFormatter extends FormatterBase {
 
       $provider = $this->urlResolver->getProviderByUrl($value);
 
+      if ($provider->getName() === 'YouTube') {
+        $scheme = 'https://*.youtube.com/watch*';
+        $regexp = str_replace(['.', '*'], ['\.', '.*'], $scheme);
+        if (preg_match("|^$regexp$|", $value)) {
+          $parts = UrlHelper::parse($value);
+          $id = $parts['query']['v'];
+        }
+
+        $scheme = 'https://*.youtube.com/v/*';
+        $regexp = str_replace(['.', '*'], ['\.', '.*'], $scheme);
+        if (preg_match("|^$regexp$|", $value)) {
+          $id = '';
+        }
+
+        $scheme = 'https://youtu.be/*';
+        $regexp = str_replace(['.', '*'], ['\.', '.*'], $scheme);
+        if (preg_match("|^$regexp$|", $value)) {
+          $id = '';
+        }
+      }
+
+      /*
       while (ob_get_level() != 0) {
         ob_end_clean();
       }
-
       echo '<pre>';
       echo $value;
       echo "\n";
-      die(var_export($provider, TRUE));
+      echo var_export($id, TRUE);
       echo '</pre>';
+      die();
+       */
 
-      $element[$deleta] = [
+      $element[$delta] = [
         '#type' => 'html_tag',
         '#tag' => 'video',
         '#attributes' => [
-          'data-youtube-id' => $youtube_id,
+          'data-able-player' => '',
+          'data-youtube-id' => $id,
         ],
       ];
     }
