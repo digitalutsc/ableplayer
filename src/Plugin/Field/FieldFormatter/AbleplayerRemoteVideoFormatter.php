@@ -123,11 +123,13 @@ class AbleplayerRemoteVideoFormatter extends FormatterBase {
         $scheme = 'https://youtu.be/*';
         $regexp = str_replace(['.', '*'], ['\.', '.*'], $scheme);
         if (preg_match("|^$regexp$|", $value)) {
-          $id = '';
+          $parts = parse_url($value, PHP_URL_PATH);
+          $path = explode('/', $parts);
+          $id = $path[1];
         }
       }
 
-      /*
+/*
       while (ob_get_level() != 0) {
         ob_end_clean();
       }
@@ -137,7 +139,7 @@ class AbleplayerRemoteVideoFormatter extends FormatterBase {
       echo var_export($id, TRUE);
       echo '</pre>';
       die();
-       */
+*/
 
       $element[$delta] = [
         '#type' => 'html_tag',
