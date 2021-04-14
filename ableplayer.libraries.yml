@@ -18,3 +18,11 @@ ableplayer:
   dependencies:
     - core/jquery
     - ableplayer/ableplayer-cookie
+ableplayer-vimeo:
+  version: 2.15.0
+  license:
+    name: MIT
+    url: https://github.com/vimeo/player.js/blob/master/LICENSE.md
+    gpl-compatible: true
+  js:
+    https://player.vimeo.com/api/player.js: {external: true}
