@@ -25,7 +25,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   }
  * )
  */
-class AbleplayerRemoteVideoFormatter extends FormatterBase {
+class AbleplayerRemoteVideoFormatter extends FormatterBase
+{
 
   /**
    * The oEmbed URL resolver service.
@@ -54,7 +55,8 @@ class AbleplayerRemoteVideoFormatter extends FormatterBase {
    * @param \Drupal\media\OEmbed\UrlResolverInterface $url_resolver
    *   The oEmbed URL resolver service.
    */
-  public function __construct($plugin_id, $plugin_definition, FieldDefinitionInterface $field_definition, array $settings, $label, $view_mode, array $third_party_settings, UrlResolverInterface $url_resolver) {
+  public function __construct($plugin_id, $plugin_definition, FieldDefinitionInterface $field_definition, array $settings, $label, $view_mode, array $third_party_settings, UrlResolverInterface $url_resolver)
+  {
     parent::__construct($plugin_id, $plugin_definition, $field_definition, $settings, $label, $view_mode, $third_party_settings);
 
     $this->urlResolver = $url_resolver;
@@ -63,7 +65,8 @@ class AbleplayerRemoteVideoFormatter extends FormatterBase {
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition)
+  {
     return new static(
       $plugin_id,
       $plugin_definition,
@@ -79,21 +82,24 @@ class AbleplayerRemoteVideoFormatter extends FormatterBase {
   /**
    * {@inheritdoc}
    */
-  public static function getMediaType() {
+  public static function getMediaType()
+  {
     return 'remote_video';
   }
 
   /**
    * {@inheritdoc}
    */
-  public static function isApplicable(FieldDefinitionInterface $field_definition) {
+  public static function isApplicable(FieldDefinitionInterface $field_definition)
+  {
     return TRUE;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function viewElements(FieldItemListInterface $items, $langcode) {
+  public function viewElements(FieldItemListInterface $items, $langcode)
+  {
     $element = [];
 
     foreach ($items as $delta => $item) {
@@ -113,11 +119,17 @@ class AbleplayerRemoteVideoFormatter extends FormatterBase {
           $parts = UrlHelper::parse($value);
           $id = $parts['query']['v'];
         }
+        /*
+        * Currently YouTube returns a 404 for this pattern so this code is
+        * never called.
+        */
 
         $scheme = 'https://*.youtube.com/v/*';
         $regexp = str_replace(['.', '*'], ['\.', '.*'], $scheme);
         if (preg_match("|^$regexp$|", $value)) {
-          $id = '';
+          $parts = UrlHelper::parse($value);
+          $path = explode('/', $parts);
+          $id = $path[2];
         }
 
         $scheme = 'https://youtu.be/*';
@@ -129,8 +141,16 @@ class AbleplayerRemoteVideoFormatter extends FormatterBase {
         }
       }
 
-/*
-      while (ob_get_level() != 0) {
+      if ($provider->getName() === 'Vimeo') {
+        $scheme = 'https://vimeo.com/*';
+        $regexp = str_replace(['.', '*'], ['\.', '.*'], $scheme);
+        if (preg_match("|^$regexp$|", $value)) {
+          $parts = parse_url($value, PHP_URL_PATH);
+          $path = explode('/', $parts);
+          $id = $path[1];
+        }
+      }
+      /*while (ob_get_level() != 0) {
         ob_end_clean();
       }
       echo '<pre>';
@@ -140,18 +160,27 @@ class AbleplayerRemoteVideoFormatter extends FormatterBase {
       echo '</pre>';
       die();
 */
-
-      $element[$delta] = [
-        '#type' => 'html_tag',
-        '#tag' => 'video',
-        '#attributes' => [
-          'data-able-player' => '',
-          'data-youtube-id' => $id,
-        ],
-      ];
+      if ($provider->getName() === 'YouTube') {
+        $element[$delta] = [
+          '#type' => 'html_tag',
+          '#tag' => 'video',
+          '#attributes' => [
+            'data-able-player' => '',
+            'data-youtube-id' => $id,
+          ],
+        ];
+      }
+      if ($provider->getName() === 'Vimeo') {
+        $element[$delta] = [
+          '#type' => 'html_tag',
+          '#tag' => 'video',
+          '#attributes' => [
+            'data-able-player' => '',
+            'data-vimeo-id' => $id,
+          ],
+        ];
+      }
     }
-
     return $element;
   }
-
 }
