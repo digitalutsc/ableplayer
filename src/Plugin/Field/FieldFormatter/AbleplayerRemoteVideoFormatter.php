@@ -142,14 +142,30 @@ class AbleplayerRemoteVideoFormatter extends FormatterBase
       }
 
       if ($provider->getName() === 'Vimeo') {
-        $scheme = 'https://vimeo.com/*';
-        $regexp = str_replace(['.', '*'], ['\.', '.*'], $scheme);
-        if (preg_match("|^$regexp$|", $value)) {
-          $parts = parse_url($value, PHP_URL_PATH);
-          $path = explode('/', $parts);
-          $id = $path[1];
+
+        /* The /channels and /ondemand do not return playable video for
+         * Ableplayer.
+         */
+        $schemes = [
+          "https://vimeo.com/*",
+          "https://vimeo.com/album/*/video/*",
+          "https://vimeo.com/channels/*/*",
+          "https://vimeo.com/groups/*/videos/*",
+          "https://vimeo.com/ondemand/*/*",
+          "https://player.vimeo.com/video/*",
+        ];
+        foreach ($schemes as $scheme) {
+          $regexp = str_replace(['.', '*'], ['\.', '.*'], $scheme);
+          if (preg_match("|^$regexp$|", $value)) {
+            $parts = parse_url($value, PHP_URL_PATH);
+            $path = explode('/', $parts);
+            $id = array_pop($path);
+            break;
+          }
         }
       }
+
+
       /*while (ob_get_level() != 0) {
         ob_end_clean();
       }
@@ -178,6 +194,7 @@ class AbleplayerRemoteVideoFormatter extends FormatterBase
             'data-able-player' => '',
             'data-vimeo-id' => $id,
           ],
+          '#attached' => ['library' => ['ableplayer/ableplayer-vimeo']],
         ];
       }
     }
