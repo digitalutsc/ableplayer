@@ -10,39 +10,6 @@
  */
 
 /**
- * Able Player libraries load render array.
- *
- * Return code to attach the Able Player library to an element using the
- * Libraries API in the '#attached' property of render arrays. With the
- * exception of 'js' and 'css', which are special cases, keys in the '#attached'
- * element of render arrays are treated as function callabacks; the value should
- * be an array of arguments to pass to the callback.
- *
- * Usage:
- *
- *   $element['#attached'] = ableplayer_attach();
- *
- * @return array
- *   Render array to pass to libraries_load.
- */
-function ableplayer_attach() {
-  $attached = array();
-  $compression_level = \Drupal::config('ableplayer.settings')->get('ableplayer_compression_level');
-
-  if ($compression_level === '0') {
-    $ableplayer = array('ableplayer', 'source');
-  }
-  else {
-    $ableplayer = array('ableplayer');
-  }
-
-  $attached['libraries_load'][] = $ableplayer;
-  $attached['css'][] = drupal_get_path('module', 'ableplayer') . '/css/ableplayer.override.css';
-
-  return $attached;
-}
-
-/**
  * Get data for populating track elements for Able Player.
  *
  * Given a list of caption file entities, look up their language in the core
@@ -60,7 +27,8 @@ function ableplayer_attach() {
  *     - 'label' the native language name as used internally by Drupal
  *     - 'uri' the path to the caption file
  */
-function ableplayer_build_track_list(array $track_items) {
+function ableplayer_build_track_list(array $track_items)
+{
   $tracks = array();
   $entity_translation = \Drupal::moduleHandler()->moduleExists('entity_translation');
 
@@ -94,7 +62,8 @@ function ableplayer_build_track_list(array $track_items) {
  * @return array
  *   Able Player file formatter default settings.
  */
-function ableplayer_default_settings() {
+function ableplayer_default_settings()
+{
   return array(
     'width' => 480,
     'height' => 360,
@@ -124,7 +93,8 @@ function ableplayer_default_settings() {
  *     - 'version' is set to the detected version number of Able Player.
  *     - 'message' set if an error was detected.
  */
-function ableplayer_installation_status() {
+function ableplayer_installation_status()
+{
   $status = array();
   $version = NULL;
   $message = NULL;
@@ -148,11 +118,9 @@ function ableplayer_installation_status() {
 
   if (!empty($missing_files)) {
     $message = trim(implode(' ', $missing_files));
-  }
-  elseif (!$ableplayer['installed']) {
+  } elseif (!$ableplayer['installed']) {
     $message = $ableplayer['error message'];
-  }
-  else {
+  } else {
     $version = $ableplayer['version'];
   }
 
@@ -169,7 +137,8 @@ function ableplayer_installation_status() {
  * @return array
  *   Able Player supported mimetypes.
  */
-function ableplayer_mimetypes() {
+function ableplayer_mimetypes()
+{
   return array(
     ABLEPLAYER_BUNDLE_AUDIO . '/' . ABLEPLAYER_MIME_MPEG,
     ABLEPLAYER_BUNDLE_AUDIO . '/' . ABLEPLAYER_MIME_OGG,
@@ -188,7 +157,8 @@ function ableplayer_mimetypes() {
  * @return array
  *   Able Player file formatter view settings.
  */
-function ableplayer_set_view_settings($file, $display, $langcode) {
+function ableplayer_set_view_settings($file, $display, $langcode)
+{
   $options = array();
   $entity_translation = \Drupal::moduleHandler()->moduleExists('entity_translation');
 
@@ -201,8 +171,7 @@ function ableplayer_set_view_settings($file, $display, $langcode) {
   if (empty($options['lang'])) {
     if ($entity_translation && property_exists($file, 'translations')) {
       $options['lang'] = $file->translations->original;
-    }
-    else {
+    } else {
       $options['lang'] = $langcode;
     }
   }
