@@ -154,7 +154,7 @@ var nb = {
 
 "prefIntroDescriptionNone": "Denne videoen har ikke lydbeskrivelse i noen av formatene.",
 
-"prefIntroDescription3": "Bruk følgende innstillinger for å gjøre dine valg angående lydbeskrivelse.",
+"prefIntroDescription3": "Bruk følgende innstillinger for å gjøre dine valg angående tekstbasert lydbeskrivelse.",
 
 "prefIntroDescription4": "Etter at du har lagret dine valg kan lydbeskrivelse slås av og på i panelet.",
 
@@ -306,6 +306,32 @@ var nb = {
 
 "windowBringTop": "Legg i forgrunnen",
 
-"windowBringTopAlert": "Dette vinduet ligger nå foran andre vinduer."
+"windowBringTopAlert": "Dette vinduet ligger nå foran andre vinduer.",
+
+"resultsSummary1": "You searched for:",
+
+"resultsSummary2": "Found",
+
+"resultsSummary3": "matching items.",
+
+"resultsSummary4": "Click the time associated with any item to play the video from that point.",
+
+"noResultsFound": "No results found.",
+
+"searchButtonLabel": "Play at",
+
+"hour": "hour",
+
+"minute": "minute",
+
+"second": "second",
+
+"hours": "hours",
+
+"minutes": "minutes",
+
+"seconds": "seconds",
+
+"enableKeyboardShortcuts": "Enable keyboard shortcuts"
 
 };

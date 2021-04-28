@@ -154,7 +154,7 @@ var es = {
 
 "prefIntroDescriptionNone": "El vídeo actual no tiene audiodescripción de ninguna manera.",
 
-"prefIntroDescription3": "Utilice el siguiente formulario para establecer sus preferencias en cuanto a la audiodescripción.",
+"prefIntroDescription3": "Utilice el siguiente formulario para establecer sus preferencias en cuanto a la audiodescripción en texto.",
 
 "prefIntroDescription4": "Una vez guardadas sus preferencias, la audiodescripción puede habilitarse o deshabilitarse mediante el botón Descripción.",
 
@@ -306,6 +306,32 @@ var es = {
 
 "windowBringTop": "Traer al frente",
 
-"windowBringTopAlert": "Esta ventan está ahora en el frente de otros objetos en la página."
+"windowBringTopAlert": "Esta ventan está ahora en el frente de otros objetos en la página.",
+
+"resultsSummary1": "You searched for:",
+
+"resultsSummary2": "Found",
+
+"resultsSummary3": "matching items.",
+
+"resultsSummary4": "Click the time associated with any item to play the video from that point.",
+
+"noResultsFound": "No results found.",
+
+"searchButtonLabel": "Play at",
+
+"hour": "hour",
+
+"minute": "minute",
+
+"second": "second",
+
+"hours": "hours",
+
+"minutes": "minutes",
+
+"seconds": "seconds",
+
+"enableKeyboardShortcuts": "Enable keyboard shortcuts"
 
 };

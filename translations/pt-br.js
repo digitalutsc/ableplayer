@@ -154,7 +154,7 @@ var ptbr = {
 
 "prefIntroDescriptionNone": "O vídeo atual não possui audiodescrição em nenhum formato.",
 
-"prefIntroDescription3": "Use o formulário a seguir para definir suas preferências relacionadas à audiodescrição.",
+"prefIntroDescription3": "Use o formulário a seguir para definir suas preferências relacionadas à texto baseado em audiodescrição.",
 
 "prefIntroDescription4": "Depois que salvar suas configurações, a audiodescrição poderá ser ligada/desligada usando o botão Descrição.",
 
@@ -306,6 +306,32 @@ var ptbr = {
 
 "windowBringTop": "Trazer para frente",
 
-"windowBringTopAlert": "Essa janela está agora atrás dos outros objetos nesta página."
+"windowBringTopAlert": "Essa janela está agora atrás dos outros objetos nesta página.",
+
+"resultsSummary1": "You searched for:",
+
+"resultsSummary2": "Found",
+
+"resultsSummary3": "matching items.",
+
+"resultsSummary4": "Click the time associated with any item to play the video from that point.",
+
+"noResultsFound": "No results found.",
+
+"searchButtonLabel": "Play at",
+
+"hour": "hour",
+
+"minute": "minute",
+
+"second": "second",
+
+"hours": "hours",
+
+"minutes": "minutes",
+
+"seconds": "seconds",
+
+"enableKeyboardShortcuts": "Enable keyboard shortcuts"
 
 };

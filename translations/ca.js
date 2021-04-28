@@ -154,7 +154,7 @@ var ca = {
 
 "prefIntroDescriptionNone": "L\'actual vídeo no disposa d\'audiodescripció en cap format.",
 
-"prefIntroDescription3": "Utilitzeu el formulari següent per definir les preferències relacionades amb l\'audiodescripció.",
+"prefIntroDescription3": "Utilitzeu el formulari següent per definir les preferències relacionades amb l\'audiodescripció textual.",
 
 "prefIntroDescription4": "Desprès de desar la configuració, podeu commutar l\'ús de l\'audiodescripció amb el mateix botó.",
 
@@ -306,6 +306,32 @@ var ca = {
 
 "windowBringTop": "Porta al davant",
 
-"windowBringTopAlert": "Aquesta finestra es troba davant de la resta d\'objectes de la pàgina."
+"windowBringTopAlert": "Aquesta finestra es troba davant de la resta d\'objectes de la pàgina.",
+
+"resultsSummary1": "You searched for:",
+
+"resultsSummary2": "Found",
+
+"resultsSummary3": "matching items.",
+
+"resultsSummary4": "Click the time associated with any item to play the video from that point.",
+
+"noResultsFound": "No results found.",
+
+"searchButtonLabel": "Play at",
+
+"hour": "hour",
+
+"minute": "minute",
+
+"second": "second",
+
+"hours": "hours",
+
+"minutes": "minutes",
+
+"seconds": "seconds",
+
+"enableKeyboardShortcuts": "Enable keyboard shortcuts"
 
 };

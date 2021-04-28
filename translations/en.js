@@ -154,7 +154,7 @@ var en = {
 
 "prefIntroDescriptionNone": "The current video has no audio description in either format.",
 
-"prefIntroDescription3": "Use the following form to set your preferences related to audio description.",
+"prefIntroDescription3": "Use the following form to set your preferences related to text-based audio description.",
 
 "prefIntroDescription4": "After you save your settings, audio description can be toggled on/off using the Description button.",
 
@@ -306,6 +306,32 @@ var en = {
 
 "windowBringTop": "Bring to front",
 
-"windowBringTopAlert": "This window is now in front of other objects on the page."
+"windowBringTopAlert": "This window is now in front of other objects on the page.",
+
+"resultsSummary1": "You searched for:",
+
+"resultsSummary2": "Found",
+
+"resultsSummary3": "matching items.",
+
+"resultsSummary4": "Click the time associated with any item to play the video from that point.",
+
+"noResultsFound": "No results found.",
+
+"searchButtonLabel": "Play at",
+
+"hour": "hour",
+
+"minute": "minute",
+
+"second": "second",
+
+"hours": "hours",
+
+"minutes": "minutes",
+
+"seconds": "seconds",
+
+"enableKeyboardShortcuts": "Enable keyboard shortcuts"
 
 };
