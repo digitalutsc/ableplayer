@@ -23,14 +23,6 @@ define('ABLEPLAYER_MIME_MP4', 'mp4');
 define('ABLEPLAYER_MIME_WEBM', 'webm');
 
 /**
- * Implements hook_page_attachments().
- * This is for testing that libraries are included properly.
- */
-function ableplayer_page_attachments(array &$attachments) {
-  $attachments['#attached']['library'][] = 'ableplayer/ableplayer';
-}
-
-/**
  * Impelements hook_file_default_types_alter().
  */
 function ableplayer_file_default_types_alter(&$types) {
