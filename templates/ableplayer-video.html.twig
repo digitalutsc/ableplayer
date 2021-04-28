@@ -15,6 +15,7 @@
 * @ingroup themeable
 */
 #}
+{{ attach_library('ableplayer/ableplayer') }}
 <video data-able-player id="test-video-id-1" {{ attributes }} >
   {% for file in files %}
     <source {{ file.source_attributes }}>

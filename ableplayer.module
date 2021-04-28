@@ -36,7 +36,6 @@ function ableplayer_help($path, $arg) {
   switch ($path) {
 
     case 'admin/help#ableplayer':
-
       $filepath = drupal_get_path('module', 'ableplayer') . '/README.md';
 
       if (is_file($filepath) && is_readable($filepath)) {
@@ -73,18 +72,6 @@ function ableplayer_help($path, $arg) {
 function ableplayer_theme(array $existing, $type, $theme, $path) {
   $themes = [];
 
-  $themes['ableplayer'] = [
-    'variables' => [
-      'id' => NULL,
-      'uri' => NULL,
-      'mimetype' => NULL,
-      'tracks' => [],
-      'options' => [],
-    ],
-    'file' => 'ableplayer.theme.inc',
-    'path' => $path . '/themes',
-  ];
-
   $themes['ableplayer_video'] = [
     'variables' => [
       'files' => [],
@@ -114,11 +101,12 @@ function ableplayer_theme(array $existing, $type, $theme, $path) {
     'base hook' => 'field',
   ];
 
-$themes['ableplayer_chapter'] = [
- 'variables' => [
-    'file' => NULL,
-  ],
-];
+  $themes['ableplayer_chapter'] = [
+   'variables' => [
+      'file' => NULL,
+    ],
+  ];
+
   $themes['field__ableplayer_chapter'] = [
     'template' => 'field--ableplayer-chapter',
     'base hook' => 'field',
