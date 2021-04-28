@@ -165,17 +165,6 @@ class AbleplayerRemoteVideoFormatter extends FormatterBase
         }
       }
 
-
-      /*while (ob_get_level() != 0) {
-        ob_end_clean();
-      }
-      echo '<pre>';
-      echo $value;
-      echo "\n";
-      echo var_export($id, TRUE);
-      echo '</pre>';
-      die();
-*/
       if ($provider->getName() === 'YouTube') {
         $element[$delta] = [
           '#type' => 'html_tag',
