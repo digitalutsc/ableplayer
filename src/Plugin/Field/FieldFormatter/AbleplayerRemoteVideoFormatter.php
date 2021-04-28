@@ -173,9 +173,14 @@ class AbleplayerRemoteVideoFormatter extends FormatterBase
             'data-able-player' => '',
             'data-youtube-id' => $id,
           ],
+          '#attached' => [
+            'library' => [
+              'ableplayer/ableplayer',
+            ],
+          ],
         ];
       }
-      if ($provider->getName() === 'Vimeo') {
+      else if ($provider->getName() === 'Vimeo') {
         $element[$delta] = [
           '#type' => 'html_tag',
           '#tag' => 'video',
@@ -183,7 +188,12 @@ class AbleplayerRemoteVideoFormatter extends FormatterBase
             'data-able-player' => '',
             'data-vimeo-id' => $id,
           ],
-          '#attached' => ['library' => ['ableplayer/ableplayer-vimeo']],
+          '#attached' => [
+            'library' => [
+              'ableplayer/ableplayer',
+              'ableplayer/ableplayer-vimeo',
+            ],
+          ],
         ];
       }
     }
