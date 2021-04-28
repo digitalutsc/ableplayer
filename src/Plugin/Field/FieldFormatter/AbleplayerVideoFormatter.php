@@ -32,12 +32,12 @@ class AbleplayerVideoFormatter extends FileMediaFormatterBase {
    * {@inheritdoc}
    */
   public static function defaultSettings() {
-      return [
-        'controls' => FALSE,
-        'autoplay' => FALSE,
-        'loop' => FALSE,
-      ] + parent::defaultSettings();
-    }
+    return [
+      'controls' => FALSE,
+      'autoplay' => FALSE,
+      'loop' => FALSE,
+    ] + parent::defaultSettings();
+  }
 
   /**
    * {@inheritdoc}
@@ -62,8 +62,8 @@ class AbleplayerVideoFormatter extends FileMediaFormatterBase {
       foreach ($elements as &$element) {
         $poster = render($parent->ableplayer_poster_image->view(['type' => 'ableplayer_poster_image']));
         $element['#attributes']->setAttribute('poster', $poster);
+      }
     }
-  }
 
     return $elements;
   }
