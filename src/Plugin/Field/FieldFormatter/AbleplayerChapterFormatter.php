@@ -19,22 +19,19 @@ use Drupal\file\Plugin\Field\FieldFormatter\FileFormatterBase;
  *   }
  * )
  */
-class AbleplayerChapterFormatter extends FileFormatterBase
-{
+class AbleplayerChapterFormatter extends FileFormatterBase {
 
   /**
    * {@inheritdoc}
    */
-  public static function isApplicable(FieldDefinitionInterface $field_definition)
-  {
+  public static function isApplicable(FieldDefinitionInterface $field_definition) {
     return $field_definition->getName() === 'ableplayer_chapter';
   }
 
   /**
    * {@inheritdoc}
    */
-  public function viewElements(FieldItemListInterface $items, $langcode)
-  {
+  public function viewElements(FieldItemListInterface $items, $langcode) {
     $elements = [];
     $entities = $this->getEntitiesToView($items, $langcode);
 
@@ -47,4 +44,5 @@ class AbleplayerChapterFormatter extends FileFormatterBase
 
     return $elements;
   }
+
 }

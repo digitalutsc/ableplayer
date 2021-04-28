@@ -6,8 +6,6 @@ use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\FormatterBase;
-use Drupal\file\Plugin\Field\FieldFormatter\FileMediaFormatterBase;
-use Drupal\media\OEmbed\UrlResolver;
 use Drupal\media\OEmbed\UrlResolverInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -25,8 +23,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   }
  * )
  */
-class AbleplayerRemoteVideoFormatter extends FormatterBase
-{
+class AbleplayerRemoteVideoFormatter extends FormatterBase {
 
   /**
    * The oEmbed URL resolver service.
@@ -55,8 +52,7 @@ class AbleplayerRemoteVideoFormatter extends FormatterBase
    * @param \Drupal\media\OEmbed\UrlResolverInterface $url_resolver
    *   The oEmbed URL resolver service.
    */
-  public function __construct($plugin_id, $plugin_definition, FieldDefinitionInterface $field_definition, array $settings, $label, $view_mode, array $third_party_settings, UrlResolverInterface $url_resolver)
-  {
+  public function __construct($plugin_id, $plugin_definition, FieldDefinitionInterface $field_definition, array $settings, $label, $view_mode, array $third_party_settings, UrlResolverInterface $url_resolver) {
     parent::__construct($plugin_id, $plugin_definition, $field_definition, $settings, $label, $view_mode, $third_party_settings);
 
     $this->urlResolver = $url_resolver;
@@ -65,8 +61,7 @@ class AbleplayerRemoteVideoFormatter extends FormatterBase
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition)
-  {
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
     return new static(
       $plugin_id,
       $plugin_definition,
@@ -82,24 +77,21 @@ class AbleplayerRemoteVideoFormatter extends FormatterBase
   /**
    * {@inheritdoc}
    */
-  public static function getMediaType()
-  {
+  public static function getMediaType() {
     return 'remote_video';
   }
 
   /**
    * {@inheritdoc}
    */
-  public static function isApplicable(FieldDefinitionInterface $field_definition)
-  {
+  public static function isApplicable(FieldDefinitionInterface $field_definition) {
     return TRUE;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function viewElements(FieldItemListInterface $items, $langcode)
-  {
+  public function viewElements(FieldItemListInterface $items, $langcode) {
     $element = [];
 
     foreach ($items as $delta => $item) {
@@ -120,9 +112,9 @@ class AbleplayerRemoteVideoFormatter extends FormatterBase
           $id = $parts['query']['v'];
         }
         /*
-        * Currently YouTube returns a 404 for this pattern so this code is
-        * never called.
-        */
+         * Currently YouTube returns a 404 for this pattern so this code is
+         * never called.
+         */
 
         $scheme = 'https://*.youtube.com/v/*';
         $regexp = str_replace(['.', '*'], ['\.', '.*'], $scheme);
@@ -180,7 +172,7 @@ class AbleplayerRemoteVideoFormatter extends FormatterBase
           ],
         ];
       }
-      else if ($provider->getName() === 'Vimeo') {
+      elseif ($provider->getName() === 'Vimeo') {
         $element[$delta] = [
           '#type' => 'html_tag',
           '#tag' => 'video',
@@ -199,4 +191,5 @@ class AbleplayerRemoteVideoFormatter extends FormatterBase
     }
     return $element;
   }
+
 }
