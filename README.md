@@ -13,31 +13,30 @@ for filetypes and third-party media hosts, may be found at the [**Able Player
 
 This module requires no modules outside of Drupal core.
 
-This module requires the Media Drupal core module.
+This module requires the Drupal core Media module.
 
 
 ### Installation
 
-  1. Download and enable the module using Composer, Drush, or file upload
+  1. Download and enable the module using Composer, Drush, or file upload.
   2. Enable the module either either through the Drupal admin
-     (Extend › Media › Ableplayer) or Drush (`drush pm-enable ableplayer`)
+     (Extend › Media › Ableplayer) or Drush (`drush pm-enable ableplayer`).
 
 
 ### Configuration
 
   1. Create a Video Media type or edit an existing Video media type from
      Structure › Media › Add (`admin/structure/media/add`) and select Video file as the media source.
-  2. Set the video file format to Ableplayer from Structure › Media › Videos
+  2. Set the video file format to Ableplayer from Structure › Media Types › Video
      › Manage display (`/admin/structure/media/manage/videos/display`) under the display column. Change this display to use Ableplayer.
-  3. You can further modify the player behavior by selecting the 'Edit'
-     button (shown as a gear icon while viewing the content). From here, you can configure whether or not a video loops or autoplays, and playback speed icons (up/down or hare/turtle).
+  3. If you're using remote video, repeat Step 2 for the Remote Video media
+     type.
 
 
 ### Usage
 
   1. Navigate to Content › Media and select the 'Add media' button.
-  2. Upload your video file and associated captions, descriptions, and chapters.
-  3. Add a Media File Entity Reference field to an existing or new Entity Type (such as Content Type).
-  4. Create a new Entity node using the configured Entity Type.
-  5. Add your video file and publish the node.
-  6. The page will render with the video shown through Able Player video wrapper.
+  2. Upload your video file and associated captions, descriptions, chapters, poster image, or sign language video, if applicable.
+  3. Attach the video to content using the desired method (Media Browser, entity reference, etc.)
+  6. The video will render with the Able Player wrapper and controls. The output
+     should be similar to that found in the [**Able Player examples**](https://ableplayer.github.io/ableplayer/demos/video1.html).
