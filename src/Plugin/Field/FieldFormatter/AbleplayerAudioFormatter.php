@@ -2,6 +2,9 @@
 
 namespace Drupal\ableplayer\Plugin\Field\FieldFormatter;
 
+use Drupal\Core\Field\EntityReferenceFieldItemListInterface;
+use Drupal\Core\Field\FieldItemListInterface;
+
 use Drupal\file\Plugin\Field\FieldFormatter\FileMediaFormatterBase;
 
 /**
@@ -23,6 +26,30 @@ class AbleplayerAudioFormatter extends FileMediaFormatterBase {
    */
   public static function getMediaType() {
     return 'audio';
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function defaultSettings() {
+    return [
+      'controls' => FALSE,
+      'autoplay' => FALSE,
+      'loop' => FALSE,
+    ] + parent::defaultSettings();
+  }
+
+  public function viewElements(FieldItemListInterface $items, $langcode) {
+    $elements = parent::viewElements($items, $langcode);
+    $parent = $items->getEntity();
+
+    if ($parent->hasField('ableplayer_caption')) {
+      foreach ($elements as &$element) {
+        $element['#caption'] = $parent->ableplayer_caption->view(['type' => 'ableplayer_caption']);
+      }
+    }
+
+    return $elements;
   }
 
 }
