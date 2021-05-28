@@ -1,337 +1,349 @@
 var en = {
+  audio: "audio",
 
-"audio": "audio",
+  video: "video",
 
-"video": "video",
+  playerHeading: "Media player",
 
-"playerHeading": "Media player",
+  faster: "Faster",
 
-"faster": "Faster",
+  slower: "Slower",
 
-"slower": "Slower",
+  play: "Play",
 
-"play": "Play",
+  pause: "Pause",
 
-"pause": "Pause",
+  stop: "Stop",
 
-"stop": "Stop",
+  restart: "Restart",
 
-"restart": "Restart",
+  prevChapter: "Previous chapter",
 
-"prevChapter": "Previous chapter",
+  nextChapter: "Next chapter",
 
-"nextChapter": "Next chapter",
+  prevTrack: "Previous track",
 
-"prevTrack": "Previous track",
+  nextTrack: "Next track",
 
-"nextTrack": "Next track",
+  rewind: "Rewind",
 
-"rewind": "Rewind",
+  forward: "Forward",
 
-"forward": "Forward",
+  captions: "Captions",
 
-"captions": "Captions",
+  showCaptions: "Show captions",
 
-"showCaptions": "Show captions",
+  hideCaptions: "Hide captions",
 
-"hideCaptions": "Hide captions",
+  captionsOff: "Captions off",
 
-"captionsOff": "Captions off",
+  showTranscript: "Show transcript",
 
-"showTranscript": "Show transcript",
+  hideTranscript: "Hide transcript",
 
-"hideTranscript": "Hide transcript",
+  turnOnDescriptions: "Turn on descriptions",
 
-"turnOnDescriptions": "Turn on descriptions",
+  turnOffDescriptions: "Turn off descriptions",
 
-"turnOffDescriptions": "Turn off descriptions",
+  chapters: "Chapters",
 
-"chapters": "Chapters",
+  newChapter: "New chapter",
 
-"newChapter": "New chapter",
+  language: "Language",
 
-"language": "Language",
+  sign: "Sign language",
 
-"sign": "Sign language",
+  showSign: "Show sign language",
 
-"showSign": "Show sign language",
+  hideSign: "Hide sign language",
 
-"hideSign": "Hide sign language",
+  seekbarLabel: "timeline",
 
-"seekbarLabel": "timeline",
+  mute: "Mute",
 
-"mute": "Mute",
+  unmute: "Unmute",
 
-"unmute": "Unmute",
+  volume: "Volume",
 
-"volume": "Volume",
+  volumeHelp: "Click to access volume slider",
 
-"volumeHelp": "Click to access volume slider",
+  volumeUpDown: "Volume up down",
 
-"volumeUpDown": "Volume up down",
+  volumeSliderClosed: "Volume slider closed",
 
-"volumeSliderClosed": "Volume slider closed",
+  preferences: "Preferences",
 
-"preferences": "Preferences",
+  enterFullScreen: "Enter full screen",
 
-"enterFullScreen": "Enter full screen",
+  exitFullScreen: "Exit full screen",
 
-"exitFullScreen": "Exit full screen",
+  fullScreen: "Full screen",
 
-"fullScreen": "Full screen",
+  speed: "Speed",
 
-"speed": "Speed",
+  and: "and",
 
-"and": "and",
+  or: "or",
 
-"or": "or",
+  spacebar: "spacebar",
 
-"spacebar": "spacebar",
+  transcriptTitle: "Transcript",
 
-"transcriptTitle": "Transcript",
+  lyricsTitle: "Lyrics",
 
-"lyricsTitle": "Lyrics",
+  autoScroll: "Auto scroll",
 
-"autoScroll": "Auto scroll",
+  unknown: "Unknown",
 
-"unknown": "Unknown",
+  statusPlaying: "Playing",
 
-"statusPlaying": "Playing",
+  statusPaused: "Paused",
 
-"statusPaused": "Paused",
+  statusStopped: "Stopped",
 
-"statusStopped": "Stopped",
+  statusWaiting: "Waiting",
 
-"statusWaiting": "Waiting",
+  statusBuffering: "Buffering",
 
-"statusBuffering": "Buffering",
+  statusUsingDesc: "Using described version",
 
-"statusUsingDesc": "Using described version",
+  statusLoadingDesc: "Loading described version",
 
-"statusLoadingDesc": "Loading described version",
+  statusUsingNoDesc: "Using non-described version",
 
-"statusUsingNoDesc": "Using non-described version",
+  statusLoadingNoDesc: "Loading non-described version",
 
-"statusLoadingNoDesc": "Loading non-described version",
+  statusLoadingNext: "Loading next track",
 
-"statusLoadingNext": "Loading next track",
+  statusEnd: "End of track",
 
-"statusEnd": "End of track",
+  selectedTrack: "Selected Track",
 
-"selectedTrack": "Selected Track",
+  alertDescribedVersion: "Using the audio described version of this video",
 
-"alertDescribedVersion": "Using the audio described version of this video",
+  alertNonDescribedVersion: "Using the non-described version of this video",
 
-"alertNonDescribedVersion": "Using the non-described version of this video",
+  fallbackError1: "Sorry, your browser is unable to play this",
 
-"fallbackError1": "Sorry, your browser is unable to play this",
+  fallbackError2:
+    "The following browsers are known to work with this media player",
 
-"fallbackError2": "The following browsers are known to work with this media player",
+  orHigher: "or higher",
 
-"orHigher": "or higher",
+  prefMenuCaptions: "Captions",
 
-"prefMenuCaptions": "Captions",
+  prefMenuDescriptions: "Descriptions",
 
-"prefMenuDescriptions": "Descriptions",
+  prefMenuKeyboard: "Keyboard",
 
-"prefMenuKeyboard": "Keyboard",
+  prefMenuTranscript: "Transcript",
 
-"prefMenuTranscript": "Transcript",
+  prefTitleCaptions: "Captions Preferences",
 
-"prefTitleCaptions": "Captions Preferences",
+  prefTitleDescriptions: "Audio Description Preferences",
 
-"prefTitleDescriptions": "Audio Description Preferences",
+  prefTitleKeyboard: "Keyboard Preferences",
 
-"prefTitleKeyboard": "Keyboard Preferences",
+  prefTitleTranscript: "Transcript Preferences",
 
-"prefTitleTranscript": "Transcript Preferences",
+  prefIntroCaptions:
+    "The following preferences control how captions are displayed.",
 
-"prefIntroCaptions": "The following preferences control how captions are displayed.",
+  prefIntroDescription1:
+    "This media player supports audio description in two ways: ",
 
-"prefIntroDescription1": "This media player supports audio description in two ways: ",
+  prefIntroDescription2: "The current video has ",
 
-"prefIntroDescription2": "The current video has ",
+  prefIntroDescriptionNone:
+    "The current video has no audio description in either format.",
 
-"prefIntroDescriptionNone": "The current video has no audio description in either format.",
+  prefIntroDescription3:
+    "Use the following form to set your preferences related to text-based audio description.",
 
-"prefIntroDescription3": "Use the following form to set your preferences related to text-based audio description.",
+  prefIntroDescription4:
+    "After you save your settings, audio description can be toggled on/off using the Description button.",
 
-"prefIntroDescription4": "After you save your settings, audio description can be toggled on/off using the Description button.",
+  prefIntroKeyboard1:
+    "The media player on this web page can be operated from anywhere on the page using keyboard shortcuts (see below for a list).",
 
-"prefIntroKeyboard1": "The media player on this web page can be operated from anywhere on the page using keyboard shortcuts (see below for a list).",
+  prefIntroKeyboard2:
+    "Modifier keys (Shift, Alt, and Control) can be assigned below.",
 
-"prefIntroKeyboard2": "Modifier keys (Shift, Alt, and Control) can be assigned below.",
+  prefIntroKeyboard3:
+    "NOTE: Some key combinations might conflict with keys used by your browser and/or other software applications. Try various combinations of modifier keys to find one that works for you.",
 
-"prefIntroKeyboard3": "NOTE: Some key combinations might conflict with keys used by your browser and/or other software applications. Try various combinations of modifier keys to find one that works for you.",
+  prefIntroTranscript:
+    "The following preferences affect the interactive transcript.",
 
-"prefIntroTranscript": "The following preferences affect the interactive transcript.",
+  prefCookieWarning: "Saving your preferences requires cookies.",
 
-"prefCookieWarning": "Saving your preferences requires cookies.",
+  prefHeadingKeyboard1: "Modifier keys used for shortcuts",
 
-"prefHeadingKeyboard1": "Modifier keys used for shortcuts",
+  prefHeadingKeyboard2: "Current keyboard shortcuts",
 
-"prefHeadingKeyboard2": "Current keyboard shortcuts",
+  prefHeadingDescription: "Audio description",
 
-"prefHeadingDescription": "Audio description",
+  prefHeadingTextDescription: "Text-based audio description",
 
-"prefHeadingTextDescription": "Text-based audio description",
+  prefHeadingCaptions: "Captions",
 
-"prefHeadingCaptions": "Captions",
+  prefHeadingTranscript: "Interactive Transcript",
 
-"prefHeadingTranscript": "Interactive Transcript",
+  prefAltKey: "Alt",
 
-"prefAltKey": "Alt",
+  prefCtrlKey: "Control",
 
-"prefCtrlKey": "Control",
+  prefShiftKey: "Shift",
 
-"prefShiftKey": "Shift",
+  escapeKey: "Escape",
 
-"escapeKey": "Escape",
+  escapeKeyFunction: "Close current dialog or popup menu",
 
-"escapeKeyFunction": "Close current dialog or popup menu",
+  prefDescFormat: "Preferred format",
 
-"prefDescFormat": "Preferred format",
+  prefDescFormatHelp: "If both formats are avaialable, only one will be used.",
 
-"prefDescFormatHelp": "If both formats are avaialable, only one will be used.",
+  prefDescFormatOption1: "alternative described version of video",
 
-"prefDescFormatOption1": "alternative described version of video",
+  prefDescFormatOption1b: "an alternative described version",
 
-"prefDescFormatOption1b": "an alternative described version",
+  prefDescFormatOption2: "text-based description, announced by screen reader",
 
-"prefDescFormatOption2": "text-based description, announced by screen reader",
+  prefDescFormatOption2b: "text-based description",
 
-"prefDescFormatOption2b": "text-based description",
+  prefDescPause: "Automatically pause video when description starts",
 
-"prefDescPause": "Automatically pause video when description starts",
+  prefVisibleDesc: "Make description visible",
 
-"prefVisibleDesc": "Make description visible",
+  prefHighlight: "Highlight transcript as media plays",
 
-"prefHighlight": "Highlight transcript as media plays",
+  prefTranscriptPosition: "Draggable transcript viewer",
 
-"prefTabbable": "Keyboard-enable transcript",
+  prefTabbable: "Keyboard-enable transcript",
 
-"prefCaptionsFont": "Font",
+  prefCaptionsFont: "Font",
 
-"prefCaptionsColor": "Text Color",
+  prefCaptionsColor: "Text Color",
 
-"prefCaptionsBGColor": "Background",
+  prefCaptionsBGColor: "Background",
 
-"prefCaptionsSize": "Font Size",
+  prefCaptionsSize: "Font Size",
 
-"prefCaptionsOpacity": "Opacity",
+  prefCaptionsOpacity: "Opacity",
 
-"prefCaptionsStyle": "Style",
+  prefCaptionsStyle: "Style",
 
-"serif": "serif",
+  serif: "serif",
 
-"sans": "sans-serif",
+  sans: "sans-serif",
 
-"cursive": "cursive",
+  cursive: "cursive",
 
-"fantasy": "fantasy",
+  fantasy: "fantasy",
 
-"monospace": "monospace",
+  monospace: "monospace",
 
-"white": "white",
+  white: "white",
 
-"yellow": "yellow",
+  yellow: "yellow",
 
-"green": "green",
+  green: "green",
 
-"cyan": "cyan",
+  cyan: "cyan",
 
-"blue": "blue",
+  blue: "blue",
 
-"magenta": "magenta",
+  magenta: "magenta",
 
-"red": "red",
+  red: "red",
 
-"black": "black",
+  black: "black",
 
-"transparent": "transparent",
+  transparent: "transparent",
 
-"solid": "solid",
+  solid: "solid",
 
-"captionsStylePopOn": "Pop-on",
+  captionsStylePopOn: "Pop-on",
 
-"captionsStyleRollUp": "Roll-up",
+  captionsStyleRollUp: "Roll-up",
 
-"prefCaptionsPosition": "Position",
+  prefCaptionsPosition: "Position",
 
-"captionsPositionOverlay": "Overlay",
+  captionsPositionOverlay: "Overlay",
 
-"captionsPositionBelow": "Below video",
+  captionsPositionBelow: "Below video",
 
-"sampleCaptionText": "Sample caption text",
+  sampleCaptionText: "Sample caption text",
 
-"prefSuccess": "Your changes have been saved.",
+  prefSuccess: "Your changes have been saved.",
 
-"prefNoChange": "You didn't make any changes.",
+  prefNoChange: "You didn't make any changes.",
 
-"help": "Help",
+  help: "Help",
 
-"helpTitle": "Help",
+  helpTitle: "Help",
 
-"save": "Save",
+  save: "Save",
 
-"cancel": "Cancel",
+  cancel: "Cancel",
 
-"ok": "ok",
+  ok: "ok",
 
-"done": "Done",
+  done: "Done",
 
-"closeButtonLabel": "Close dialog",
+  closeButtonLabel: "Close dialog",
 
-"windowButtonLabel": "Window options",
+  windowButtonLabel: "Window options",
 
-"windowMove": "Move",
+  windowMove: "Move",
 
-"windowMoveAlert": "Drag or use arrow keys to move the window; Enter to stop",
+  windowMoveAlert: "Drag or use arrow keys to move the window; Enter to stop",
 
-"windowResize": "Resize",
+  windowResize: "Resize",
 
-"windowResizeHeading": "Resize Window",
+  windowResizeHeading: "Resize Window",
 
-"windowResizeAlert": "The window has been resized.",
+  windowResizeAlert: "The window has been resized.",
 
-"windowClose": "Close",
+  windowClose: "Close",
 
-"width": "Width",
+  width: "Width",
 
-"height": "Height",
+  height: "Height",
 
-"windowSendBack": "Send to back",
+  windowSendBack: "Send to back",
 
-"windowSendBackAlert": "This window is now behind other objects on the page.",
+  windowSendBackAlert: "This window is now behind other objects on the page.",
 
-"windowBringTop": "Bring to front",
+  windowBringTop: "Bring to front",
 
-"windowBringTopAlert": "This window is now in front of other objects on the page.",
+  windowBringTopAlert:
+    "This window is now in front of other objects on the page.",
 
-"resultsSummary1": "You searched for:",
+  resultsSummary1: "You searched for:",
 
-"resultsSummary2": "Found",
+  resultsSummary2: "Found",
 
-"resultsSummary3": "matching items.",
+  resultsSummary3: "matching items.",
 
-"resultsSummary4": "Click the time associated with any item to play the video from that point.",
+  resultsSummary4:
+    "Click the time associated with any item to play the video from that point.",
 
-"noResultsFound": "No results found.",
+  noResultsFound: "No results found.",
 
-"searchButtonLabel": "Play at",
+  searchButtonLabel: "Play at",
 
-"hour": "hour",
+  hour: "hour",
 
-"minute": "minute",
+  minute: "minute",
 
-"second": "second",
+  second: "second",
 
-"hours": "hours",
+  hours: "hours",
 
-"minutes": "minutes",
+  minutes: "minutes",
 
-"seconds": "seconds",
+  seconds: "seconds",
 
-"enableKeyboardShortcuts": "Enable keyboard shortcuts"
-
+  enableKeyboardShortcuts: "Enable keyboard shortcuts",
 };
