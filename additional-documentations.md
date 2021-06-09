@@ -101,7 +101,8 @@ AblePlayer.prototype.endDrag:
 
 ### Default Settings:
 
-- Default width of the transcript container matches the width of the able player 
+- Default width of the transcript container matches the width of the able player
+- To prevent double playback buttons, go to Structure > Media Type > Video > Manage Display > Video File, then select the settings gear and unselect "Show playback controls" and save
 
 ### Transcript Text Formatting:
 

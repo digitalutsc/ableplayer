@@ -217,8 +217,6 @@ var en = {
 
   prefHighlight: "Highlight transcript as media plays",
 
-  prefTranscriptPosition: "Draggable transcript viewer",
-
   prefTabbable: "Keyboard-enable transcript",
 
   prefCaptionsFont: "Font",
