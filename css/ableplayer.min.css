@@ -12,8 +12,13 @@
   margin: 1em 0;
   width: 100%;
   background-color: #000;
-  box-shadow: 0 0 16px #262626;
-  z-index: 5000;
+  z-index: 50;
+}
+.autoscroll-transcript-checkbox {
+  display: inline;
+}
+.language-select {
+  color: block;
 }
 .able-column-left {
   float: left;
@@ -248,7 +253,7 @@
   color: #ccc;
   font-size: 0.9em;
   background-color: transparent;
-  padding: 0.5em 0.5em 0.25em;
+  padding: 0.5em 0.5em 2em;
 }
 .able-status-bar span.able-timer {
   text-align: left;
@@ -651,10 +656,11 @@ ul.able-popup {
   border-width: 1px;
   border-style: solid;
   height: 400px;
-  z-index: 7000;
+  z-index: 50;
   outline: 0;
   padding-bottom: 25px;
   background-color: #fff;
+  color: black;
 }
 .able-transcript {
   position: relative;
