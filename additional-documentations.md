@@ -102,7 +102,17 @@ AblePlayer.prototype.endDrag:
 ### Default Settings:
 
 - Default width of the transcript container matches the width of the able player
-- To prevent double playback buttons, go to Structure > Media Type > Video > Manage Display > Video File, then select the settings gear and unselect "Show playback controls" and save
+
+### Configuration Menu:
+
+The configuration menu for Ableplayer can be found by going to `Structure > Media Type > Video > Manage Display > Video File` then selecting on the settings gear. Same steps for audio files by choosing the audio option under media type.
+
+Available Configurations Include:
+
+- `Draggable Transcript Container`: Enable a draggable transcript container (i.e. the built-in one)
+- `Show playback controls`: Double playback buttons
+- `Autoplay`: Automatically start playing the media when landing on that page
+- `Loop`: Repeat the media when over
 
 ### Transcript Text Formatting:
 
