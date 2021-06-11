@@ -18,7 +18,7 @@
   display: inline;
 }
 .language-select {
-  color: block;
+  color: black;
 }
 .able-column-left {
   float: left;
@@ -661,6 +661,11 @@ ul.able-popup {
   padding-bottom: 25px;
   background-color: #fff;
   color: black;
+}
+.able-transcript-seekpoint::after,
+.able-transcript-caption::after {
+  content: "\a\a";
+  white-space: pre;
 }
 .able-transcript {
   position: relative;
