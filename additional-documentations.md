@@ -97,6 +97,43 @@ AblePlayer.prototype.endDrag:
     ...
 ```
 
+## Timestamp for Transcript Container
+
+**Purpose:** Display transcript cues along with a time stamp and have the cues be displayed on a separate line for each.
+
+**Relevant Code Modification:** The following modification in `ableplayer.min.js` were made to accomodate this
+
+```diff
+...
+AblePlayer.prototype.generateTranscript:
+    for (
+        var a = o(e.components.children[s]), n = 0;
+        n < a.length;
+        n++
+        ) {
+            var r = a[n];
+            "string" == typeof r &&
+            (h.lyricsMode
+            ? (r = r.replace("\n", "<br>") + "<br>")
+            : (r += " ")),
+            i.append(r);
+            }
++           i.prepend("<i>[" + h.formatSecondsAsColonTime(e.start) + "]</i>"),
+            i.attr("data-start", e.start.toString()),
+            i.attr("data-end", e.end.toString()),
+...
+```
+
+Along with the following CSS formatting in `ableplayer.min.css`:
+
+```diff
++   .able-transcript-seekpoint::after,
++   .able-transcript-caption::after {
++       content: "\a\a";
++       white-space: pre;
++    }
+```
+
 ## Other Documentation
 
 ### Default Settings:
