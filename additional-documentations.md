@@ -99,7 +99,7 @@ AblePlayer.prototype.endDrag:
 
 ## Timestamp for Transcript Container
 
-**Purpose:** Display transcript cues along with a time stamp and have the cues be displayed on a separate line for each.
+**Purpose:** Display transcript cues along with a time stamp and have the cues be displayed in a separate box for each similar to the old player.
 
 **Relevant Code Modification:** The following modification in `ableplayer.min.js` were made to accomodate this
 
@@ -127,11 +127,17 @@ AblePlayer.prototype.generateTranscript:
 Along with the following CSS formatting in `ableplayer.min.css`:
 
 ```diff
-+   .able-transcript-seekpoint::after,
-+   .able-transcript-caption::after {
-+       content: "\a\a";
-+       white-space: pre;
-+    }
+-   .able-transcript div {
+-    margin: 1em 0;
+-   }
+
++   .able-transcript-caption {
++   border: 1px solid #ddd;
++   display: block;
++   padding: 10px 15px;
++   margin: 0px;
++   margin-bottom: -1px;
++   }
 ```
 
 ## Other Documentation
