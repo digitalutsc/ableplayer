@@ -128,15 +128,16 @@ Along with the following CSS formatting in `ableplayer.min.css`:
 
 ```diff
 -   .able-transcript div {
--    margin: 1em 0;
+-       margin: 1em 0;
 -   }
 
 +   .able-transcript-caption {
-+   border: 1px solid #ddd;
-+   display: block;
-+   padding: 10px 15px;
-+   margin: 0px;
-+   margin-bottom: -1px;
++       border-top: 1px solid #ddd;
++       border-bottom: 1px solid #ddd;
++       border: 1px solid #ddd;
++       display: block;
++       margin: 0px;
++       margin-bottom: -1px;
 +   }
 ```
 

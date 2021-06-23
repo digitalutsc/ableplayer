@@ -671,9 +671,10 @@ ul.able-popup {
   height: 350px;
 }
 .able-transcript-caption {
-  border: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
   display: block;
-  padding: 10px 15px;
+  padding-top: 15px;
   margin: 0px;
   margin-bottom: -1px;
 }
