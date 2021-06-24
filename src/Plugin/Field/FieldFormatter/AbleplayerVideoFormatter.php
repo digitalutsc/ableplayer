@@ -34,6 +34,7 @@ class AbleplayerVideoFormatter extends FileMediaFormatterBase {
    */
   public static function defaultSettings() {
     return [
+      'viewer' => FALSE,
       'transcript' => FALSE,
       'controls' => FALSE,
       'autoplay' => FALSE,
@@ -46,6 +47,13 @@ class AbleplayerVideoFormatter extends FileMediaFormatterBase {
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
     return [
+      'viewer' => [
+        '#title' => $this
+          ->t('Display Transcript Container by Default'),
+        '#type' => 'checkbox',
+        '#default_value' => $this
+          ->getSetting('viewer'),
+      ],
       'transcript' => [
         '#title' => $this->t('Draggable Transcript Container'),
         '#type' => 'checkbox',
@@ -58,7 +66,7 @@ class AbleplayerVideoFormatter extends FileMediaFormatterBase {
    * {@inheritdoc}
    */
   protected function prepareAttributes(array $additional_attributes = []) {
-    return parent::prepareAttributes(['transcript']);
+    return parent::prepareAttributes(['viewer', 'transcript']);
   }
 
   /**
@@ -66,6 +74,10 @@ class AbleplayerVideoFormatter extends FileMediaFormatterBase {
    */
   public function settingsSummary() {
     $summary = parent::settingsSummary();
+    $summary[] = $this
+    ->t('Display Transcript Container by Default: %viewer', [
+      '%viewer' => $this->getSetting('viewer') ? $this->t('yes') : $this->t('no'),
+  ]);
     $summary[] = $this
       ->t('Draggable Transcript Container: %transcript', [
         '%transcript' => $this->getSetting('transcript') ? $this->t('yes') : $this->t('no'),

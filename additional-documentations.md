@@ -43,26 +43,142 @@ de l'espace lointain
 ...
 ```
 
-## Fixed and Draggable Transcript Container
+## New Configuration Options/Menu
 
-**Purpose:** Give ability to have the transcript container either fixed under the media or allow it to be draggable as original designed. An option has been added to the on the settings menu for transcripts built within the player.
+**Purpose:** New settings for the able player. Namely two new settings: fixed vs. draggable transcript container and having the transcript container be opened by default.
 
-**Relevant Code Modification:** The following modification in `ableplayer.min.js` were made to accomodate this
+### File: AbleplayerAudioFormatter.php
+
+Two new form fields _viewer_ and _transcript_ along with several functions that are overrided to accomodate the new form fields.
+
+```
+/**
+* {@inheritdoc}
+*/
+public static function defaultSettings() {
+    return [
+        'viewer' => FALSE,       /* New field */
+        'transcript' => FALSE,   /* New field */
+        'controls' => FALSE,
+        'autoplay' => FALSE,
+        'loop' => FALSE,
+    ] + parent::defaultSettings();
+}
+
+/**
+* {@inheritdoc}
+*/
+public function settingsForm(array $form, FormStateInterface $form_state) {
+    return [
+        'viewer' => [
+        '#title' => $this->t('Display Transcript Container by Default'),
+        '#type' => 'checkbox',
+        '#default_value' => $this->getSetting('viewer'),
+        ],
+        'transcript' => [
+        '#title' => $this->t('Draggable Transcript Container'),
+        '#type' => 'checkbox',
+        '#default_value' => $this->getSetting('transcript'),
+        ]
+    ] + parent::settingsForm($form, $form_state);
+}
+
+/**
+* {@inheritdoc}
+*/
+protected function prepareAttributes(array $additional_attributes = []) {
+    return parent::prepareAttributes(['viewer','transcript']);
+}
+
+/**
+* {@inheritdoc}
+*/
+public function settingsSummary() {
+    $summary = parent::settingsSummary();
+    $summary[] = $this->t('Display Transcript Container by Default: %viewer', [
+        '%viewer' => $this->getSetting('viewer') ? $this->t('yes') : $this->t('no'),
+    ]);
+    $summary[] = $this->t('Draggable Transcript Container: %transcript', [
+          '%transcript' => $this->getSetting('transcript') ? $this->t('yes') : $this->t('no'),
+    ]);
+    return $summary;
+}
+
+```
+
+### File: AbleplayerVideoFormatter.php
+
+Two new form fields _viewer_ and _transcript_ along with several functions that are overrided to accomodate the new form fields.
+
+```
+/**
+* {@inheritdoc}
+*/
+public static function defaultSettings() {
+    return [
+      'viewer' => FALSE,
+      'transcript' => FALSE,
+      'controls' => FALSE,
+      'autoplay' => FALSE,
+      'loop' => FALSE,
+    ] + parent::defaultSettings();
+}
+
+/**
+* {@inheritdoc}
+*/
+public function settingsForm(array $form, FormStateInterface $form_state) {
+    return [
+        'viewer' => [
+        '#title' => $this->t('Display Transcript Container by Default'),
+        '#type' => 'checkbox',
+        '#default_value' => $this->getSetting('viewer'),
+        ],
+        'transcript' => [
+        '#title' => $this->t('Draggable Transcript Container'),
+        '#type' => 'checkbox',
+        '#default_value' => $this->getSetting('transcript'),
+        ]
+    ] + parent::settingsForm($form, $form_state);
+}
+
+/**
+* {@inheritdoc}
+*/
+protected function prepareAttributes(array $additional_attributes = []) {
+    return parent::prepareAttributes(['viewer', 'transcript']);
+}
+
+/**
+* {@inheritdoc}
+*/
+public function settingsSummary() {
+    $summary = parent::settingsSummary();
+    $summary[] = $this->t('Display Transcript Container by Default: %viewer', [
+      '%viewer' => $this->getSetting('viewer') ? $this->t('yes') : $this->t('no'),
+    ]);
+    $summary[] = $this->t('Draggable Transcript Container: %transcript', [
+        '%transcript' => $this->getSetting('transcript') ? $this->t('yes') : $this->t('no'),
+    ]);
+    return $summary;
+}
+```
+
+### File: ableplayer.min.js
 
 ```diff
-AblePlayer.prototype.getAvailablePreferences:
-...
-    /* Add a new select option for fixed vs dragging transcript container */
-+   t.push({
-+       name: "prefTranscriptPosition",
-+       label: this.tt.prefTranscriptPosition,
-+       group: "transcript",
-+       default: 0,
-+   }),
-...
+window.AblePlayer:
+    ...
++   void 0 !== o(t).attr("transcript")
++       ? (this.dragTranscript = !0)
++       : (this.dragTranscript = !1),
++   void 0 !== o(t).attr("viewer")
++       ? (this.transcriptViewerDefault = !0)
++       : (this.transcriptViewerDefault = !1),
+    ...
 
 AblePlayer.prototype.updatePrefs:
-        ...
+    ...
     0=== this.prefHighlight &&
         this.$transcriptDiv.find("span").removeClass("able-highlight"),
     this.updateCaption(),
@@ -70,19 +186,30 @@ AblePlayer.prototype.updatePrefs:
 
     /* Check for new preferences update and then reload if necessary */
     this.initDescription(),
-+   this.injectTranscriptArea(),
-+   location.reload(),
-...
++   this.injectTranscriptArea(), location.reload();
+    ...
 
 
 AblePlayer.prototype.initDragDrop:
     /* Check if it was selected to have a dragable transcript container */
-+   if (this.prefTranscriptPosition === 1) {
++   if (this.dragTranscript) {
         var i, s, t, a, n, r;
         (i = this),
         ...
         ...
 +   }
+    ...
+
+
+AblePlayer.prototype.injectTranscriptArea:
+    ...
++   this.transcriptViewerDefault
++       ? this.$transcriptArea.show()
++       : this.$transcriptArea.hide(),
++   this.prefTranscript || this.transcriptDivLocation;
+-   this.prefTranscript || this.transcriptDivLocation || this.$transcriptArea.hide();
+    ...
+
 
 AblePlayer.prototype.endDrag:
     ...
@@ -106,6 +233,7 @@ AblePlayer.prototype.endDrag:
 ```diff
 ...
 AblePlayer.prototype.generateTranscript:
+    ...
     for (
         var a = o(e.components.children[s]), n = 0;
         n < a.length;
@@ -121,12 +249,13 @@ AblePlayer.prototype.generateTranscript:
 +           i.prepend("<i>[" + h.formatSecondsAsColonTime(e.start) + "]</i>  &nbsp;&nbsp;"),
             i.attr("data-start", e.start.toString()),
             i.attr("data-end", e.end.toString()),
-...
+    ...
 ```
 
 Along with the following CSS formatting in `ableplayer.min.css`:
 
 ```diff
+    ...
 -   .able-transcript div {
 -       margin: 1em 0;
 -   }
@@ -139,6 +268,7 @@ Along with the following CSS formatting in `ableplayer.min.css`:
 +       margin: 0px;
 +       margin-bottom: -1px;
 +   }
+    ...
 ```
 
 ## Other Documentation
@@ -153,6 +283,7 @@ The configuration menu for Ableplayer can be found by going to `Structure > Medi
 
 Available Configurations Include:
 
+- `Display Transcript Container by Default`: Display the transcript container by default (i.e. open upon landing on site)
 - `Draggable Transcript Container`: Enable a draggable transcript container (i.e. the built-in one)
 - `Show playback controls`: Double playback buttons
 - `Autoplay`: Automatically start playing the media when landing on that page
