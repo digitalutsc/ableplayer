@@ -169,26 +169,17 @@ public function settingsSummary() {
 ```diff
 window.AblePlayer:
     ...
+    void 0 !== o(t).attr("loop") ? (this.loop = !0) : (this.loop = !1),
 +   void 0 !== o(t).attr("transcript")
 +       ? (this.dragTranscript = !0)
 +       : (this.dragTranscript = !1),
 +   void 0 !== o(t).attr("viewer")
 +       ? (this.transcriptViewerDefault = !0)
 +       : (this.transcriptViewerDefault = !1),
+    void 0 !== o(t).attr("playsinline")
+        ? (this.playsInline = "1")
+        : (this.playsInline = "0"),
     ...
-
-AblePlayer.prototype.updatePrefs:
-    ...
-    0=== this.prefHighlight &&
-        this.$transcriptDiv.find("span").removeClass("able-highlight"),
-    this.updateCaption(),
-    (this.refreshingDesc = !0),
-
-    /* Check for new preferences update and then reload if necessary */
-    this.initDescription(),
-+   this.injectTranscriptArea(), location.reload();
-    ...
-
 
 AblePlayer.prototype.initDragDrop:
     /* Check if it was selected to have a dragable transcript container */
@@ -198,6 +189,16 @@ AblePlayer.prototype.initDragDrop:
         ...
         ...
 +   }
+    ...
+
+AblePlayer.prototype.handleTranscriptToggle:
+    ...
+    this.$transcriptArea.show(),
++   this.$transcriptPopup ? this.$transcriptPopup.hide() : "",
+-   this.$transcriptPopup.hide()
+    this.$transcriptButton
+        .removeClass("buttonOff")
+        .attr("aria-label", this.tt.hideTranscript),
     ...
 
 
