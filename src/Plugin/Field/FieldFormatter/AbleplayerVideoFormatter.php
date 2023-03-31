@@ -106,7 +106,8 @@ class AbleplayerVideoFormatter extends FileMediaFormatterBase {
 
     if ($parent->hasField('ableplayer_poster_image')) {
       foreach ($elements as &$element) {
-        $poster = render($parent->ableplayer_poster_image->view(['type' => 'ableplayer_poster_image']));
+        $poster_array = $parent->ableplayer_poster_image->view(['type' => 'ableplayer_poster_image']);
+        $poster = render($poster_array);
         $element['#attributes']->setAttribute('poster', $poster);
       }
     }
@@ -120,7 +121,8 @@ class AbleplayerVideoFormatter extends FileMediaFormatterBase {
   protected function getSourceFiles(EntityReferenceFieldItemListInterface $items, $langcode) {
     $source_files = parent::getSourceFiles($items, $langcode);
     $parent = $items->getEntity();
-    $data_sign_src = render($parent->ableplayer_sign_language->view(['type' => 'ableplayer_sign_language']));
+    $data_sign_src_array = $parent->ableplayer_sign_language->view(['type' => 'ableplayer_sign_language']);
+    $data_sign_src = render($data_sign_src_array);
 
     foreach ($source_files as $source_file) {
       foreach ($source_file as $element) {
